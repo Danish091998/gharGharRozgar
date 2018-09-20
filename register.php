@@ -24,6 +24,8 @@ if( isset( $_POST['add'] ) ) {
     } else {
         $_SESSION['email'] = $_POST["email"];
         $email= validateFormData( $_POST["email"] );
+        $email = str_replace("'","\'",$email);
+        $email = str_replace('"','\"',$email);  
     }
     if( !$_POST["password"] ) {
         $passwordError = "Please enter password <br>";
@@ -42,12 +44,16 @@ if( isset( $_POST['add'] ) ) {
     } else {
         $_SESSION['firstName'] = $_POST["firstName"];
         $firstName = validateFormData( $_POST["firstName"] );
+        $firstName = str_replace("'","\'",$firstName);
+        $firstName = str_replace('"','\"',$firstName);  
     }
     if( !$_POST["lastName"] ) {
         $lastNameError = "Please enter last name <br>";
     } else {
         $_SESSION['lastName'] = $_POST["lastName"];
         $lastName = validateFormData( $_POST["lastName"] );
+        $lastName = str_replace("'","\'",$lastName);
+        $lastName = str_replace('"','\"',$lastName); 
     }
     if( !$_POST["gender"] ) {
         $genderError = "Please specify gender <br>";
@@ -121,8 +127,8 @@ if( isset( $_POST['add'] ) ) {
         <!--        StyleSheet-->   
         
         <!--        Font Awesome-->
-        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
-        <link href="../jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet">
+<!--        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">-->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         <link href="style.css" rel="stylesheet">
         
 
@@ -279,8 +285,8 @@ if( isset( $_POST['add'] ) ) {
 </form>
  </div>   
         
-<script src="../jquery-3.3.1.js" ></script>
-<script src="../jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="register.js"></script>        
