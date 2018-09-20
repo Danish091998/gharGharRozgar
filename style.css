@@ -1,0 +1,419 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+#top-bar{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 53px;
+    background: white; 
+    margin: 0;
+    padding: 0;
+}
+.website-name{
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    line-height: 48px; 
+    display: inline-block;
+    color: #00aff0;
+    margin-left: 30px;
+}
+
+.login-button{
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    float: right;
+    margin: 10px 40px 10px 0px;
+    padding: 5px 12px 5px 12px;
+    background: white;
+    border: 1px solid #00aff0;
+    border-radius: 3px;
+    color: #00aff0;
+    cursor: pointer;
+    outline: none;
+}
+
+.login-button:hover{
+    background:rgba(0,175,240,0.1);
+    text-decoration: none;
+}
+
+.login-button:active{
+    text-decoration: none;
+    outline: none;
+}
+
+.signup-button{
+    text-decoration: none;
+    color: #00aff0;
+    margin: 0;
+    padding: 0;
+    float: right;
+    border: none;
+    background-color: white;
+    font-size: 14px;
+    margin: 16px 15px 16px 12px;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.signup-button:active{
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+.dropbtn {
+    background-color: white;
+    color: #00aff0;
+    margin: 10px 40px 10px 0px;
+    padding: 5px 12px 5px 12px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    outline: none;
+}
+
+.dropbtn.color{
+    color: #0177a3; 
+    outline: none;
+}
+
+.dropdown {
+    float: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+i {
+  border: solid;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 2px; 
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transition: 0.5s;
+    position: relative;
+    bottom: 3px;
+    left:3px;
+    border-color: #00aff0;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transition: 0.5;
+    position: relative;
+    bottom: 0px;
+    left: 3px;
+    border-color: #0177a3;
+}
+
+#signin-title{
+    font-size: 16px;
+    position: relative;
+    top: 3px;
+    left: 10px;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    background-color: white;
+} 
+
+#register-title{
+    font-size: 16px;
+    position: relative;
+    top: 3px;
+    left: 10px;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid white;
+    cursor: pointer;
+    background-color: white;
+}
+
+.modal-header{
+    background-color:whitesmoke;
+    height: 55px;
+}
+
+#login-username,#register-username, #register-email, #register-password{
+    display: block;
+    border-width: 1.5px;
+    border-color: white;
+    width: 232px;
+    background: white;
+    border-bottom-color: #777;
+    border-top-color: white;
+    color: #777;
+    padding: 8px 8px 8px 20px;
+    font-size: 13px;
+    border-style:solid;
+    text-decoration: none;
+}
+
+#login-password{
+    display: block;
+    border-width: 1.5px;
+    border-color: white;
+    width: 232px;
+    background: white;
+    border-bottom-color: #777;
+    border-top-color: white;
+    color: #777;
+    padding: 8px 8px 8px 20px;
+    font-size: 13px;
+    border-style:solid;
+    text-decoration: none;
+}
+
+.form-group{ 
+  position:relative; 
+}
+
+#login-username:focus,#register-username:focus, #register-email:focus , #register-password:focus  	{ outline:none; }
+
+#label 				 {
+  color:#999; 
+  font-size:16px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  top:12px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+#login-username:focus ~ label, #login-username:valid ~ label ,#register-username:focus ~ label, #register-username:valid ~ label, #register-email:focus ~ label, #register-email:valid ~ label, #register-password:focus ~ label, #register-password:valid ~ label{
+  top:-10px;
+  font-size:12px;
+  color:#00aff0;
+}
+
+.bar 	{ position:relative; display:block; width:232px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2.1px; 
+  width:0;
+  bottom:0px;
+  position:absolute;
+  background:#00aff0; 
+  transition:0.5s ease all; 
+  -moz-transition:0.5s ease all; 
+  -webkit-transition:0.5s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+#login-username:focus ~ .bar:before, #login-username:focus ~ .bar:after {
+  width:50%;
+}
+#register-username:focus ~ .bar:before, #register-username:focus ~ .bar:after {
+  width:50%;
+}
+#register-email:focus ~ .bar:before, #register-email:focus ~ .bar:after {
+  width:50%;
+}
+#register-password:focus ~ .bar:before, #register-password:focus ~ .bar:after {
+  width:50%;
+}
+
+#login-password:focus 		{ outline:none; }
+
+#login-password:focus ~ label, #login-password:valid ~ label  		{
+  top:-10px;
+  font-size:12px;
+  color:#00aff0;
+} 
+
+#login-password:focus ~ .bar:before, #login-password:focus ~ .bar:after {
+  width:50%;
+}
+
+.highlight{
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+#login-button,#register-button{
+    width:232px;
+    background-color: #00aff0;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    margin:25px 0px 30px 0px;
+    font-weight: 600;
+    border: none;
+    font-size: 15px;
+    padding: 6px 12px 6px 12px;
+}
+
+.home-background{
+    background: url(Images/office-620817_1920.jpg);
+    width: 100%;
+    height: 100%;
+    background-size:cover; 
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.wrapper-for-home-heading{
+    position: absolute;
+    top: 250px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 600px;
+}
+
+.home-heading{
+    box-sizing: border-box;
+    color: white;
+    padding: 20px 50px 20px 50px;
+    border: 3px solid white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.home-anchor{
+    font-size: 20px;
+    color: white !important;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.anchor1{
+    background: #00aff0;
+    padding:3px 50px 3px 50px;
+    text-align: center;
+    position: absolute;
+    left: 30px;
+    text-decoration: none;
+}
+.anchor1:hover{
+    background: #007caa;
+}
+.anchor2{
+    background: #f04100;
+    padding:3px 50px 3px 50px;
+    text-align: center;
+    position: absolute;
+    right: 30px;
+}
+
+.anchor2:hover{
+    background: #bf3300;
+}
+.tip-top-right{
+    width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 18px solid #f04100;
+    top: -0.2px;
+  right:-35px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent; 
+}
+
+.tip-top-left{
+    width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 18px solid #00aff0;
+    top: -0.2px;
+  left: -35px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent; 
+}
+/*Registration Form*/
+
+.form-check{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+
+.personal-details-title{
+margin: 0px;
+padding: 0px;
+font-weight:600; 
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+hr{border-top: 2px solid rgba(0,0,0,.1);}
+
+.page-heading{
+    font-size: 35px;
+    margin: 40px 20px;
+    color:#025f82; 
+    font-weight: 400;
+}
+
+.labels-for-form{font-weight: 600;}
+.select2-container{
+    font-size: 15px;
+}
+#selectDiv2,#selectDiv3{
+    visibility: hidden;
+}
