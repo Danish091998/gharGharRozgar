@@ -24,6 +24,20 @@ html,body{
     margin-left: 30px;
 }
 
+.navigation-anchor-wrapper{
+    display: inline-block;
+    position: relative;
+    left: 300px;
+}
+
+.navigation-anchor{
+    font-size: 17px;
+    font-weight: 400;
+    padding: 0px 20px;
+    color: #00aff0 !important;
+    cursor: pointer;
+}
+
 .login-button{
     text-decoration: none;
     color: #111;
@@ -416,4 +430,24 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 }
 #selectDiv2,#selectDiv3{
     visibility: hidden;
+}
+
+/*Company Registration Form*/
+
+.labelForPicture{
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+#labelForAvatar{
+    display: block;
+}
+
+#imgupload{
+    width: 200px;
+}
+
+#avatar{
+    display: inline-block;
+    width: 300px;
 }
