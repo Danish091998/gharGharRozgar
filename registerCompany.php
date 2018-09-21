@@ -49,11 +49,11 @@ list( $width,$height ) = getimagesize( $uploadimage );
 
 
 // It makes the new image width of 350
-$newwidth = 250;
+$newwidth = $width;
 
 
 // It makes the new image height of 350
-$newheight = 250;
+$newheight = $height;
 
 
 // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
@@ -74,7 +74,8 @@ imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $he
 
 // It then save the new image to the location specified by $resize_image variable
 
-imagejpeg( $thumb, $resize_image,90); 
+imagejpeg( $thumb, $resize_image,50);
+unlink($actual_image);  
 
 // 100 Represents the quality of an image you can set and ant number in place of 100.
 
