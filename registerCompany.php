@@ -1,11 +1,73 @@
 <?php 
 include('connections.php'); 
-$target_dir = "D:\Ampps\www\gharGharRozgar\Uploads/";
+$target_dir = "C:\Program Files (x86)\Ampps\www\gharGharRozgar\Uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
 if(isset($_POST["add"])) {
+    session_start();
+    // build a function to validate data
+    function validateFormData( $formData ) {
+        $formData = trim( stripslashes( htmlspecialchars( $formData ) ) );
+        return $formData;
+    }
+    $email = $password = $mobile = $mobileOpt = $cName = $area = $city = $pinCode = "";
+    $confirmPassword = $_POST["confirmPassword"];
+    
+    if( !$_POST["email"] ) {
+        $emailError = "Please enter email <br>";
+    } else {
+        $_SESSION['email'] = $_POST["email"];
+        $email= validateFormData( $_POST["email"] );
+        $email = str_replace("'","\'",$email);
+        $email = str_replace('"','\"',$email);  
+    }
+    if( !$_POST["password"] ) {
+        $passwordError = "Please enter password <br>";
+    } else {
+        $password = validateFormData( $_POST["password"] );
+        $hashedPassword = password_hash( $password, PASSWORD_BCRYPT );
+    }
+    if( !$_POST["mobileNumber"] ) {
+        $mobileError = "Please enter mobile number <br>";
+    } else {
+        $_SESSION['mobileNumber'] = $_POST["mobileNumber"];
+        $mobile = validateFormData( $_POST["mobileNumber"] );
+    }
+    
+    $mobileOpt = validateFormData( $_POST["mobileNumberOptional"] );
+    
+    if( !$_POST["cName"] ) { 
+        $cNameError = "Please enter first name <br>";
+    } else {
+        $_SESSION['cName'] = $_POST["cName"];
+        $cName = validateFormData( $_POST["cName"] );
+        $cName = str_replace("'","\'",$cName);
+        $cName = str_replace('"','\"',$cName);  
+    }
+    if( !$_POST["area"] ) {
+        $areaError = "Please enter area<br>";
+    } else {
+        $_SESSION['area'] = $_POST["area"];
+        $area = validateFormData( $_POST["area"] );
+    }
+    if( !$_POST["city"] ) {
+        $cityError = "Please enter city<br>";
+    } else {
+        $_SESSION['city'] = $_POST["city"];
+        $city = validateFormData( $_POST["city"] );
+    }
+    if( !$_POST["pincode"] ) {
+        $pinCodeError = "Please enter pincode<br>";
+    } else {
+        $_SESSION['pincode'] = $_POST["pincode"];
+        $pinCode = validateFormData( $_POST["pincode"] );
+    }
+    if(!$_POST["fileToUpload"]){
+        $logoError = "Please select an image.<br>";
+    }
+    else{
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
@@ -39,23 +101,13 @@ if ($uploadOk == 0) {
 if($check !== false) {
 $uploadimage = $target_dir.$_FILES["fileToUpload"]["name"];
 $newname = $_FILES["fileToUpload"]["name"];
-
 // Set the resize_image name
 $resize_image = $target_dir.$newname."_resize.jpg"; 
 $actual_image = $target_dir.$newname;
-
 // It gets the size of the image
 list( $width,$height ) = getimagesize( $uploadimage );
-
-
-// It makes the new image width of 350
 $newwidth = $width;
-
-
-// It makes the new image height of 350
 $newheight = $height;
-
-
 // It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
 $thumb = imagecreatetruecolor( $newwidth, $newheight );
     if ($check['mime'] == 'image/jpeg') 
@@ -83,7 +135,27 @@ unlink($actual_image);
 $out_image=addslashes(file_get_contents($resize_image));
 }
 }
+    echo $email . $password . $mobile . $mobileOpt . $cName . $area . $city . $pinCode . $confirmPassword . $_POST['checkbox'] . $image; 
+    if( $email && $hashedPassword && $mobile && $cName && $area && $city && $pinCode && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
+        $query = "INSERT INTO `companyRegister`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
+        echo  $query;
+        if( mysqli_query( $conn, $query ) ) {
+            session_unset();
+            session_destroy();
+            
+            session_start();
+            
+            // store data in SESSION variables
+            $_SESSION['loggedInUser'] = $firstName;
+            $_SESSION['loggedInEmail'] = $email;
+            
 
+                                        }
+         else {
+            echo "Error: ". $query . "<br>" . mysqli_error($conn);
+        }
+}
+}
 
 ?>
 <!DOCTYPE html>
@@ -104,7 +176,6 @@ $out_image=addslashes(file_get_contents($resize_image));
         
         <!--        Font Awesome-->
 <!--        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">-->
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         <link href="style.css" rel="stylesheet">
         
 
@@ -173,8 +244,8 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Comapny Name:</p>
       </div>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="validationDefault01" placeholder="Name" name="firstName" >
-        <small class="text-danger"><?php echo $firstNameError; ?></small>
+      <input type="text" class="form-control" id="validationDefault01" placeholder="Name" name="cName" >
+        <small class="text-danger"><?php echo $cNameError; ?></small>
     </div>
   </div>
             <hr>
@@ -186,8 +257,9 @@ $out_image=addslashes(file_get_contents($resize_image));
                      <img src="Images/avatar-1577909_640.png" id="imgupload">
                  </label>
              <div class="margin-bottom margin-top">
-                 <p class="labelForPicture">Profile Picture</p>
+                 <p class="labelForPicture">Logo</p>
                  <input type="file" class="form-control" name="fileToUpload" id="avatar">
+                 <small class="text-danger"> <?php echo $logoError; ?></small>
              </div> 
   </div>
             <hr>    
@@ -196,16 +268,16 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Location:</p>
       </div>
     <div class="col-md-3">
-      <input type="text" class="form-control" id="validationDefault03" placeholder="Area" name="city" >
-         <small class="text-danger"><?php echo $cityError; ?></small>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Area" name="area" >
+         <small class="text-danger"><?php echo $areaError; ?></small>
     </div>
       <div class="col-md-3">
       <input type="text" class="form-control" id="validationDefault03" placeholder="City" name="city" >
          <small class="text-danger"><?php echo $cityError; ?></small>
     </div>
       <div class="col-md-3">
-      <input type="number" class="form-control" id="validationDefault03" placeholder="Pin Code" name="pin">
-         <small class="text-danger"><?php echo $cityError; ?></small>
+      <input type="number" class="form-control" id="validationDefault03" placeholder="Pin Code" name="pincode">
+         <small class="text-danger"><?php echo $pinCodeError; ?></small>
     </div>
   </div>
             <hr> 
@@ -221,7 +293,6 @@ $out_image=addslashes(file_get_contents($resize_image));
  </div>   
         
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="registerCompany.js"></script>        

@@ -1,10 +1,4 @@
-//SHOW PROFILE PICTURE       
-
-//END OF SHOW PROFILE PICTURE
-
-
-        
-function readFile() {
+        function readFile() {
     if(this.files[0].size > 1000000){
         alert("File must be less than 1MB");
        this.value = "";
@@ -24,4 +18,12 @@ function readFile() {
 
         document.getElementById("avatar").addEventListener("change", readFile, false);
 
-
+$('#password, #confirm_password').on('keyup', function () {
+    if($('#password').val() != "" ){
+    if ($('#password').val() == $('#confirm_password').val()) {
+        $('#message').html('Matching').css('color', 'green');
+    } else{ 
+        $('#message').html('Not Matching').css('color', 'red');
+    }
+    }
+});
