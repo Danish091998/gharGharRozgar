@@ -1,6 +1,6 @@
 <?php 
 include('connections.php'); 
-$target_dir = "C:\Program Files (x86)\Ampps\www\gharGharRozgar\Uploads/";
+$target_dir = "D:\Ampps\www\gharGharRozgar\Uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -14,13 +14,6 @@ if(isset($_POST["add"])) {
         echo "File is not an image.";
         $uploadOk = 0;
     }
-           function compress_image($source_url, $destination_url, $quality) {
-    return $destination_url;
-    }
-    $d = compress_image($_FILES["fileToUpload"]["name"], $target_file, 90);
-        print_r($d);
-
-
 // Check if file already exists
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
@@ -36,13 +29,60 @@ if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $d)) {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        echo "Sorry, there was an error uploading your file.Check ur internet connection or try again later.";
     }
 }
+
+if($check !== false) {
+$uploadimage = $target_dir.$_FILES["fileToUpload"]["name"];
+$newname = $_FILES["fileToUpload"]["name"];
+
+// Set the resize_image name
+$resize_image = $target_dir.$newname."_resize.jpg"; 
+$actual_image = $target_dir.$newname;
+
+// It gets the size of the image
+list( $width,$height ) = getimagesize( $uploadimage );
+
+
+// It makes the new image width of 350
+$newwidth = 250;
+
+
+// It makes the new image height of 350
+$newheight = 250;
+
+
+// It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
+$thumb = imagecreatetruecolor( $newwidth, $newheight );
+    if ($check['mime'] == 'image/jpeg') 
+			$source = imagecreatefromjpeg( $actual_image );
+
+		elseif ($check['mime'] == 'image/jpg') 
+			$source = imagecreatefromgif( $actual_image );
+
+		elseif ($check['mime'] == 'image/png') 
+			$source = imagecreatefrompng( $actual_image );
+
+
+// Resize the $thumb image.
+imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+
+// It then save the new image to the location specified by $resize_image variable
+
+imagejpeg( $thumb, $resize_image,90); 
+
+// 100 Represents the quality of an image you can set and ant number in place of 100.
+
+
+$out_image=addslashes(file_get_contents($resize_image));
 }
+}
+
 
 ?>
 <!DOCTYPE html>
