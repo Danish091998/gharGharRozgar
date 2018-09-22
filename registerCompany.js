@@ -1,4 +1,5 @@
-        function readFile() {
+
+function readFile() {
     if(this.files[0].size > 1000000){
         alert("File must be less than 1MB");
        this.value = "";
@@ -17,6 +18,7 @@
 }
 
         document.getElementById("avatar").addEventListener("change", readFile, false);
+
 
 $('#password, #confirm_password').on('keyup', function () {
     if($('#password').val() != "" ){
