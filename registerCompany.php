@@ -1,10 +1,11 @@
 <?php 
 include('connections.php'); 
-$target_dir = "C:\Program Files (x86)\Ampps\www\gharGharRozgar\Uploads/";
+$target_dir = "D:\Ampps\www\gharGharRozgar\Uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-$image = $target_file."_resize.jpg";
+$imgCheck = $_FILES["fileToUpload"]["name"];
+
 // Check if image file is a actual image or fake image
 if(isset($_POST["add"])) {
     session_start();
@@ -65,7 +66,10 @@ if(isset($_POST["add"])) {
         $_SESSION['pincode'] = $_POST["pincode"];
         $pinCode = validateFormData( $_POST["pincode"] );
     }
-    
+    if(!$imgCheck){
+        $logoError = "Please select an image.<br>";
+    }
+    else{
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
@@ -75,9 +79,9 @@ if(isset($_POST["add"])) {
         $uploadOk = 0;
     }
 // Check if file already exists
-if (file_exists($image)) {
-    $image = $image . $cName;
-    $uploadOk = 1;
+if (file_exists($target_file)) {
+    echo "   abcd1234    ";
+    $target_file = $target_dir . $cName . basename($_FILES["fileToUpload"]["name"]);
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
@@ -94,12 +98,14 @@ if ($uploadOk == 0) {
     } else {
         echo "Sorry, there was an error uploading your file.Check ur internet connection or try again later.";
     }
-    
-$uploadimage = $target_dir.$_FILES["fileToUpload"]["name"];
-$newname = $_FILES["fileToUpload"]["name"];
-// Set the resize_image name
-$resize_image = $target_dir.$newname."_resize.jpg"; 
-$actual_image = $target_dir.$newname;
+}
+
+if($check !== false) {
+$uploadimage = $target_file;
+$newname = $imgCheck;
+// Set the resize_image name 
+$resize_image = $target_file; 
+$actual_image = $target_file;
 // It gets the size of the image
 list( $width,$height ) = getimagesize( $uploadimage );
 $newwidth = $width;
@@ -123,16 +129,17 @@ imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $he
 // It then save the new image to the location specified by $resize_image variable
 
 imagejpeg( $thumb, $resize_image,50);
-unlink($actual_image);
+//unlink($actual_image);  
 
 // 100 Represents the quality of an image you can set and ant number in place of 100.
 
 
 $out_image=addslashes(file_get_contents($resize_image));
 }
-
+}
+    echo $resize_image; 
     if( $email && $hashedPassword && $mobile && $cName && $area && $city && $pinCode && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
-        $query = "INSERT INTO `companyRegister`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$image')";
+        $query = "INSERT INTO `companyRegister`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
         echo  $query;
         if( mysqli_query( $conn, $query ) ) {
             session_unset();

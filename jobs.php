@@ -3,9 +3,14 @@ include('connections.php');
 
 function jobs(){
     global $conn;
-    $query = "SELECT * FROM `jobs` LIMIT 4";
+
+$query = "SELECT jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,companyRegister.logoImage,companyRegister.companyName
+FROM jobs
+INNER JOIN companyRegister
+ON jobs.ORG = companyRegister.companyName LIMIT 4";
     $result = mysqli_query($conn, $query);
-         
+      echo $query;   
+    print_r($result);
     $row = mysqli_num_rows($result);
     if ($row == 0 ){
         
@@ -25,18 +30,7 @@ function jobs(){
         $job_info       = $org['INFO'];
         $job_venue      = $org['ADDRESS'];
         
-        echo"
-<div class='col-sm-3'>
-        <div class='card'>
-    <a href='product.php?id=$pro_id'><img class='card-img-top' src='$pro_image' alt='Card image cap'></a>
-    <div class='card-body'>
-      <a href='product.php?id=$pro_id'><h5 class='card-title'>$pro_name</h5></a>
-      <p class='card-text'>$pro_price</p>
-      <a href='seller.php?id=$pro_seller_name'><p class='card-text'><small class='text-muted'>$pro_seller_name</small></p></a>
-    </div>
-  </div>
-</div>
-        ";
+        echo $org_name.$org_job.$job_course.$job_field.$job_info.$job_venue;
            
     
         }   
@@ -65,7 +59,8 @@ function jobs(){
     <body>
         
         <?php
-        include("topBar.php");?>
+        include("topBar.php");
+        jobs();?>
     
 <script src="../jquery-3.3.1.js" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
