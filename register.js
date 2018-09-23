@@ -17,8 +17,8 @@ function checkSelect(){
    
 $.ajax({
             type: "POST",
-            url: "select.php",
-            data: "qual=" + qual + "&check=1",
+            url: "functions.php",
+            data: "qual=" + qual + "&check=select1",
             success: function(result) {
             $("#selectTwo").append(result);
             }   
@@ -33,8 +33,8 @@ function checkSelect2(){
    
 $.ajax({
             type: "POST",
-            url: "select.php",
-            data: "qual2=" + qual2,
+            url: "functions.php",
+            data: "qual2=" + qual2 + "&check=select2",
             success: function(result) {
             $("#selectThree").append(result);
             }   

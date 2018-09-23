@@ -7,10 +7,9 @@ function jobs(){
 $query = "SELECT jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,companyRegister.logoImage,companyRegister.companyName
 FROM jobs
 INNER JOIN companyRegister
-ON jobs.ORG = companyRegister.companyName LIMIT 4";
+ON jobs.ORG = companyRegister.companyName LIMIT 8";
     $result = mysqli_query($conn, $query);
-      echo $query;   
-    print_r($result);
+
     $row = mysqli_num_rows($result);
     if ($row == 0 ){
         
@@ -22,16 +21,26 @@ ON jobs.ORG = companyRegister.companyName LIMIT 4";
     
     while($org = mysqli_fetch_array($result) ){
         
-        $org_name       = $org['ORG'];
-//      $org_logo       = $org['LOGO'];
+        $org_name       = mysqli_real_escape_string($conn,$org['ORG']);
+        $org_logo       = $org['logoImage'];
         $org_job        = $org['JOB'];
         $job_course     = $org['COURSE'];
         $job_field      = $org['FIELD'];
         $job_info       = $org['INFO'];
         $job_venue      = $org['ADDRESS'];
         
-        echo $org_name.$org_job.$job_course.$job_field.$job_info.$job_venue;
-           
+        echo "<div class='row' style='border:2px black solid; border-radius:5px'> 
+                <div class='col-md-4'>
+                    <img src='$org_logo' style='max-height:150px; max-width:150px;'>
+                </div>
+            <div class='col-md-8'>
+                <b>Job : </b><span>$org_job</span><br>
+                <b>Company : </b><span>$org_name</span><br>
+                <b>Course Required : </b><span>$org_course</span><br>
+                <p>$job_info</p>
+                <b>Venue : </b><span>$job_venue</span>
+                </div>
+            </div>";
     
         }   
     }
@@ -59,11 +68,17 @@ ON jobs.ORG = companyRegister.companyName LIMIT 4";
     <body>
         
         <?php
-        include("topBar.php");
-        jobs();?>
+        $query = "SELECT CURTIME()";
+        $result = mysqli_query($conn,$query);
+        print_r(mysqli_fetch_array($result));
+        include("topBar.php");?>
+        <div class="container">
+             <?php jobs();?>
+        </div>
     
 <script src="../jquery-3.3.1.js" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-<script src="home.js"></script>        
+<script src="home.js"></script>  
+        
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php 
 include('connections.php'); 
-$target_dir = "D:\Ampps\www\gharGharRozgar\Uploads/";
+$target_dir = "Uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -137,9 +137,9 @@ imagejpeg( $thumb, $resize_image,50);
 $out_image=addslashes(file_get_contents($resize_image));
 }
 }
-    echo $resize_image; 
+    echo $resize_image.$email . $hashedPassword . $mobile . $cName . $area . $city . $pinCode . $_POST['checkbox'] . $password . $confirmPassword;
     if( $email && $hashedPassword && $mobile && $cName && $area && $city && $pinCode && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
-        $query = "INSERT INTO `companyRegister`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
+        $query = "INSERT INTO `companyRegisterTemporary`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
         echo  $query;
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
