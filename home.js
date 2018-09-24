@@ -1,12 +1,39 @@
 
-$(".login-button").click(function(){
-
-$("#modalForLogin").modal();
-    
+$(".login-button").click(function(e){
+e.preventDefault();
+var myModal = $('#modalForSelection');
+myModal.find('.modal-body').html();
+    myModal.modal('show');
 });
 
-$(".signup-button").click(function(){
-    window.location = "register.php";
+$("#job-seeker-login-button").click(function(e){
+e.preventDefault();
+var myModal = $('#modalForLogin');
+myModal.find('.modal-body').html();
+    myModal.modal('show');
+});
+
+$("#job-provider-login-button").click(function(e){
+e.preventDefault();
+var myModal = $('#modalForLogin');
+myModal.find('.modal-body').html();
+    myModal.modal('show');
+});
+
+
+$(".signup-button").click(function(e){
+    e.preventDefault();
+var myModal = $('#modalForSelectionRegister');
+myModal.find('.modal-body').html();
+    myModal.modal('show');
+});
+
+$("#job-seeker-register-button").click(function(){
+    window.location = 'register.php';
+});
+
+$("#job-provider-register-button").click(function(){
+    window.location = 'registerCompany.php';
 });
 
 $("#logout-button").click(function(){

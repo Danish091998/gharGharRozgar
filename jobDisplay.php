@@ -15,7 +15,6 @@ $jobId = $_GET['job'];
 
         global $conn;
         $result = mysqli_query($conn,$query);
-        echo $result;
 
         if($org = mysqli_fetch_array($result)){
 

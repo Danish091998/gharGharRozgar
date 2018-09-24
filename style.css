@@ -38,6 +38,46 @@ html,body{
     cursor: pointer;
 }
 
+.job-seeker-login-button{
+    border: none;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    background:#00aff0;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    padding: 10px 15px 10px 15px;
+    font-weight: 600;
+    margin:60px auto;
+    position: relative;
+    left: 20px;
+}
+
+#job-provider-login-button,#job-provider-register-button{
+    background: #f04100;
+    left: -20px;
+}
+
+.col-md-5,.col-md-2{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.vertical-line{
+    height:160px;
+    width: 1px;
+    background: #666;
+    margin: 0 auto;
+}
+
+.modal-open{
+    overflow: auto;
+}
+
 .login-button{
     text-decoration: none;
     color: #111;
@@ -551,6 +591,20 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     text-decoration: none;
 }
 
+/*admin page*/
+
+.buttons{
+    margin-top: 10px;
+}
+.heading{
+    color: #00aff0;
+}
+.sub-heading{
+    color: #555;
+}
+.text{
+    color: #666;
+}
 @media only screen and (max-width:500px){
     .spacing-out-div{
         padding: 10px 10px;
