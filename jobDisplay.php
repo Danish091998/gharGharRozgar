@@ -1,0 +1,90 @@
+<?php
+include('connections.php');
+
+$jobId = $_GET['job'];
+
+    function jobdisplay(){
+
+        global $jobId;
+        
+        $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,companyRegister.logoImage,companyRegister.companyName
+        FROM jobs
+        INNER JOIN companyRegister
+        ON jobs.ORG = companyRegister.companyName WHERE jobs.ID='$jobId'";
+
+
+        global $conn;
+        $result = mysqli_query($conn,$query);
+        echo $result;
+
+        if($org = mysqli_fetch_array($result)){
+
+                $job_id         = $org['ID'];
+                $org_name       = mysqli_real_escape_string($conn,$org['ORG']); echo $org_name;
+                $org_logo       = $org['logoImage'];
+                $org_job        = $org['JOB'];
+                $job_course     = $org['COURSE'];
+                $job_field      = $org['FIELD'];
+                $job_info       = $org['INFO'];
+                $job_venue      = $org['ADDRESS'];
+
+                echo "<div class=' row job-display-wrapper'> 
+                        <div class='col-xs-4 logo-image-wrapper'>
+                            <img src='$org_logo' class='logo-image'>
+                        </div>
+                    <div class='col-xs-8 job-details-wrapper'>
+                        <span class = 'job-name'>$org_job</span><br>
+                        <span class = 'company-name'>$org_name</span><br>
+                        <span class = 'venue'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
+                        </div>
+                        <div class='course-div'>
+                        <div class='test'>
+                        <b class = 'course-name'>Course Required : </b>
+                        </div><p class = 'course-name-display'>$job_course</p>
+                        </div>
+                         <div class='course-div'>
+                         <div class='test'>
+                        <b class = 'description'>Job Description: </b></div><div class='job-info-div'><p class = 'job-info'>$job_info</p></div>
+                        </div>
+                        <a class='know-more' href='jobDisplay.php?job=$job_id'>Know More</a>
+                    </div>";
+
+        }   
+        
+        else{
+    echo "Error 404 page not found";
+        }       
+        
+    }  
+?>
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Jobs</title>
+
+        <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!--        StyleSheet-->   
+        <!--        Font Awesome-->
+       
+        <link href="style.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div><?php jobdisplay();?></div>
+    
+    
+<script src="../jquery-3.3.1.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+<script src="home.js"></script>  
+        
+    </body>
+</html>
+

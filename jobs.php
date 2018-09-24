@@ -4,10 +4,10 @@ include('connections.php');
 function jobs(){
     global $conn;
 
-$query = "SELECT jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,companyRegister.logoImage,companyRegister.companyName
+$query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,companyRegister.logoImage,companyRegister.companyName
 FROM jobs
 INNER JOIN companyRegister
-ON jobs.ORG = companyRegister.companyName LIMIT 8";
+ON jobs.ORG = companyRegister.companyName LIMIT 9";
     $result = mysqli_query($conn, $query);
 
     $row = mysqli_num_rows($result);
@@ -21,6 +21,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 8";
     
     while($org = mysqli_fetch_array($result) ){
         
+        $job_id         = $org['ID'];
         $org_name       = mysqli_real_escape_string($conn,$org['ORG']);
         $org_logo       = $org['logoImage'];
         $org_job        = $org['JOB'];
@@ -47,7 +48,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 8";
                  <div class='test'>
                 <b class = 'description'>Job Description: </b></div><div class='job-info-div'><p class = 'job-info'>$job_info</p></div>
                 </div>
-                <a class='know-more' href=''>Know More</a>
+                <a class='know-more' href='jobDisplay.php?job=$job_id'>Know More</a>
             </div>";
     
         }   
@@ -76,9 +77,6 @@ ON jobs.ORG = companyRegister.companyName LIMIT 8";
     <body style="background:#f5f5f5;">
         
         <?php
-        $query = "SELECT CURTIME()";
-        $result = mysqli_query($conn,$query);
-        print_r(mysqli_fetch_array($result));
         include("topBar.php");?>
         <div class="spacing-out-div">
             <div class="row">
