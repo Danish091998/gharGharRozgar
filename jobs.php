@@ -29,16 +29,15 @@ ON jobs.ORG = companyRegister.companyName LIMIT 8";
         $job_info       = $org['INFO'];
         $job_venue      = $org['ADDRESS'];
         
-        echo "<div class='row' style='border:2px black solid; border-radius:5px'> 
-                <div class='col-md-4'>
-                    <img src='$org_logo' style='max-height:150px; max-width:150px;'>
+        echo "<div class=' row job-display-wrapper'> 
+                <div class='col-xs-4 logo-image-wrapper'>
+                    <img src='$org_logo' class='logo-image'>
                 </div>
-            <div class='col-md-8'>
-                <b>Job : </b><span>$org_job</span><br>
-                <b>Company : </b><span>$org_name</span><br>
-                <b>Course Required : </b><span>$org_course</span><br>
-                <p>$job_info</p>
-                <b>Venue : </b><span>$job_venue</span>
+            <div class='col-xs-8 job-details-wrapper'>
+                <div class='spacing-in-div'><b class = 'job-name'>Job : </b><span class = 'job-name'>$org_job</span></div>
+                <div class='spacing-in-div'><b class = 'company-name'>Company : </b><span class = 'company-name'>$org_name</span></div>
+                <div class='spacing-in-div'><b class = 'course-name'>Course Required : </b><span class = 'course-name'>$org_course</span></div>
+                <div class='spacing-in-div'><b class = 'venue' >Venue : </b><span class = 'venue'>$job_venue</span></div>
                 </div>
             </div>";
     
@@ -72,8 +71,10 @@ ON jobs.ORG = companyRegister.companyName LIMIT 8";
         $result = mysqli_query($conn,$query);
         print_r(mysqli_fetch_array($result));
         include("topBar.php");?>
-        <div class="container">
+        <div class="spacing-out-div">
+            <div class="row">
              <?php jobs();?>
+            </div>
         </div>
     
 <script src="../jquery-3.3.1.js" ></script>

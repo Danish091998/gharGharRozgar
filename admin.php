@@ -80,7 +80,7 @@ while($org = mysqli_fetch_array($result)){
             url: "functions.php",
             data: "value=" + value + "&company=" + company + "&check=select3",
             success: function(result) {
-                 $('#'+id).toggle("slide");         
+                 $('#'+id).fadeOut();         
                 }
     	
         	})
