@@ -459,34 +459,96 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 
 .job-display-wrapper{
     background: #f9f9f9;
-    padding: 10px 15px;
+    padding: 30px 15px;
     border-radius: 5px;
     width: 420px;
     margin: 10px auto;
+    cursor: pointer;
 }
-
+.job-display-wrapper:hover{
+   box-shadow:  0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
 .logo-image-wrapper{
     max-height: 100px;
-    max-width: 110px;
+    width: 90px;
     padding-left: 0px;
 }
-
 .logo-image{
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 80px;
+    max-height: 80px;
 }
 .job-details-wrapper{
- max-width: 280px;   
+    max-width: 280px;
+    margin-bottom: 10px;
 }
-.job-name,.company-name,.course-name,.venue{
+.job-name{
+    font-size: 14px;
+    color: #00aff0;
+}
+.company-name{
     font-size: 13px;
+    color: #333;
+}
+.course-name,.description{
+    font-size: 11px;
+    font-weight: 200;
+    color: #666;
+    max-width: 200px;
+}
+.description{
+    position: relative;
+    top: -5px;
+}
+.test{
+    width: 90px;
+    display: inline-block;
+}
+.job-info-div{
+    width: 250px;
+    display: inline-block;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    max-height: 21px;
+}
+.course-name-display,.job-info{
+    font-size: 13px;
+    color: #333;
+    display: inline-block;
+    width: 280px;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    top: 1px;
+}
+.course-div{
+    display: block;
+    width: 100%;
 }
 .spacing-out-div{
     padding: 40px 80px;
 }
-.spacing-in-div{
-    line-height: 19px;
+
+#location-icon{
+    border: none;
+    color: #666;
+    font-size: 16px;
     padding: 0px;
+    margin-right: 5px;
+}
+.venue{
+    font-size: 13px;
+    color: #666;
+}
+
+.know-more{
+    font-size: 13px;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #00aff0;
+}
+.know-more:hover,.know-more:active{
+    text-decoration: none;
 }
 
 @media only screen and (max-width:500px){

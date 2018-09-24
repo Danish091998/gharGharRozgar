@@ -34,11 +34,20 @@ ON jobs.ORG = companyRegister.companyName LIMIT 8";
                     <img src='$org_logo' class='logo-image'>
                 </div>
             <div class='col-xs-8 job-details-wrapper'>
-                <div class='spacing-in-div'><b class = 'job-name'>Job : </b><span class = 'job-name'>$org_job</span></div>
-                <div class='spacing-in-div'><b class = 'company-name'>Company : </b><span class = 'company-name'>$org_name</span></div>
-                <div class='spacing-in-div'><b class = 'course-name'>Course Required : </b><span class = 'course-name'>$org_course</span></div>
-                <div class='spacing-in-div'><b class = 'venue' >Venue : </b><span class = 'venue'>$job_venue</span></div>
+                <span class = 'job-name'>$org_job</span><br>
+                <span class = 'company-name'>$org_name</span><br>
+                <span class = 'venue'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
                 </div>
+                <div class='course-div'>
+                <div class='test'>
+                <b class = 'course-name'>Course Required : </b>
+                </div><p class = 'course-name-display'>$job_course</p>
+                </div>
+                 <div class='course-div'>
+                 <div class='test'>
+                <b class = 'description'>Job Description: </b></div><div class='job-info-div'><p class = 'job-info'>$job_info</p></div>
+                </div>
+                <a class='know-more' href=''>Know More</a>
             </div>";
     
         }   
@@ -60,11 +69,11 @@ ON jobs.ORG = companyRegister.companyName LIMIT 8";
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!--        StyleSheet-->   
         <!--        Font Awesome-->
-        <link href="font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
         <link href="style.css" rel="stylesheet">
 
     </head>
-    <body>
+    <body style="background:#f5f5f5;">
         
         <?php
         $query = "SELECT CURTIME()";

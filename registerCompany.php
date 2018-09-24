@@ -177,7 +177,7 @@ $out_image=addslashes(file_get_contents($resize_image));
         <!--        StyleSheet-->   
         
         <!--        Font Awesome-->
-<!--        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">-->
+<!--    <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">-->
         <link href="style.css" rel="stylesheet">
         
 
