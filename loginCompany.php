@@ -1,69 +1,3 @@
-<?php
-ob_start();
-include('connections.php');
-if( isset( $_POST['login'] ) ) {
-    
-    // build a function to validate data
-    function validateFormData( $formData ) {
-        $formData = trim( stripslashes( htmlspecialchars( $formData ) ) );
-        return $formData;
-    }
-        
-    // create variables
-    // wrap the data with our function
-    $formEmail = validateFormData( $_POST['email'] );
-    $formPass = validateFormData( $_POST['password'] );
-    
-    // connect to database
-    
-    
-    // create SQL query
-    $query = "SELECT companyName, email, password FROM companyRegister WHERE email = '$formEmail'";
-    
-    // store the result
-    $result = mysqli_query( $conn, $query );
-    
-    // verify if result is returned
-    if( mysqli_num_rows($result) > 0 ) {
-        
-        // store basic user data in variables
-            $row = mysqli_fetch_assoc($result);
-            $user       = $row['companyName'];
-            $email      = $row['email'];
-            $hashedPass = $row['password'];
-        
-        print_r($row);
-        // verify hashed password with the typed password
-        if( password_verify( $formPass, $hashedPass ) ) {
-            
-            // correct login details!
-            // start the session
-            session_start();
-            
-            // store data in SESSION variables
-            $_SESSION['loggedInUser'] = $user;
-            $_SESSION['loggedInEmail'] = $email;
-          
-        
-        } else { // hashed password didn't verify
-            
-            // error message
-            $loginError = "<div class='alert alert-danger'>Wrong username / password combination. Try again.</div>";
-            
-        }
-        
-    } else { // there are no results in database
-        
-        $loginError = "<div class='alert alert-danger'>No such user in database. Please try again. <a class='close' data-dismiss='alert'>&times;</a></div>";
-        
-    }
-    
-    // close the mysql connection
-    mysqli_close($conn);
-    
-}
-?>
-
 <!DOCTYPE html>
 
 <html>
@@ -89,14 +23,9 @@ if( isset( $_POST['login'] ) ) {
     
     <body>
         <div class="container">
-          
-            <?php echo $loginError; ?>
             
-            <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
-                
-                
+            <form> 
               <div class="form-group">
-                    
                     <input type="text" id="login-username" name="email" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
@@ -108,7 +37,7 @@ if( isset( $_POST['login'] ) ) {
                     <span class="bar"></span>
                     <label id="label">Password</label> 
                 </div>
-                <button type="submit" id="login-button" class="btn btn-default" name="login">Login</button>
+                <input type="button" id="login-button" class="btn btn-default" name="login" value="Login">
                 
             </form>
              
@@ -117,6 +46,32 @@ if( isset( $_POST['login'] ) ) {
         
         <!-- jQuery -->
         <script src="../jquery-3.3.1.js"></script>
+        <script>
+        $("#login-button").click(function(){
+        
+        var email = $("#login-username").val();
+        var password = $("#login-password").val();
+         
+        $.ajax({
+            type: "POST",
+            url : "loginCheck.php",
+            data: "companyEmail=" + email + "&companyPassword=" + password,
+    
+            success: function(result){
+                if(result == 'loggedIn'){
+                 alert(result);
+                }
+                
+                else{
+                    alert(result);
+                    }
+            }
+    	
+        	})
+        	
+    	}) 
+        
+        </script>
         
     </body>
 </html>
