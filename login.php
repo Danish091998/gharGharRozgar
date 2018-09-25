@@ -52,6 +52,7 @@
         <script>
         $("#login-button").click(function(){
         var myModal = $('#modalForLogin');
+            
         var email = $("#login-username").val();
         var password = $("#login-password").val();
          
@@ -66,7 +67,7 @@
                 }
                 
                 else{
-            myModal.find('.modal-body').append(result);
+             var modal = myModal.find('.modal-body').append(result);
                     }
                 }
     	

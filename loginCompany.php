@@ -26,18 +26,18 @@
             
             <form> 
               <div class="form-group">
-                    <input type="text" id="login-username" name="companyEmail" required>
+                    <input type="text" id="login-company-username" name="companyEmail" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Email</label>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="login-password" name="companyPassword" required>
+                    <input type="password" id="login-company-password" name="companyPassword" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label">Password</label> 
                 </div>
-                <input type="button" id="login-button" class="btn btn-default" name="login" value="Login">
+                <input type="button" id="login-company-button" class="btn btn-default" name="login" value="Login">
                 
             </form>
              
@@ -47,13 +47,12 @@
         <!-- jQuery -->
         <script src="../jquery-3.3.1.js"></script>
         <script>
-        $("#login-button").click(function(){
-        var myModal = $('#modalForLoginProvider');
-        var email = $("#login-username").val();
-        var password = $("#login-password").val();
-         console.log("test");
+        $("#login-company-button").click(function(){
+        var myModal  = $('#modalForLoginProvider');
+        var email    = $("#login-company-username").val();
+        var password = $("#login-company-password").val();
+         
         $.ajax({
-            console.log("test2");
             type: "POST",
             url : "loginCheck.php",
             data: "companyEmail=" + email + "&companyPassword=" + password,
@@ -61,12 +60,10 @@
             success: function(result){
                 if(result == 'loggedIn'){
                 window.location='index.php';
-                console.log("test3")
                 }
                 
                 else{
-                    myModal.find('.modal-body').append(result);
-            console.log("test4");
+                   var modal = myModal.find('.modal-body').append(result);
                     }
             }
     	

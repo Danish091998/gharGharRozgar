@@ -232,7 +232,7 @@ i {
     height: 55px;
 }
 
-#login-username,#register-username, #register-email, #register-password{
+#login-username,#login-company-username,#register-username, #register-email, #register-password{
     display: block;
     border-width: 1.5px;
     border-color: white;
@@ -247,7 +247,7 @@ i {
     text-decoration: none;
 }
 
-#login-password{
+#login-password,#login-company-password{
     display: block;
     border-width: 1.5px;
     border-color: white;
@@ -266,7 +266,7 @@ i {
   position:relative; 
 }
 
-#login-username:focus,#register-username:focus, #register-email:focus , #register-password:focus  	{ outline:none; }
+#login-username:focus,#register-username:focus, #register-email:focus , #register-password:focus,#login-company-username:focus  	{ outline:none; }
 
 #label 				 {
   color:#999; 
@@ -280,7 +280,7 @@ i {
   -webkit-transition:0.2s ease all;
 }
 
-#login-username:focus ~ label, #login-username:valid ~ label ,#register-username:focus ~ label, #register-username:valid ~ label, #register-email:focus ~ label, #register-email:valid ~ label, #register-password:focus ~ label, #register-password:valid ~ label{
+#login-username:focus ~ label, #login-username:valid ~ label ,#register-username:focus ~ label, #register-username:valid ~ label, #register-email:focus ~ label, #register-email:valid ~ label, #register-password:focus ~ label, #register-password:valid ~ label,#login-company-username:focus ~ label,#login-company-username:valid ~ label {
   top:-10px;
   font-size:12px;
   color:#00aff0;
@@ -304,7 +304,7 @@ i {
 .bar:after {
   right:50%; 
 }
-#login-username:focus ~ .bar:before, #login-username:focus ~ .bar:after {
+#login-username:focus ~ .bar:before, #login-username:focus ~ .bar:after,#login-company-username:focus ~ .bar:before, #login-company-username:focus ~ .bar:after {
   width:50%;
 }
 #register-username:focus ~ .bar:before, #register-username:focus ~ .bar:after {
@@ -317,15 +317,15 @@ i {
   width:50%;
 }
 
-#login-password:focus 		{ outline:none; }
+#login-password:focus,#login-company-password:focus 		{ outline:none; }
 
-#login-password:focus ~ label, #login-password:valid ~ label  		{
+#login-password:focus ~ label, #login-password:valid ~ label,#login-company-password:focus ~ label, #login-company-password:valid ~ label    		{
   top:-10px;
   font-size:12px;
   color:#00aff0;
 } 
 
-#login-password:focus ~ .bar:before, #login-password:focus ~ .bar:after {
+#login-password:focus ~ .bar:before, #login-password:focus ~ .bar:after,#login-company-password:focus ~ .bar:before, #login-company-password:focus ~ .bar:after  {
   width:50%;
 }
 

@@ -72,7 +72,6 @@ if(isset($_POST["add"])) {
     else{
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
         echo "File is not an image.";
@@ -80,23 +79,22 @@ if(isset($_POST["add"])) {
     }
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "   abcd1234    ";
     $target_file = $target_dir . $cName . basename($_FILES["fileToUpload"]["name"]);
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
-    echo "Sorry, only JPG, JPEG, PNG files are allowed.";
+    echo "<div class='alert alert-danger'>Sorry, only JPG, JPEG, PNG files are allowed.</div>";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    echo "<div class='alert alert-danger'>Sorry, your image was not uploaded.</div>";
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+       
     } else {
-        echo "Sorry, there was an error uploading your file.Check ur internet connection or try again later.";
+        echo "<div class='alert alert-danger'>Sorry, there was an error uploading your file.Check ur internet connection or try again later.</div>";
     }
 }
 
@@ -137,10 +135,10 @@ imagejpeg( $thumb, $resize_image,50);
 $out_image=addslashes(file_get_contents($resize_image));
 }
 }
-    echo $resize_image.$email . $hashedPassword . $mobile . $cName . $area . $city . $pinCode . $_POST['checkbox'] . $password . $confirmPassword;
+ 
     if( $email && $hashedPassword && $mobile && $cName && $area && $city && $pinCode && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
         $query = "INSERT INTO `companyRegisterTemporary`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
-        echo  $query;
+    
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
             session_destroy();

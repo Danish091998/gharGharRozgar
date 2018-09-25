@@ -22,7 +22,7 @@ myModal.find('.modal-body').html();
 
 
 $(".signup-button").click(function(e){
-    e.preventDefault();
+e.preventDefault();
 var myModal = $('#modalForSelectionRegister');
 myModal.find('.modal-body').html();
     myModal.modal('show');
