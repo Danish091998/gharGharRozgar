@@ -19,7 +19,7 @@ $jobId = $_GET['job'];
         if($org = mysqli_fetch_array($result)){
 
                 $job_id         = $org['ID'];
-                $org_name       = mysqli_real_escape_string($conn,$org['ORG']); echo $org_name;
+                $org_name       = mysqli_real_escape_string($conn,$org['ORG']); 
                 $org_logo       = $org['logoImage'];
                 $org_job        = $org['JOB'];
                 $job_course     = $org['COURSE'];
@@ -27,26 +27,19 @@ $jobId = $_GET['job'];
                 $job_info       = $org['INFO'];
                 $job_venue      = $org['ADDRESS'];
 
-                echo "<div class=' row job-display-wrapper'> 
+                echo "<div class=' row job-display-wrapper' id='individual-job-wrapper'> 
                         <div class='col-xs-4 logo-image-wrapper'>
-                            <img src='$org_logo' class='logo-image'>
+                            <img src='$org_logo' class='logo-image' style='margin: 30px 20px 20px 20px;'>
                         </div>
-                    <div class='col-xs-8 job-details-wrapper'>
-                        <span class = 'job-name'>$org_job</span><br>
-                        <span class = 'company-name'>$org_name</span><br>
-                        <span class = 'venue'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
+                    <div class='col-xs-8 job-details-wrapper' id='individual-job-details-wrapper'>
+                        <span class = 'job-name margin-left' style='font-size:18px;'>$org_job</span><br>
+                        <span class = 'company-name margin-left' style='font-size:14px; color:#666; po'>$org_name</span><br>
+                        <span class = 'venue' style='margin-left:30px; font-size:14px; position:relative; top:5px;'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
                         </div>
-                        <div class='course-div'>
-                        <div class='test'>
-                        <b class = 'course-name'>Course Required : </b>
-                        </div><p class = 'course-name-display'>$job_course</p>
-                        </div>
-                         <div class='course-div'>
-                         <div class='test'>
-                        <b class = 'description'>Job Description: </b></div><div class='job-info-div'><p class = 'job-info'>$job_info</p></div>
-                        </div>
-                        <a class='know-more' href='jobDisplay.php?job=$job_id'>Know More</a>
-                    </div>";
+                        <div class='footer-job'><p class='salary'>Salary</p></div>
+                    </div>
+                    <div class='job-description-wrapper'><p id='job-description'>Job Description</p><p class='job-description-text'>$job_info</p></div>
+                    ";
 
         }   
         
@@ -72,13 +65,13 @@ $jobId = $_GET['job'];
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!--        StyleSheet-->   
         <!--        Font Awesome-->
-       
+        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
         <link href="style.css" rel="stylesheet">
 
     </head>
     <body>
+        <?php $register=true; include('topBar.php')?>
         <div><?php jobdisplay();?></div>
-    
     
 <script src="../jquery-3.3.1.js" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 

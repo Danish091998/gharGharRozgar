@@ -497,6 +497,8 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     margin: 0;
 }
 
+/*Job Display*/
+
 .job-display-wrapper{
     background: #f9f9f9;
     padding: 30px 15px;
@@ -519,7 +521,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     max-height: 80px;
 }
 .job-details-wrapper{
-    max-width: 280px;
+    width: 280px;
     margin-bottom: 10px;
 }
 .job-name{
@@ -591,6 +593,56 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     text-decoration: none;
 }
 
+/*Individaul Job display*/
+
+#individual-job-wrapper{
+    width: 70%;
+    padding: 0px;
+    border-radius: 0px;
+    box-shadow: none;
+    cursor: auto;
+}
+
+.margin-left{
+    margin-left: 20px;
+}
+#individual-job-details-wrapper{
+    width: 80%; 
+    margin: 30px 20px 20px 20px ;
+}
+.footer-job{
+    width: 100%;
+    height: 35px;
+    background: #f3f3f3;
+    margin: 20px 0px auto;
+    position: relative;
+}
+.salary{
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 7px;
+    left: 15%;
+    color: #333;
+}
+
+.job-description-wrapper{
+    width: 70%;
+    background: #f9f9f9;
+    margin: 0 auto;
+    padding: 30px 20px 30px 20px;
+}
+
+#job-description{
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+}
+.job-description-text{
+    font-size: 13px;
+    color: #666;
+}
 /*admin page*/
 
 .buttons{
