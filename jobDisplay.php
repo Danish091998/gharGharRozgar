@@ -7,7 +7,7 @@ $jobId = $_GET['job'];
 
         global $jobId;
         
-        $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,companyRegister.logoImage,companyRegister.companyName
+        $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.salary,jobs.role,jobs.empType,companyRegister.logoImage,companyRegister.companyName,companyRegister.mobileNumber,companyRegister.email
         FROM jobs
         INNER JOIN companyRegister
         ON jobs.ORG = companyRegister.companyName WHERE jobs.ID='$jobId'";
@@ -26,6 +26,11 @@ $jobId = $_GET['job'];
                 $job_field      = $org['FIELD'];
                 $job_info       = $org['INFO'];
                 $job_venue      = $org['ADDRESS'];
+                $job_salary     = $org['salary'];
+                $job_role       = $org['role'];
+                $job_emp_type   = $org['empType'];
+                $job_mobile_no  = $org['mobileNumber'];
+                $job_email      = $org['email'];
 
                 echo "<div class=' row job-display-wrapper' id='individual-job-wrapper'> 
                         <div class='col-xs-4 logo-image-wrapper'>
@@ -34,11 +39,55 @@ $jobId = $_GET['job'];
                     <div class='col-xs-8 job-details-wrapper' id='individual-job-details-wrapper'>
                         <span class = 'job-name margin-left' style='font-size:18px;'>$org_job</span><br>
                         <span class = 'company-name margin-left' style='font-size:14px; color:#666; po'>$org_name</span><br>
-                        <span class = 'venue' style='margin-left:30px; font-size:14px; position:relative; top:5px;'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
+                        <span class = 'venue margin-left' font-size:14px; position:relative; top:5px;'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
                         </div>
-                        <div class='footer-job'><p class='salary'>Salary</p></div>
+                        <div class='footer-job'><p class='salary'>&#8377 $job_salary</p>
+                        <p class='contact'><i class='fa fa-phone' aria-hidden='true' id='phone-icon'></i> $job_mobile_no</p></div>
                     </div>
-                    <div class='job-description-wrapper'><p id='job-description'>Job Description</p><p class='job-description-text'>$job_info</p></div>
+                    <div class='job-description-wrapper'><p id='job-description'>Job Description</p><p class='job-description-text'>$job_info</p>
+                    <div class='row' style='margin-bottom:5px;'>
+                    <div class='col-md-2' style='text-align:left;'>
+                    <p class='salary-job-description'>Salary:</p>
+                    </div>
+                    <div class='col-md-10' style='text-align:left;'>
+                    <p class='salary-amount'>&#8377 $job_salary</p>
+                    </div>
+                    </div>
+                    <div class='row' style='margin-bottom:5px;'>
+                    <div class='col-md-2' style='text-align:left;'>
+                    <p class='salary-job-description'>Role:</p>
+                    </div>
+                    <div class='col-md-10' style='text-align:left;'>
+                    <p class='salary-amount'> $job_role</p>
+                    </div>
+                    </div>
+                    <div class='row' style='margin-bottom:30px;'>
+                    <div class='col-md-2' style='text-align:left;'>
+                    <p class='salary-job-description'>Emoloyment Type:</p>
+                    </div>
+                    <div class='col-md-10' style='text-align:left;'>
+                    <p class='salary-amount'> $job_emp_type</p>
+                    </div>
+                    </div>
+                    <p id='job-description'>Course Required:</p><p class='job-description-text'>$job_course</p>
+                    <p id='job-description'>Contact:</p>
+                     <div class='row' style='margin-bottom:5px;'>
+                    <div class='col-md-2' style='text-align:left;'>
+                    <p class='salary-job-description'>Mobile:</p>
+                    </div>
+                    <div class='col-md-10' style='text-align:left;'>
+                    <p class='salary-amount'>$job_mobile_no</p>
+                    </div>
+                    </div>
+                    <div class='row' style='margin-bottom:5px;'>
+                    <div class='col-md-2' style='text-align:left;'>
+                    <p class='salary-job-description'>Email:</p>
+                    </div>
+                    <div class='col-md-10' style='text-align:left;'>
+                    <p class='salary-amount'> $job_email</p>
+                    </div>
+                    </div>
+                    </div>
                     ";
 
         }   
@@ -69,7 +118,7 @@ $jobId = $_GET['job'];
         <link href="style.css" rel="stylesheet">
 
     </head>
-    <body>
+    <body style="background:#f4f4f4;">
         <?php $register=true; include('topBar.php')?>
         <div><?php jobdisplay();?></div>
     

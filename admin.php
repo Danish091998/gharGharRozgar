@@ -62,7 +62,7 @@ while($org = mysqli_fetch_array($result)){
         <link href="style.css" rel="stylesheet">
 
     </head>
-    <body style="background:#f5f5f5;">
+    <body style="background:#f4f4f4;">
      <div class="spacing-out-div">
          <h1 class="heading">Ghar Ghar Rozgar</h1>
          <h3 class="sub-heading">Admin Panel</h3>

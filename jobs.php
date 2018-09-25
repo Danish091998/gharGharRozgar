@@ -1,6 +1,6 @@
 <?php 
 include('connections.php');
-
+$register=true;
 function jobs(){
     global $conn;
 
@@ -74,7 +74,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
         <link href="style.css" rel="stylesheet">
 
     </head>
-    <body style="background:#f5f5f5;">
+    <body style="background:#f4f4f4;">
         
         <?php
         include("topBar.php");?>
@@ -85,7 +85,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
         </div>
     
 <script src="../jquery-3.3.1.js" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="home.js"></script>  
         
     </body>

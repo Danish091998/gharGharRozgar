@@ -61,7 +61,7 @@ html,body{
     left: -20px;
 }
 
-.col-md-5,.col-md-2{
+.col-md-5,.col-md-2,.col-md-10{
     margin: 0;
     padding: 0;
     text-align: center;
@@ -500,16 +500,14 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 /*Job Display*/
 
 .job-display-wrapper{
-    background: #f9f9f9;
+    background: #fff;
     padding: 30px 15px;
     border-radius: 5px;
     width: 420px;
     margin: 10px auto;
-    cursor: pointer;
 }
 .job-display-wrapper:hover{
    box-shadow:  0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    cursor: pointer;
 }
 .logo-image-wrapper{
     max-height: 100px;
@@ -596,11 +594,13 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 /*Individaul Job display*/
 
 #individual-job-wrapper{
+    margin-top: 5%;
     width: 70%;
     padding: 0px;
     border-radius: 0px;
     box-shadow: none;
     cursor: auto;
+    background: #fff;
 }
 
 .margin-left{
@@ -613,7 +613,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 .footer-job{
     width: 100%;
     height: 35px;
-    background: #f3f3f3;
+    background: #f9f9f9;
     margin: 20px 0px auto;
     position: relative;
 }
@@ -626,10 +626,26 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     left: 15%;
     color: #333;
 }
+.contact{
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 7px;
+    right: 15%;
+}
+#phone-icon{
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    color: #666;
+    margin-right: 5px;
+}
 
 .job-description-wrapper{
     width: 70%;
-    background: #f9f9f9;
+    background: #fff;
     margin: 0 auto;
     padding: 30px 20px 30px 20px;
 }
@@ -642,6 +658,17 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 .job-description-text{
     font-size: 13px;
     color: #666;
+}
+.salary-job-description{
+    font-size: 12px;
+    margin: 0px 0px 0px 20px;
+    color: #888;
+}
+.salary-amount{
+    font-size: 13px;
+    margin: 0px 0px 0px 20px;
+    line-height: 16px;
+    color: #333;
 }
 /*admin page*/
 
@@ -668,5 +695,8 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     .job-details-wrapper{
         max-width: 200px;
         padding:0px;
+    }
+    .job-description-wrapper,#individual-job-wrapper{
+        width: 95%;
     }
                                    }

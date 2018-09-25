@@ -76,6 +76,7 @@
         </button>
       </div>
       <div class="modal-body">
+          
           <?php include('login.php');?>
       </div>
     </div>

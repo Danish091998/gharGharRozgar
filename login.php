@@ -42,7 +42,6 @@
                     <label id="label" >Password</label> 
                 </div>
                 <input type="button" id="login-button" class="btn btn-default" name="login" value="Login">
-                
             </form>
              
             
@@ -52,7 +51,7 @@
         <script src="../jquery-3.3.1.js"></script>
         <script>
         $("#login-button").click(function(){
-        
+        var myModal = $('#modalForLogin');
         var email = $("#login-username").val();
         var password = $("#login-password").val();
          
@@ -63,11 +62,11 @@
     
             success: function(result){
                 if(result == 'loggedIn'){
-                 alert(result);
+                window.location='index.php';
                 }
                 
                 else{
-                    alert(result);
+            myModal.find('.modal-body').append(result);
                     }
                 }
     	
