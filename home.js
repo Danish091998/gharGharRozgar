@@ -6,7 +6,7 @@ myModal.find('.modal-body').html();
     myModal.modal('show');
 });
 
-$("#job-seeker-login-button").click(function(e){
+$("#job-seeker-login").click(function(e){
 e.preventDefault();
 var myModal = $('#modalForLogin');
 myModal.find('.modal-body').html();
@@ -15,7 +15,7 @@ myModal.find('.modal-body').html();
 
 $("#job-provider-login-button").click(function(e){
 e.preventDefault();
-var myModal = $('#modalForLogin');
+var myModal = $('#modalForLoginProvider');
 myModal.find('.modal-body').html();
     myModal.modal('show');
 });

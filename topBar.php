@@ -26,7 +26,7 @@
       <div class="modal-body">
           <div class="row">
               <div class="col-md-5">
-          <button class="job-seeker-login-button" id="job-seeker-login-button">Login As Job Seeker</button>
+          <button class="job-seeker-login-button" id="job-seeker-login">Login As Job Seeker</button>
               </div>
               <div class="col-md-2">
           <div class="vertical-line"></div>
