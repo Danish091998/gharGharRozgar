@@ -26,13 +26,13 @@
             
             <form> 
               <div class="form-group">
-                    <input type="text" id="login-username" name="email" required>
+                    <input type="text" id="login-username" name="companyEmail" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Email</label>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="login-password" name="password" required>
+                    <input type="password" id="login-password" name="companyPassword" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label">Password</label> 
@@ -48,22 +48,25 @@
         <script src="../jquery-3.3.1.js"></script>
         <script>
         $("#login-button").click(function(){
-        
+        var myModal = $('#modalForLoginProvider');
         var email = $("#login-username").val();
         var password = $("#login-password").val();
-         
+         console.log("test");
         $.ajax({
+            console.log("test2");
             type: "POST",
             url : "loginCheck.php",
             data: "companyEmail=" + email + "&companyPassword=" + password,
     
             success: function(result){
                 if(result == 'loggedIn'){
-                 alert(result);
+                window.location='index.php';
+                console.log("test3")
                 }
                 
                 else{
-                    alert(result);
+                    myModal.find('.modal-body').append(result);
+            console.log("test4");
                     }
             }
     	
