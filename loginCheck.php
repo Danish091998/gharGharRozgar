@@ -98,7 +98,7 @@ if( $_POST['email'] && $_POST['password']) {
         
     } else { // there are no results in database
         
-        echo "<div class='alert alert-danger'>No such user in database. Please try again. <a class='close' data-dismiss='alert'>&times;</a></div>";
+        echo "<div class='alert alert-danger'>No such user in database. Please try again. </div>";
         
     }   
 }

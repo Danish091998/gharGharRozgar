@@ -42,6 +42,7 @@
                     <label id="label" >Password</label> 
                 </div>
                 <input type="button" id="login-button" class="btn btn-default" name="login" value="Login">
+                     
             </form>
              
             
@@ -67,6 +68,7 @@
                 }
                 
                 else{
+             $(".alert-danger").remove();
              var modal = myModal.find('.modal-body').append(result);
                     }
                 }

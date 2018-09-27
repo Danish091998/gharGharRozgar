@@ -148,7 +148,7 @@ $out_image=addslashes(file_get_contents($resize_image));
             // store data in SESSION variables
             $_SESSION['loggedInUser'] = $firstName;
             $_SESSION['loggedInEmail'] = $email;
-            
+            header('Location:index.php');
 
                                         }
          else {

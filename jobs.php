@@ -72,6 +72,8 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
         <!--        Font Awesome-->
         <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
         <link href="style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+
 
     </head>
     <body style="background:#f4f4f4;">

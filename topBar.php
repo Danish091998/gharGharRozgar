@@ -5,8 +5,10 @@
             <?php include('checkLogin.php');
             checkLogin();?>
         <div class="navigation-anchor-wrapper">
-            <a class="navigation-anchor">Home</a>
-            <a class="navigation-anchor">Job Providers</a>
+            <a href="index.php" class="navigation-anchor">Home</a>
+            <a href="jobs.php" class="navigation-anchor">Jobs</a>
+            <a href="jobseeker.php" class="navigation-anchor">Job Seeker</a>
+            <a href="jobprovider.php" class="navigation-anchor">Job Provider</a>
         </div>
         </div>
         

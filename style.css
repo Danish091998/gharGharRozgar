@@ -6,6 +6,7 @@ html,body{
     overflow-x: hidden;
 }
 #top-bar{
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -13,15 +14,19 @@ html,body{
     background: white; 
     margin: 0;
     padding: 0;
+    box-shadow: 0px 1px 5px #333;
+    z-index: 10;
 }
 .website-name{
     font-size: 25px;
+    font-weight: 500;
     margin: 0;
     padding: 0;
     line-height: 48px; 
     display: inline-block;
     color: #00aff0;
     margin-left: 30px;
+    font-family:"Noto Serif KR"; 
 }
 
 .navigation-anchor-wrapper{
@@ -36,6 +41,11 @@ html,body{
     padding: 0px 20px;
     color: #00aff0 !important;
     cursor: pointer;
+    text-decoration: none;
+}
+.navigation-anchor:hover{
+    text-decoration: none;
+    color: #016c93 !important;
 }
 
 .job-seeker-login-button{
@@ -339,7 +349,7 @@ i {
   opacity:0.5;
 }
 
-#login-button,#register-button{
+#login-button,#register-button,#login-company-button{
     width:232px;
     background-color: #00aff0;
     color: white;
@@ -353,7 +363,7 @@ i {
 }
 
 .home-background{
-    background: url(Images/office-620817_1920.jpg);
+    background: url(Images/startup-594090_1920.jpg);
     width: 100%;
     height: 100%;
     background-size:cover; 
@@ -368,15 +378,17 @@ i {
     left: 0;
     right: 0;
     width: 600px;
+    background: rgba(0,0,0,0.2);
 }
 
 .home-heading{
     box-sizing: border-box;
     color: white;
     padding: 20px 50px 20px 50px;
-    border: 3px solid white;
     text-align: center;
-    margin-bottom: 20px;
+    font-family: "Noto Serif KR";
+    font-weight: 600;
+    font-size: 50px;
 }
 
 .home-anchor{
@@ -384,6 +396,7 @@ i {
     color: white !important;
     cursor: pointer;
     font-weight: 400;
+    margin-top: 10px;
 }
 
 .anchor1{
@@ -670,6 +683,72 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     line-height: 16px;
     color: #333;
 }
+
+/*Job Seeker page*/
+.background-job-seeker-page{
+    background: url(Images/write-593333_1920.jpg) no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    position: relative;
+}
+.text-wrapper{
+    position: relative;
+    background: rgba(255,255,255,0.7);
+    margin: 0 auto;
+    padding: 30px 20px 30px 20px;
+    top: -90px;
+}
+.heading-for-text{
+    color: #003448;
+    font-family: "Scope One";
+    font-weight: 600;
+    margin-bottom: 40px;
+    margin-top: 18px;
+}
+.sub-heading-text{
+    color: #003448;
+    font-family: "Oxygen";
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+.login-button-page{
+    background: #00aff0;
+    border: none;
+    color: white;
+    padding: 5px 40px 5px 40px;
+    font-size: 17px;
+    font-family:"Oxygen";
+    margin-right: 10px;
+    cursor: pointer;
+}
+.login-button-page:hover{
+ box-shadow: 1px 1px 5px #666;  
+}
+.register-button-page{
+    background: #f04100;
+    border: none;
+    color: white;
+    padding: 5px 40px 5px 40px;
+    font-size: 17px;
+    font-family: "Oxygen";
+    cursor: pointer;
+}
+.register-button-page:hover{
+ box-shadow: 1px 1px 5px #666;  
+}
+
+/*Job Provider Page*/
+.background-job-provider-page{
+    background: url(Images/employer.jpg);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-size: cover;
+}
+
 /*admin page*/
 
 .buttons{

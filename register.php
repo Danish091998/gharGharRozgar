@@ -100,8 +100,8 @@ if( isset( $_POST['add'] ) ) {
             session_start();
             
             // store data in SESSION variables
-            $_SESSION['loggedInUser'] = $firstName;
-            $_SESSION['loggedInEmail'] = $email;
+            $_SESSION['loggedInUser'];
+            $_SESSION['loggedInEmail'];
              
             header('Location:index.php');
         } else {

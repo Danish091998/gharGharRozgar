@@ -63,7 +63,9 @@
                 }
                 
                 else{
-                   var modal = myModal.find('.modal-body').append(result);
+                    $(".alert-danger").remove();
+                   var modal =
+                       myModal.find('.modal-body').append(result);
                     }
             }
     	
