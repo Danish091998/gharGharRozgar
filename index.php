@@ -18,8 +18,7 @@ $register = true;
         <!--        StyleSheet-->   
         
         <!--        Font Awesome-->
-        
-        <link href="style.css" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
 
     </head>
     
@@ -29,7 +28,7 @@ $register = true;
         include("topBar.php");?>
         <div class="home-background">
         <div class="wrapper-for-home-heading">
-        <h1 class="home-heading">Ghar Ghar Rozgar</h1>
+        <h1 class="home-heading">Welcome To  <br>Ghar Ghar Rozgar</h1>
            
         <a class="home-anchor anchor1"><span class="tip-top-left"></span>Looking For JOB?</a>
         <a class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>

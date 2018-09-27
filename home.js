@@ -6,14 +6,14 @@ myModal.find('.modal-body').html();
     myModal.modal('show');
 });
 
-$("#job-seeker-login").click(function(e){
+$("#job-seeker-login,#loginForSeeker").click(function(e){
 e.preventDefault();
 var myModal = $('#modalForLogin');
 myModal.find('.modal-body').html();
     myModal.modal('show');
 });
 
-$("#job-provider-login-button").click(function(e){
+$("#job-provider-login-button,#loginForProvider").click(function(e){
 e.preventDefault();
 var myModal = $('#modalForLoginProvider');
 myModal.find('.modal-body').html();
@@ -28,11 +28,11 @@ myModal.find('.modal-body').html();
     myModal.modal('show');
 });
 
-$("#job-seeker-register-button").click(function(){
+$("#job-seeker-register-button,#registerForSeeker").click(function(){
     window.location = 'register.php';
 });
 
-$("#job-provider-register-button").click(function(){
+$("#job-provider-register-button,#registerForProvider").click(function(){
     window.location = 'registerCompany.php';
 });
 
