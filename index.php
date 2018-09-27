@@ -18,7 +18,8 @@ $register = true;
         <!--        StyleSheet-->   
         
         <!--        Font Awesome-->
-       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+        <link rel="stylesheet" href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css">
+       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen" rel="stylesheet">
 
     </head>
     

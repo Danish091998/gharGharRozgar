@@ -24,7 +24,10 @@
     <body>
         <div class="container">
             
-            <form> 
+            <form class="login-container"> 
+                <center>
+                <i class="fa fa-user-circle-o login-user-icon" aria-hidden="true"></i></center>
+             <h2 class="login-heading">Welcome</h2>
               <div class="form-group">
                     <input type="text" id="login-company-username" name="companyEmail" required>
                     <span class="highlight"></span>

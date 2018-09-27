@@ -1,10 +1,9 @@
 <?php
 include('connections.php');
 
-$user = 8;
+$userId = 8;
 
-    
-    if($user){
+    if($userId){
 
         $query  = "SELECT * FROM `users` WHERE `id` = '".$userId."'";
         $result = mysqli_query($conn,$query);
@@ -22,11 +21,8 @@ $user = 8;
         $course     = $row['course'];
         $field      = $row['field'];
         
-
     }
     
-    
-}
 
 ?>
 
@@ -48,9 +44,7 @@ $user = 8;
         <link href="style.css" rel="stylesheet">
     </head>
     <body>
-         <?php
-            fetchInfo();
-        ?>    
+        
     
 <script src="../jquery-3.3.1.js" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

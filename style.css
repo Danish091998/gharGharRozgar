@@ -242,34 +242,73 @@ i {
     height: 55px;
 }
 
+.modal-dialog{
+    max-width: 440px;
+}
+
+#size{
+    max-width: 500px;
+}
+
+.modal-content{
+    border-radius: 10px;
+}
+.modal-header{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.login-container{
+    padding: 70px 35px 70px 35px;
+}
+
+.login-user-icon{
+    border: none;
+    font-size: 120px;
+    color: #333;
+}
+
+.login-heading{
+    font-family: "Oxygen";
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 30px;
+    color: #333;
+}
+
 #login-username,#login-company-username,#register-username, #register-email, #register-password{
     display: block;
     border-width: 1.5px;
     border-color: white;
-    width: 232px;
+    width: 100%;
     background: white;
-    border-bottom-color: #777;
+    border-bottom-color: #999;
     border-top-color: white;
-    color: #777;
-    padding: 8px 8px 8px 20px;
-    font-size: 13px;
+    color: #555;
+    padding: 8px 8px 8px 0px;
+    font-size: 15px;
     border-style:solid;
     text-decoration: none;
+    margin-bottom: 30px;
+    border-bottom-width: 2px;
 }
 
 #login-password,#login-company-password{
     display: block;
     border-width: 1.5px;
     border-color: white;
-    width: 232px;
+    width: 100%;
     background: white;
-    border-bottom-color: #777;
+    border-bottom-color: #999;
     border-top-color: white;
-    color: #777;
-    padding: 8px 8px 8px 20px;
-    font-size: 13px;
+    color: #555;
+    padding: 8px 8px 8px 0px;
+    font-size: 15px;
     border-style:solid;
     text-decoration: none;
+    margin-bottom: 30px;
+    border-bottom-width: 2px;
 }
 
 .form-group{ 
@@ -285,23 +324,23 @@ i {
   position:absolute;
   pointer-events:none;
   top:12px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+  transition:0.4s ease all; 
+  -moz-transition:0.4s ease all; 
+  -webkit-transition:0.4s ease all;
 }
 
 #login-username:focus ~ label, #login-username:valid ~ label ,#register-username:focus ~ label, #register-username:valid ~ label, #register-email:focus ~ label, #register-email:valid ~ label, #register-password:focus ~ label, #register-password:valid ~ label,#login-company-username:focus ~ label,#login-company-username:valid ~ label {
-  top:-10px;
-  font-size:12px;
-  color:#00aff0;
+  top:-15px;
+  font-size:16px;
+  color:#999999;
 }
 
-.bar 	{ position:relative; display:block; width:232px; }
+.bar 	{ position:relative; display:block; width:100%; }
 .bar:before, .bar:after 	{
   content:'';
   height:2.1px; 
   width:0;
-  bottom:0px;
+  bottom:30px;
   position:absolute;
   background:#00aff0; 
   transition:0.5s ease all; 
@@ -330,9 +369,9 @@ i {
 #login-password:focus,#login-company-password:focus 		{ outline:none; }
 
 #login-password:focus ~ label, #login-password:valid ~ label,#login-company-password:focus ~ label, #login-company-password:valid ~ label    		{
-  top:-10px;
-  font-size:12px;
-  color:#00aff0;
+  top:-15px;
+  font-size:16px;
+  color:#999;
 } 
 
 #login-password:focus ~ .bar:before, #login-password:focus ~ .bar:after,#login-company-password:focus ~ .bar:before, #login-company-password:focus ~ .bar:after  {
@@ -350,8 +389,9 @@ i {
 }
 
 #login-button,#register-button,#login-company-button{
-    width:232px;
-    background-color: #00aff0;
+    width:100%;
+    background-color: #1fc8db;
+    background: linear-gradient(to right, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
     color: white;
     text-align: center;
     text-transform: uppercase;
@@ -359,7 +399,14 @@ i {
     font-weight: 600;
     border: none;
     font-size: 15px;
-    padding: 6px 12px 6px 12px;
+    padding: 10px 12px 10px 12px;
+    position: relative;
+    opacity: 0.95;
+    transition: background 2s ease all;
+    border-radius: 10px;
+}
+#login-button:hover,#login-company-button:hover{
+   background: linear-gradient(to left, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
 .home-background{
@@ -505,7 +552,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     width: 300px;
 }
 
-.col-xs-4,.col-xs-8{
+.col-xs-3{
     padding: 0;
     margin: 0;
 }
@@ -514,14 +561,13 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 
 .job-display-wrapper{
     background: #fff;
-    padding: 30px 15px;
+    padding: 30px 30px;
     border-radius: 5px;
-    width: 420px;
+    width: 90%;
     margin: 10px auto;
+    box-shadow:  0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.job-display-wrapper:hover{
-   box-shadow:  0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
+
 .logo-image-wrapper{
     max-height: 100px;
     width: 90px;
@@ -532,16 +578,23 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     max-height: 80px;
 }
 .job-details-wrapper{
-    width: 280px;
+    width: 40%;
     margin-bottom: 10px;
+    margin-left: 10px;
 }
 .job-name{
-    font-size: 14px;
-    color: #00aff0;
+    font-size: 18px;
+    color: #000;
+    text-transform: uppercase;
+    font-family: "Poppins";
+    font-weight: 600;
+    letter-spacing: 0.05em;
 }
 .company-name{
-    font-size: 13px;
+    font-size: 14px;
     color: #333;
+    font-weight: 500;
+    font-family: "Poppins";
 }
 .course-name,.description{
     font-size: 11px;
@@ -590,18 +643,36 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     margin-right: 5px;
 }
 .venue{
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
+    font-weight: 500;
+    font-family: "Poppins";
+}
+
+.salary-wrapper{
+    width: 20%;
 }
 
 .know-more{
-    font-size: 13px;
+    font-size: 11px;
     margin: 0 auto;
     text-decoration: none;
     color: #00aff0;
+    text-transform: uppercase;
+    font-family: "Poppins";
+    border: 3px solid #00aff0;
+    padding: 13px 20px 11px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    position: relative;
+    top: 35%;
+    left: 20%;
 }
+
 .know-more:hover,.know-more:active{
     text-decoration: none;
+    background: #00aff0;
+    color: white;
 }
 
 /*Individaul Job display*/
@@ -638,6 +709,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     top: 7px;
     left: 15%;
     color: #333;
+    font-family: "Poppins";
 }
 .contact{
     font-size: 14px;
@@ -646,6 +718,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     position: absolute;
     top: 7px;
     right: 15%;
+    font-family: "Poppins";
 }
 #phone-icon{
     font-size: 14px;
@@ -682,6 +755,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     margin: 0px 0px 0px 20px;
     line-height: 16px;
     color: #333;
+    font-family: "Poppins";
 }
 
 /*Job Seeker page*/

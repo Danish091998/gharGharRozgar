@@ -42,10 +42,10 @@
 </div>
 
 <div id="modalForSelectionRegister" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
+  <div id="size" class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="signin-title" class="modal-title">Sign Up</h5>
+        <div class="modal-header">
+        <h5 id="signin-title" class="modal-title">Register</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -71,14 +71,10 @@
         <div id="modalForLogin" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="signin-title" class="modal-title">Log in</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-          
           <?php include('login.php');?>
       </div>
     </div>
@@ -88,13 +84,10 @@
   <div id="modalForLoginProvider" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="signin-title" class="modal-title">Log in</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
           <?php include('loginCompany.php');?>
       </div>
     </div>
