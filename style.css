@@ -873,11 +873,12 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     color: #040e24;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    margin:30px 0px;
 }
     
 .profile-navigation{
     font-size: 18px;
-    color: #000 !important;
+    color: #000;
     font-weight: normal;
     display: inline-block;
     text-align: left;
@@ -889,9 +890,28 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     text-decoration: none;
 }
 
-
 .profile-line{
     border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.save-changes{
+    background: #00aff0;
+    font-size: 15px;
+    font-weight: bolder;
+    letter-spacing: 0.05em;
+    padding: 18px 33px;
+    font-family: "Poppins";
+    text-transform: uppercase;
+    border: 2px solid #00aff0;
+    color: #fff;
+    line-height: 1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.save-changes:hover{
+    background: #000;
+    border: 2px solid #040e24;
 }
 /*admin page*/
 
