@@ -52,13 +52,13 @@ $userId = 8;
         <div class="row">
         <div class=" col-md-3 left-side-bar">
             <hr class="profile-line">
-            <a href="#my-account" class="profile-navigation">My Account</a>
+            <a id="myAccount" class="profile-navigation">My Account</a>
             <hr class="profile-line">
-            <a href="#application-history" class="profile-navigation">Application History</a>
+            <a id="appHistory" class="profile-navigation">Application History</a>
             <hr class="profile-line">
             <a id="editProfile" class="profile-navigation">Manage Profile</a>
             <hr class="profile-line">
-            <a href="#logout" class="profile-navigation">Logout</a>
+            <a id="logout" class="profile-navigation">Logout</a>
             <hr class="profile-line">
         </div>
             <div id="show" class=" col-md-9 profile-wrapper">
