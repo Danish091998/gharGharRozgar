@@ -1,5 +1,5 @@
 $( function() {
-    $( "#datepicker" ).datepicker({changeYear:true,
+    $( "#datepicker,#datepickerProfile" ).datepicker({changeYear:true,
                                    yearRange:'-60:',
                                   dateFormat:'yy-mm-dd',
                                   maxDate: "-14y" });
@@ -49,3 +49,7 @@ $('#password, #confirm_password').on('keyup', function () {
     }
     }
 });
+
+ $("#editProfile").click(function(){
+    $('#show').load("editprofile.php" +  '#show');
+        });

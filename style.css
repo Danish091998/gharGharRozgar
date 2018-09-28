@@ -823,6 +823,76 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     background-size: cover;
 }
 
+/*User Profile*/
+
+.left-side-bar{
+    width: 100%;
+    padding: 60px 40px 0px 60px;
+}
+
+.profile-wrapper{
+    max-width: 60% !important;
+    padding: 40px 20px 40px 20px;
+    margin: 0 auto;
+}
+
+.note-profile{
+    font-size: 13px;
+    font-family: "Poppins";
+    font-weight: 500;
+    color: #212121;
+    letter-spacing: 0.05em;
+}
+
+.profile-inputs{
+    padding: 13px 18px;
+    font-size: 15px;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: #000;
+    background-color: #ebeef0;
+    border: 1px solid #cfd8dc;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.profile-inputs:focus{
+    background-color: #ebeef0;
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0px 1px 3px rgba(0,175,240,0.32) ;
+}
+
+.heading-profile{
+    font-size: 34px;
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #040e24;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+    
+.profile-navigation{
+    font-size: 18px;
+    color: #000 !important;
+    font-weight: normal;
+    display: inline-block;
+    text-align: left;
+    letter-spacing: 0.05em;
+    font-family: "Poppins";
+    cursor: pointer;
+    margin: 5px 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+
+.profile-line{
+    border-top: 1px solid rgba(0,0,0,.1);
+}
 /*admin page*/
 
 .buttons{
