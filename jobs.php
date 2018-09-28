@@ -22,14 +22,20 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
     while($org = mysqli_fetch_array($result) ){
         
         $job_id         = $org['ID'];
-        $org_name       = mysqli_real_escape_string($conn,$org['ORG']);
+        $org_name       = $org['ORG'];
         $org_logo       = $org['logoImage'];
         $org_job        = $org['JOB'];
         $job_course     = $org['COURSE'];
         $job_field      = $org['FIELD'];
         $job_info       = $org['INFO'];
         $job_venue      = $org['ADDRESS'];
-        $job_salary     = $org['salary'];
+        if($org['salary']){
+                    $job_salary = "&#8377 ".$org['salary'];
+                }
+                else{
+                    $job_salary = 'Not Specified';
+                }
+        
         $job_emp_type   = $org['empType'];
         
         echo "<div class=' row job-display-wrapper'> 
@@ -42,7 +48,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
                 <span class = 'venue'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
                 </div>
                 <div class='col-xs-3 salary-wrapper'>
-                <span class = 'company-name'>&#8377 $job_salary</span><br>
+                <span class = 'company-name'> $job_salary</span><br>
                 <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
                 </div>
                 <div class='col-xs-3'>
@@ -69,7 +75,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!--        StyleSheet-->   
         <!--        Font Awesome-->
-        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link href="style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
 

@@ -21,9 +21,9 @@ if(isset($_POST["add"])) {
         $emailError = "Please enter email <br>";
     } else {
         $_SESSION['email'] = $_POST["email"];
-        $email= validateFormData( $_POST["email"] );
-        $email = str_replace("'","\'",$email);
-        $email = str_replace('"','\"',$email);  
+        $email= mysqli_real_escape_string($conn,validateFormData( $_POST["email"] ));
+//        $email = str_replace("'","\'",$email);
+//        $email = str_replace('"','\"',$email);  
     }
     if( !$_POST["password"] ) {
         $passwordError = "Please enter password <br>";
@@ -137,7 +137,7 @@ $out_image=addslashes(file_get_contents($resize_image));
 }
  
     if( $email && $hashedPassword && $mobile && $cName && $area && $city && $pinCode && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
-        $query = "INSERT INTO `companyRegisterTemporary`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
+        $query = "INSERT INTO `companyRegister`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
     
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
@@ -146,8 +146,9 @@ $out_image=addslashes(file_get_contents($resize_image));
             session_start();
             
             // store data in SESSION variables
-            $_SESSION['loggedInUser'] = $firstName;
-            $_SESSION['loggedInEmail'] = $email;
+            $_SESSION['loggedInCompany'];
+            $_SESSION['loggedInEmail'];
+            $_SESSION['companyId'];
             header('Location:index.php');
 
                                         }

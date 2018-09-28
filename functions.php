@@ -38,5 +38,28 @@ elseif($_POST['check'] == 'select3'){
         echo "Company's request is deleted succesfully";
         }
 }
+
+elseif($_POST['check'] == 'jobApply'){
+    $company = $_POST['companyId'];
+    $job     = $_POST['jobId'];
+    $user    = $_POST['userId'];
     
+    if($user){
+        $query = "SELECT * FROM `appliedJobs` WHERE `jobId` ='$job'";
+        $result = mysqli_query( $conn, $query );
+
+        if(mysqli_num_rows($result)>0){
+            echo "You have already applied for this";
+            }
+        else{
+            $query = "INSERT INTO `appliedJobs`(`userId`, `companyId`, `jobId`) VALUES('$user','$company','$job')";
+            $result = mysqli_query( $conn, $query );
+            echo "Your application has been received.";
+            }
+        }   
+    
+    else{
+        echo "Please Login to apply";
+    }
+}
 ?>
