@@ -42,11 +42,17 @@ elseif($_POST['check'] == 'select3'){
 elseif($_POST['check'] == 'jobApply'){
     $company = $_POST['companyId'];
     $job     = $_POST['jobId'];
-    $user    = $_POST['userId'];
     
-    if($user){
-        $query = "SELECT * FROM `appliedJobs` WHERE `jobId` ='$job'";
-        $result = mysqli_query( $conn, $query );
+    session_start();
+    $email  = $_SESSION['userEmail'];
+    if($email){
+    $query  = "SELECT `id` FROM `users` WHERE email = '$email'";
+    $result1 = mysqli_query( $conn, $query );
+    $row    = mysqli_fetch_array($result1);
+    $user   = $row['id'];
+        
+    $query = "SELECT * FROM `appliedJobs` WHERE `jobId` ='$job' AND `userId` ='$user'";
+    $result = mysqli_query( $conn, $query );
 
         if(mysqli_num_rows($result)>0){
             echo "You have already applied for this";

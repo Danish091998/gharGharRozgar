@@ -144,11 +144,10 @@ $out_image=addslashes(file_get_contents($resize_image));
             session_destroy();
             
             session_start();
-            
             // store data in SESSION variables
-            $_SESSION['loggedInCompany'];
-            $_SESSION['loggedInEmail'];
-            $_SESSION['companyId'];
+            $_SESSION['loggedInCompany'] = $cName;
+            $_SESSION['loggedInEmail']   = $email;
+            
             header('Location:index.php');
 
                                         }

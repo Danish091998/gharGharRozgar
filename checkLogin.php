@@ -1,8 +1,7 @@
 <?php
 function checkLogin(){
     session_start();
-    $user = $_SESSION['loggedInUser'];
-    
+    $user = $_SESSION['userName'];
     if ($user){
         echo"
        <div class='dropdown'>

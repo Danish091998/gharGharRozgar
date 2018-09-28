@@ -100,9 +100,8 @@ if( isset( $_POST['add'] ) ) {
             session_start();
             
             // store data in SESSION variables
-            $_SESSION['loggedInUser'];
-            $_SESSION['loggedInEmail'];
-            $_SESSION['userId'];
+            $_SESSION['userName']  = $firstName;
+            $_SESSION['userEmail'] = $email;
             header('Location:index.php');
         } else {
             echo "Error: ". $query . "<br>" . mysqli_error($conn);
