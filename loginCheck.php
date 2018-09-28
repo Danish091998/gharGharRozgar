@@ -85,8 +85,9 @@ if( $_POST['email'] && $_POST['password']) {
             session_start();
             
             // store data in SESSION variables
-            $_SESSION['loggedInUser'] = $user;
-            $_SESSION['loggedInEmail'] = $email;
+            $_SESSION['loggedInUser'];
+            $_SESSION['loggedInEmail'];
+            $_SESSION['userId'];
             echo "loggedIn";
         
         } else { // hashed password didn't verify
