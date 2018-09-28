@@ -35,8 +35,9 @@ if( $_POST['email'] && $_POST['password']) {
             session_start();
             
             // store data in SESSION variables
-            $_SESSION['loggedInUser'] = $user;
-            $_SESSION['loggedInEmail'] = $email;
+            $_SESSION['companyId'];
+            $_SESSION['loggedInUser'];
+            $_SESSION['loggedInEmail'];
             echo "loggedIn";
           
         
