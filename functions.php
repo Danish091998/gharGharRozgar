@@ -40,29 +40,28 @@ elseif($_POST['check'] == 'select3'){
 }
 
 elseif($_POST['check'] == 'jobApply'){
-    $company = $_POST['companyId'];
+    
     $job     = $_POST['jobId'];
     
     session_start();
-    $email  = $_SESSION['userEmail'];
-    if($email){
-    $query  = "SELECT `id` FROM `users` WHERE email = '$email'";
-    $result1 = mysqli_query( $conn, $query );
-    $row    = mysqli_fetch_array($result1);
-    $user   = $row['id'];
-        
-    $query = "SELECT * FROM `appliedJobs` WHERE `jobId` ='$job' AND `userId` ='$user'";
+    $userEmail  = $_SESSION['userEmail'];
+    if($userEmail)  {  
+    $query = "SELECT * FROM `appliedJobs` WHERE `jobId` ='$job' AND `userEmail` ='$userEmail'";
     $result = mysqli_query( $conn, $query );
 
         if(mysqli_num_rows($result)>0){
             echo "You have already applied for this";
             }
         else{
-            $query = "INSERT INTO `appliedJobs`(`userId`, `companyId`, `jobId`) VALUES('$user','$company','$job')";
-            $result = mysqli_query( $conn, $query );
+            $query = "INSERT INTO `appliedJobs`(`userEmail`, `jobId`) VALUES('$user','$job')";
+            if(mysqli_query( $conn, $query )){
             echo "Your application has been received.";
             }
+            else{
+                echo "Some error occured.Please check your internet connection."
+            }
         }   
+}
     
     else{
         echo "Please Login to apply";

@@ -12,7 +12,7 @@ if( $_POST['email'] && $_POST['password']) {
     
     
     // create SQL query
-    $query = "SELECT firstName, email, password,id FROM users WHERE email = '$formEmail'";
+    $query = "SELECT name, email, password FROM users2 WHERE email = '$formEmail'";
     
     // store the result
     $result = mysqli_query( $conn, $query );
@@ -22,10 +22,9 @@ if( $_POST['email'] && $_POST['password']) {
         
         // store basic user data in variables
             $row = mysqli_fetch_assoc($result);
-            $user       = $row['firstName'];
+            $user       = $row['name'];
             $email      = $row['email'];
             $hashedPass = $row['password'];
-            $userId     = $row['id'];
         
         // verify hashed password with the typed password
         if( password_verify( $formPass, $hashedPass ) ) {
@@ -35,7 +34,6 @@ if( $_POST['email'] && $_POST['password']) {
             session_start();
             
             // store data in SESSION variables
-            $_SESSION['userId']    = $userId;
             $_SESSION['userName']  = $user;
             $_SESSION['userEmail'] = $email;
            

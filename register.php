@@ -3,10 +3,10 @@ include('connections.php');
 $register = false;
 function select(){
     global $conn;
-    $sql = "SELECT qualification FROM Qualification";
+    $sql = "SELECT EDUCATION FROM education";
     $result = mysqli_query($conn,$sql);
     while ($row = mysqli_fetch_array($result)) {
-    echo "<option value='" . $row['qualification'] ."'>" . $row['qualification'] ."</option>";
+    echo "<option value='" . $row['EDUCATION'] ."'>" . $row['EDUCATION'] ."</option>";
 }
 }
 if( isset( $_POST['add'] ) ) {
@@ -16,14 +16,14 @@ if( isset( $_POST['add'] ) ) {
         $formData = trim( stripslashes( htmlspecialchars( $formData ) ) );
         return $formData;
     }
-    $email = $password = $mobile = $firstName = $lastName = $gender = $birthDate = $city = $education = $course = $field = "";
+    $email = $password = $mobile = $name = $gender = $birthDate = $city = $education = $course = $field = "";
     $confirmPassword = $_POST["confirmPassword"];
     
     if( !$_POST["email"] ) {
         $emailError = "Please enter email <br>";
     } else {
             $emailCheck = mysqli_real_escape_string($conn,validateFormData( $_POST["email"] ));
-            $query  = "SELECT `email` FROM `users` WHERE `email` = '$emailCheck'";
+            $query  = "SELECT `email` FROM `users2` WHERE `email` = '$emailCheck'";
             $result = mysqli_query($conn,$query);
             if(mysqli_num_rows($result)>0){
                 $emailError = "This email already exists.<br>";
@@ -46,20 +46,13 @@ if( isset( $_POST['add'] ) ) {
         $_SESSION['mobileNumber'] = $_POST["mobileNumber"];
         $mobile = validateFormData( $_POST["mobileNumber"] );
     }
-    if( !$_POST["firstName"] ) { 
+    if( !$_POST["name"] ) { 
         $firstNameError = "Please enter first name <br>";
     } else {
-        $_SESSION['firstName'] = $_POST["firstName"];
-        $firstName = mysqli_real_escape_string($conn,validateFormData( $_POST["firstName"] ));  
+        $_SESSION['name'] = $_POST["name"];
+        $name = mysqli_real_escape_string($conn,validateFormData( $_POST["name"] ));  
     }
-    if( !$_POST["lastName"] ) {
-        $lastNameError = "Please enter last name <br>";
-    } else {
-        $_SESSION['lastName'] = $_POST["lastName"];
-        $lastName = validateFormData( $_POST["lastName"] );
-        $lastName = str_replace("'","\'",$lastName);
-        $lastName = str_replace('"','\"',$lastName); 
-    }
+    
     if( !$_POST["gender"] ) {
         $genderError = "Please specify gender <br>";
     } else {
@@ -95,8 +88,8 @@ if( isset( $_POST['add'] ) ) {
     if(!$_POST['checkbox'] == 'yes'){
         $checkboxError = "Please accept terms and conditions<br>";
     }
-    if( $email && $hashedPassword && $mobile && $firstName && $lastName && $gender && $birthDate && $city && $education && $course && $field && $_POST['checkbox'] == 'yes' && $password == $confirmPassword  ) {
-        $query = "INSERT INTO `users`(`id`, `email`, `password`, `mobile`, `firstName`, `lastName`, `gender`, `birthDate`, `city`, `qualification`, `course`, `field`) VALUES ( '','$email','$hashedPassword','$mobile','$firstName','$lastName','$gender','$birthDate','$city','$education','$course','$field')";
+    if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $course && $field && $_POST['checkbox'] == 'yes' && $password == $confirmPassword  ) {
+        $query = "INSERT INTO `users2`(`ID`, `email`, `password`, `phone`, `name`, `gender`, `birthDate`, `city`, `education`, `course`, `field`,`percentage`,`profilepic`) VALUES ( '','$email','$hashedPassword','$mobile','$name','$gender','$birthDate','$city','$education','$course','$field','','')";
 
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
@@ -105,7 +98,7 @@ if( isset( $_POST['add'] ) ) {
             session_start();
             
             // store data in SESSION variables
-            $_SESSION['userName']  = $firstName;
+            $_SESSION['userName']  = $name;
             $_SESSION['userEmail'] = $email;
             header('Location:index.php');
         } else {
@@ -197,12 +190,8 @@ if( isset( $_POST['add'] ) ) {
       <p class="labels-for-form">Name:</p>
       </div>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="validationDefault01" placeholder="First name" name="firstName" required value="<?php echo $_SESSION['firstName'];?>">
+      <input type="text" class="form-control" id="validationDefault01" placeholder="First name" name="name" required value="<?php echo $_SESSION['name'];?>">
         <small class="text-danger"><?php echo $firstNameError; ?></small>
-    </div>
-    <div class="col-md-5">
-      <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" name="lastName" value="<?php echo $_SESSION['lastName'];?>">
-    <small class="text-danger"><?php echo $lastNameError; ?></small>
     </div>
   </div>
          <hr>

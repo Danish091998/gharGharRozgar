@@ -740,15 +740,18 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     font-size: 14px;
     font-weight: 400;
     color: #333;
+    font-family: "Poppins";
 }
 .job-description-text{
     font-size: 13px;
     color: #666;
+    font-family: "Poppins";
 }
 .salary-job-description{
     font-size: 12px;
     margin: 0px 0px 0px 20px;
     color: #888;
+    font-family: "Poppins";
 }
 .salary-amount{
     font-size: 13px;
@@ -756,6 +759,29 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     line-height: 16px;
     color: #333;
     font-family: "Poppins";
+}
+.apply-button{
+    display: block;
+    font-size: 15px;
+    position: relative;
+    padding: 8px 30px;
+    border: none;
+    font-family: "Poppins";
+    font-weight: 600;
+    background: #00aff0;
+    color: #fff;
+    letter-spacing: 0.05em;
+    left: 130px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0px 10px;
+    outline: none;
+}
+.apply-button:hover{
+    background: #040e24;
+}
+.fb-share-button{
+    top: 4px;
 }
 
 /*Job Seeker page*/
@@ -844,7 +870,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     letter-spacing: 0.05em;
 }
 
-.profile-inputs{
+.edit-profile-inputs{
     padding: 13px 18px;
     font-size: 15px;
     font-family: "Poppins";
@@ -859,7 +885,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     transition: all 0.3s ease;
 }
 
-.profile-inputs:focus{
+.edit-profile-inputs:focus{
     background-color: #ebeef0;
     text-decoration: none;
     outline: none;
@@ -910,7 +936,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     transition: all 0.5s ease;
 }
 .save-changes:hover{
-    background: #000;
+    background: #040e24;
     border: 2px solid #040e24;
 }
 /*admin page*/

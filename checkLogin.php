@@ -8,7 +8,7 @@ function checkLogin(){
 <button onClick='myFunction();' class='dropbtn'>Welcome, $user  <i class='down'></i></button>
   <div id='myDropdown' class='dropdown-content'>
     <a id='logout-button' href='index.php'>Log Out</a>
-    <a href='#about'>About</a>
+    <a href='user-profile.php'>Your Profile</a>
     <a href='#contact'>Contact</a>
   </div>
 </div>

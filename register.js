@@ -1,3 +1,4 @@
+//DATE PICKER
 $( function() {
     $( "#datepicker,#datepickerProfile" ).datepicker({changeYear:true,
                 yearRange:'-60:',
@@ -8,6 +9,8 @@ $(".js-example-placeholder-single").select2({
     placeholder: "Select Your Qualification",
     allowClear: false   
 });
+
+//SELECT QUALIFICATION
 
 function checkSelect(){
     $("#selectTwo").children("option").remove();
@@ -40,6 +43,9 @@ $.ajax({
             }   
         })
                         }
+
+//PASSWORD MATCHING
+
 $('#password, #confirm_password').on('keyup', function () {
     if($('#password').val() != "" ){
     if ($('#password').val() == $('#confirm_password').val()) {
@@ -50,23 +56,4 @@ $('#password, #confirm_password').on('keyup', function () {
     }
 });
 
- $("#editProfile").click(function(){
-    $('#show').load("editprofile.php" +  '#show');
-        });
-
-$("#myAccount").click(function(){
-   $(this).css({"color":"#00aff0","font-weight":"600"});
-    $("#appHistory,#editProfile,#logout").css({"color":"#000","font-weight":"normal"});
-});
-$("#appHistory").click(function(){
-   $(this).css({"color":"#00aff0","font-weight":"600"});
-    $("#myAccount,#editProfile,#logout").css({"color":"#000","font-weight":"normal"});
-});
-$("#editProfile").click(function(){
-   $(this).css({"color":"#00aff0","font-weight":"600"});
-    $("#myAccount,#appHistory,#logout").css({"color":"#000","font-weight":"normal"});
-});
-$("#logout").click(function(){
-   $(this).css({"color":"#00aff0","font-weight":"600"});
-    $("#myAccount,#appHistory,#editProfile").css({"color":"#000","font-weight":"normal"});
-});
+ 

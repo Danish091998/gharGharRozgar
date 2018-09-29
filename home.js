@@ -82,3 +82,4 @@ $('.anchor2').hover(function() {
     // on mouseout, reset the background colour
     $('.tip-top-right').css('border-left', '18px solid #f04100');
   });
+

@@ -4,16 +4,16 @@ $register=true;
 function jobs(){
     global $conn;
 
-$query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.salary,jobs.empType,companyRegister.logoImage,companyRegister.companyName
+$query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME
 FROM jobs
 INNER JOIN companyRegister
-ON jobs.ORG = companyRegister.companyName LIMIT 9";
+ON jobs.ORG = companyRegister.NAME LIMIT 9";
     $result = mysqli_query($conn, $query);
 
     $row = mysqli_num_rows($result);
     if ($row == 0 ){
         
-        echo "There are no jobs available now. check again later :p";
+        echo "<div style='margin: 0 auto;' class='alert alert-danger'>There are no jobs available now. Check again later!</div>";
         
         }
   
@@ -23,20 +23,20 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
         
         $job_id         = $org['ID'];
         $org_name       = $org['ORG'];
-        $org_logo       = $org['logoImage'];
+        $org_logo       = $org['LOGOIMAGE'];
         $org_job        = $org['JOB'];
         $job_course     = $org['COURSE'];
         $job_field      = $org['FIELD'];
         $job_info       = $org['INFO'];
         $job_venue      = $org['ADDRESS'];
-        if($org['salary']){
-                    $job_salary = "&#8377 ".$org['salary'];
+        if($org['SALARY']){
+                    $job_salary = "&#8377 ".$org['SALARY'];
                 }
                 else{
                     $job_salary = 'Not Specified';
                 }
         
-        $job_emp_type   = $org['empType'];
+        $job_emp_type   = $org['SALARY'];
         
         echo "<div class=' row job-display-wrapper'> 
                 <div class='col-xs-3 logo-image-wrapper'>
@@ -45,7 +45,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
             <div class='col-xs-3 job-details-wrapper'>
                 <span class = 'job-name'>$org_job</span><br>
                 <span class = 'company-name'>$org_name</span><br>
-                <span class = 'venue'><i id='location-icon' class='fa fa-map-marker'></i>$job_venue</span><br>
+                <span class = 'venue'><i id='location-icon' class='fas fa-map-marker-alt'></i>$job_venue</span><br>
                 </div>
                 <div class='col-xs-3 salary-wrapper'>
                 <span class = 'company-name'> $job_salary</span><br>
@@ -75,7 +75,7 @@ ON jobs.ORG = companyRegister.companyName LIMIT 9";
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!--        StyleSheet-->   
         <!--        Font Awesome-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link href="style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
 
