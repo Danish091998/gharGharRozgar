@@ -1,7 +1,7 @@
 <?php
 include('connections.php');
 $register=true;
-$userId = 8;
+$userId = $_SESSION['userEmail'];
 
     if($userId){
 

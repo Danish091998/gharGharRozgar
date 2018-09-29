@@ -3,9 +3,9 @@ include('connections.php');
 $register = false;
 function select(){
     global $conn;
-$sql = "SELECT qualification FROM Qualification";
-$result = mysqli_query($conn,$sql);
-while ($row = mysqli_fetch_array($result)) {
+    $sql = "SELECT qualification FROM Qualification";
+    $result = mysqli_query($conn,$sql);
+    while ($row = mysqli_fetch_array($result)) {
     echo "<option value='" . $row['qualification'] ."'>" . $row['qualification'] ."</option>";
 }
 }
@@ -22,10 +22,17 @@ if( isset( $_POST['add'] ) ) {
     if( !$_POST["email"] ) {
         $emailError = "Please enter email <br>";
     } else {
-        $_SESSION['email'] = $_POST["email"];
-        $email= validateFormData( $_POST["email"] );
-        $email = str_replace("'","\'",$email);
-        $email = str_replace('"','\"',$email);  
+            $emailCheck = mysqli_real_escape_string($conn,validateFormData( $_POST["email"] ));
+            $query  = "SELECT `email` FROM `users` WHERE `email` = '$emailCheck'";
+            $result = mysqli_query($conn,$query);
+            if(mysqli_num_rows($result)>0){
+                $emailError = "This email already exists.<br>";
+                $_SESSION['email'] = $_POST["email"];
+            } 
+            else{
+                $_SESSION['email'] = $_POST["email"];
+                $email = mysqli_real_escape_string($conn,validateFormData( $_POST["email"] ));
+            }
     }
     if( !$_POST["password"] ) {
         $passwordError = "Please enter password <br>";
@@ -43,9 +50,7 @@ if( isset( $_POST['add'] ) ) {
         $firstNameError = "Please enter first name <br>";
     } else {
         $_SESSION['firstName'] = $_POST["firstName"];
-        $firstName = validateFormData( $_POST["firstName"] );
-        $firstName = str_replace("'","\'",$firstName);
-        $firstName = str_replace('"','\"',$firstName);  
+        $firstName = mysqli_real_escape_string($conn,validateFormData( $_POST["firstName"] ));  
     }
     if( !$_POST["lastName"] ) {
         $lastNameError = "Please enter last name <br>";
@@ -90,7 +95,7 @@ if( isset( $_POST['add'] ) ) {
     if(!$_POST['checkbox'] == 'yes'){
         $checkboxError = "Please accept terms and conditions<br>";
     }
-    if( $email && $hashedPassword && $mobile && $firstName && $lastName && $gender && $birthDate && $city && $education && $course && $field && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
+    if( $email && $hashedPassword && $mobile && $firstName && $lastName && $gender && $birthDate && $city && $education && $course && $field && $_POST['checkbox'] == 'yes' && $password == $confirmPassword  ) {
         $query = "INSERT INTO `users`(`id`, `email`, `password`, `mobile`, `firstName`, `lastName`, `gender`, `birthDate`, `city`, `qualification`, `course`, `field`) VALUES ( '','$email','$hashedPassword','$mobile','$firstName','$lastName','$gender','$birthDate','$city','$education','$course','$field')";
 
         if( mysqli_query( $conn, $query ) ) {

@@ -38,6 +38,7 @@ if( $_POST['email'] && $_POST['password']) {
             $_SESSION['userId']    = $userId;
             $_SESSION['userName']  = $user;
             $_SESSION['userEmail'] = $email;
+           
             echo "loggedIn";
           
         

@@ -20,10 +20,18 @@ if(isset($_POST["add"])) {
     if( !$_POST["email"] ) {
         $emailError = "Please enter email <br>";
     } else {
-        $_SESSION['email'] = $_POST["email"];
-        $email= mysqli_real_escape_string($conn,validateFormData( $_POST["email"] ));
-//        $email = str_replace("'","\'",$email);
-//        $email = str_replace('"','\"',$email);  
+         $emailCheck = mysqli_real_escape_string($conn,validateFormData( $_POST["email"] ));
+            $query  = "SELECT `email` FROM `companyRegister` WHERE `email` = '$emailCheck'";
+            $result = mysqli_query($conn,$query);
+            
+            if(mysqli_num_rows($result)>0){
+                $emailError = "This email already exists.<br>";
+                $_SESSION['email'] = $_POST["email"];
+            } 
+            else{
+                $_SESSION['email'] = $_POST["email"];
+                $email = mysqli_real_escape_string($conn,validateFormData( $_POST["email"] ));
+            } 
     }
     if( !$_POST["password"] ) {
         $passwordError = "Please enter password <br>";
@@ -44,9 +52,7 @@ if(isset($_POST["add"])) {
         $cNameError = "Please enter first name <br>";
     } else {
         $_SESSION['cName'] = $_POST["cName"];
-        $cName = validateFormData( $_POST["cName"] );
-        $cName = str_replace("'","\'",$cName);
-        $cName = str_replace('"','\"',$cName);  
+        $cName = mysqli_real_escape_string($conn,validateFormData( $_POST["cName"] ));  
     }
     if( !$_POST["area"] ) {
         $areaError = "Please enter area<br>";

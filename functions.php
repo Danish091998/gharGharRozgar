@@ -68,4 +68,5 @@ elseif($_POST['check'] == 'jobApply'){
         echo "Please Login to apply";
     }
 }
+
 ?>
