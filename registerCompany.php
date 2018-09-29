@@ -14,7 +14,7 @@ if(isset($_POST["add"])) {
         $formData = trim( stripslashes( htmlspecialchars( $formData ) ) );
         return $formData;
     }
-    $email = $password = $mobile = $mobileOpt = $cName = $area = $city = $pinCode = "";
+    $email = $password = $mobile = $mobileOpt = $cName = $address = $city = "";
     $confirmPassword = $_POST["confirmPassword"];
     
     if( !$_POST["email"] ) {
@@ -46,7 +46,8 @@ if(isset($_POST["add"])) {
         $mobile = validateFormData( $_POST["mobileNumber"] );
     }
     
-    $mobileOpt = validateFormData( $_POST["mobileNumberOptional"] );
+    $mobileOpt = $_SESSION['mobop'] = validateFormData( $_POST["mobileNumberOptional"] );
+    
     
     if( !$_POST["cName"] ) { 
         $cNameError = "Please enter first name <br>";
@@ -54,23 +55,17 @@ if(isset($_POST["add"])) {
         $_SESSION['cName'] = $_POST["cName"];
         $cName = mysqli_real_escape_string($conn,validateFormData( $_POST["cName"] ));  
     }
-    if( !$_POST["area"] ) {
-        $areaError = "Please enter area<br>";
+    if( !$_POST["address"] ) {
+        $addressError = "Please enter area<br>";
     } else {
-        $_SESSION['area'] = $_POST["area"];
-        $area = validateFormData( $_POST["area"] );
+        $_SESSION['address'] = $_POST["address"];
+        $address = mysqli_real_escape_string($conn,validateFormData( $_POST["address"] ));
     }
     if( !$_POST["city"] ) {
         $cityError = "Please enter city<br>";
     } else {
         $_SESSION['city'] = $_POST["city"];
         $city = validateFormData( $_POST["city"] );
-    }
-    if( !$_POST["pincode"] ) {
-        $pinCodeError = "Please enter pincode<br>";
-    } else {
-        $_SESSION['pincode'] = $_POST["pincode"];
-        $pinCode = validateFormData( $_POST["pincode"] );
     }
     if(!$imgCheck){
         $logoError = "Please select an image.<br>";
@@ -142,8 +137,8 @@ $out_image=addslashes(file_get_contents($resize_image));
 }
 }
  
-    if( $email && $hashedPassword && $mobile && $cName && $area && $city && $pinCode && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
-        $query = "INSERT INTO `companyRegister`(`id`, `email`, `password`, `mobileNumber`, `companyName`, `area`, `city`, `pincode`, `mobileNumberOptional`, `logoImage`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$area','$city','$pinCode','$mobileOpt','$resize_image')";
+    if( $email && $hashedPassword && $mobile && $cName && $address && $city && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
+        $query = "INSERT INTO `companyRegister`(`EMAIL`, `PASSWORD`, `PHONE`, `NAME`, `ADDRESS`, `CITY`, `PHONESEC`, `LOGOIMAGE`) VALUES ('$email','$hashedPassword','$mobile','$cName','$address','$city','$mobileOpt','$resize_image')";
     
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
@@ -151,15 +146,15 @@ $out_image=addslashes(file_get_contents($resize_image));
             
             session_start();
             // store data in SESSION variables
-            $_SESSION['loggedInCompany'] = $cName;
+            $_SESSION['userName']        = $cName;
             $_SESSION['loggedInEmail']   = $email;
             
             header('Location:index.php');
 
-                                        }
+        }
          else {
             echo "Error: ". $query . "<br>" . mysqli_error($conn);
-        }
+            }
 }
 }
 
@@ -200,8 +195,7 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Email:</p>
       </div>
     <div class="col-md-4">
-      
-      <input type="email" class="form-control" placeholder="Email" name="email">
+      <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $_SESSION['email']; ?>">
         <small class="text-danger"> <?php echo $emailError; ?></small>
     </div>
   </div> 
@@ -233,11 +227,11 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Contact:</p>
       </div>
     <div class="col-md-4">
-      <input type="number" class="form-control" placeholder="Mobile Number" name="mobileNumber" >
+      <input type="number" class="form-control" placeholder="Mobile Number" name="mobileNumber" value="<?php echo  $_SESSION['mobileNumber']; ?>">
         <small class="text-danger"> <?php echo $mobileError; ?></small>
     </div>
     <div class="col-md-4">
-      <input type="number" class="form-control" placeholder="Mobile Number(Optional)" name="mobileNumberOptional" >
+      <input type="number" class="form-control" placeholder="Mobile Number(Optional)" name="mobileNumberOptional" value="<?php echo $_SESSION['phonesec']; ?>" >
         <small class="text-danger"> <?php echo $mobileError; ?></small>
     </div>
   </div>
@@ -250,7 +244,7 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Comapny Name:</p>
       </div>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="validationDefault01" placeholder="Name" name="cName" >
+      <input type="text" class="form-control" id="validationDefault01" placeholder="Name" name="cName" value="<?php echo $_SESSION['cName']; ?>">
         <small class="text-danger"><?php echo $cNameError; ?></small>
     </div>
   </div>
@@ -274,17 +268,14 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Location:</p>
       </div>
     <div class="col-md-3">
-      <input type="text" class="form-control" id="validationDefault03" placeholder="Area" name="area" >
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>">
          <small class="text-danger"><?php echo $areaError; ?></small>
     </div>
       <div class="col-md-3">
-      <input type="text" class="form-control" id="validationDefault03" placeholder="City" name="city" >
+      <input type="text" class="form-control" id="validationDefault03" placeholder="City" name="city" value="<?php echo $_SESSION['city']; ?>">
          <small class="text-danger"><?php echo $cityError; ?></small>
     </div>
-      <div class="col-md-3">
-      <input type="number" class="form-control" id="validationDefault03" placeholder="Pin Code" name="pincode">
-         <small class="text-danger"><?php echo $pinCodeError; ?></small>
-    </div>
+      
   </div>
             <hr> 
   <div class="form-group">

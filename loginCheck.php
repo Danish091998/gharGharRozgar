@@ -56,7 +56,7 @@ if( $_POST['email'] && $_POST['password']) {
     
  if($_POST['companyEmail'] && $_POST['companyPassword']) {
     
-    $formEmail =  $_POST['companyEmail'] ;
+    $formEmail =  $_POST['userName'] ;
     $formPass = $_POST['companyPassword'] ;
     
     // connect to database
