@@ -1,12 +1,12 @@
 <?php
     include("connections.php");
 
-    $cEmail = "gaganjoshi424266@gmail.com";
+    $uEmail = "gaganjoshi424266@gmail.com";
     
     $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,appliedJobs.jobId,appliedJobs.userEmail
 FROM jobs
 INNER JOIN appliedJobs
-ON jobs.ID = appliedJobs.jobId WHERE  appliedJobs.userEmail = '".$cEmail."'";
+ON jobs.ID = appliedJobs.jobId WHERE  appliedJobs.userEmail = '".$uEmail."'";
     
     $result = mysqli_query($conn,$query);
 
