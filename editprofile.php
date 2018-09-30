@@ -16,19 +16,18 @@ $userId = $_SESSION['userEmail'];
 
     if($userId){
 
-        $query  = "SELECT * FROM `users` WHERE `email` = '".$userId."'";
+        $query  = "SELECT * FROM `users2` WHERE `email` = '".$userId."'";
         $result = mysqli_query($conn,$query);
         $row    = mysqli_fetch_array($result);
 
         $img_link   = 'NULL';
         $email      = $row['email'];
-        $mobile     = $row['mobile'];
-        $first_name = $row['firstName'];
-        $last_name  = $row['lastName'];
+        $mobile     = $row['phone'];
+        $first_name = $row['name'];
         $gender     = $row['gender'];
         $birthdate  = $row['birthDate'];
         $city       = $row['city'];
-        $qual       = $row['qualification'];
+        $qual       = $row['education'];
         $course     = $row['course'];
         $field      = $row['field']; 
     }

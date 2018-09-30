@@ -1,37 +1,33 @@
 <?php
 include('connections.php');
+$register=true;
+$companyEmail= $SESSION_["CompanyEmail"] ;
 
-$companyId= 38 ;
+    if($companyEmail){
 
-    
-    if($companyId){
-
-        $query  = "SELECT * FROM `companyRegister` WHERE `id` = '".$companyId."'";
+        $query  = "SELECT * FROM `companyRegister` WHERE `EMAIL` = '$companyEmail'";
         $result = mysqli_query($conn,$query);
         $row    = mysqli_fetch_array($result);
 
-        $img_link   = $row['logoImage'];
-        $email      = $row['email'];
-        $mobile     = $row['mobileNumber'];
-        $name       = $row['companyName'];
-        $area       = $row['area'];
-        $gender     = $row['city'];
-        $birthdate  = $row['pincode'];
-        $city       = $row['city'];
-        $mobile2    = $row['mobileNumberOptional'];
+        $img_link   = $row['LOGOIMAGE'];
+        $email      = $row['EMAIL'];
+        $mobile     = $row['PHONE'];
+        $name       = $row['NAME'];
+        $address    = $row['ADDRESS'];
+        $city       = $row['CITY'];
+        $mobile2    = $row['PHONESEC'];
     }
 
-
-elseif(!$row && !$companyId){
+elseif(!$row && !$companyEmail){
    
-    header("Location:index.php");       
+//    header("Location:index.php");       
 }
 
         
      function jobsFetch(){
-        global $companyId;
+        global $companyEmail;
         global $name;
-        if($companyId){
+        if($companyEmail){
             global $conn;
             $query  = "SELECT * FROM `jobs` WHERE `ORG` = '".$name."'";
             $result = mysqli_query($conn,$query);
@@ -91,92 +87,25 @@ elseif(!$row && !$companyId){
             <hr class="profile-line">
         </div>
             <div id="profile-section" class=" col-md-9 profile-wrapper">
-                <h1 class="heading-profile">Account Information</h1>
-        <p class="note-profile">Edit and update your profile</p>    
-        <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
-    
-    <div class="form-row">
-      <input type="email" class="form-control profile-inputs" placeholder="Email" name="email" required value="<?php echo $email; ?>">
-        <small class="text-danger"> <?php echo $emailError; ?></small> 
-  </div>
-<br> 
-    
-            <div class="form-row">
-      <input type="number" class="form-control profile-inputs" placeholder="Mobile Number" name="mobileNumber" required value="<?php echo $mobile;?>">
-        <small class="text-danger"> <?php echo $mobileError; ?></small>
-  </div>
-        <br>
-            
-  <div class="form-row">
-    <div style="padding-left:0" class="col-md-6">
-      <input type="text" class="form-control profile-inputs" id="validationDefault01" placeholder="First name" name="firstName" required value="<?php echo $first_name;?>">
-        <small class="text-danger"><?php echo $firstNameError; ?></small>
-    </div>
-    <div style="padding-right:0" class="col-md-6">
-      <input type="text" class="form-control profile-inputs" id="validationDefault02" placeholder="Last name" name="lastName" value="<?php echo $last_name;?>">
-    <small class="text-danger"><?php echo $lastNameError; ?></small>
-    </div>
-  </div>
-         <br>
-  <div class="form-row">
-    <input class="form-control profile-inputs" type="text" name="gender" value="<?php echo $gender; ?>"readonly>     
-  </div>
-        <br>
-    <div class="form-row">
-   <input class="form-control profile-inputs" type="text" placeholder="Date Of Birth" name="birthDate" value="<?php echo $birthdate;?>" readonly>
-    <small class="text-danger"><?php echo $birthDateError; ?></small>
-    </div>
-        <br>    
-  <div class="form-row">
-      <input type="text" class="form-control profile-inputs" placeholder="City" name="city" required value="<?php echo $city;?>">
-         <small class="text-danger"><?php echo $cityError; ?></small>
-  </div>
-            <br>
-            
-            <div class="form-row">
-    <div style="padding:0" class="col-md-4"> 
-        <select style="height:48px; padding:10px 18px;" name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control profile-inputs">
-            <small class="text-danger"><?php echo $eduError; ?></small>
-            <option><?php echo $qual; ?></option>
-     <?php select();?>
-        </select>
-    </div>
-    <div onchange="checkSelect2()" id="selectDiv2" class="col-md-4">
-        <select style="height:48px;padding:10px 18px;" name="course" id="selectTwo" class="valuePick js-example-placeholder-single js-states form-control profile-inputs">
-        <small class="text-danger"><?php echo $courseError; ?></small>
-            <option></option>
-        </select>
-    </div>
-    <div style="padding:0" id="selectDiv3" class="col-md-4">
-        <select style="height:48px;padding:10px 18px;" name="field" id="selectThree" class="js-example-placeholder-single js-states form-control profile-inputs">
-            <small class="text-danger"><?php echo $fieldError; ?></small>
-            <option></option>
-        </select>
-    </div>
-  </div>
-  <br>
- <button class="save-changes" type="submit" name="add">Save Changes</button>
-  </form>          
-<br>
-<h1 class="heading-profile">Change Password</h1>     <div class="form-row">
-      <input type="Password" id="password" class="form-control profile-inputs" placeholder="New Password" name="password" required>
-        <small class="text-danger"> <?php echo $passwordError; ?></small>
-  </div>
-            <br>
-            
-    <div class="form-row">
-      <input type="Password" id="confirm_password" class="form-control profile-inputs" placeholder="Confirm Password" name="confirmPassword" required ><span id='message'></span>
-  </div>
-        <br>    
-  <button class="save-changes" type="submit" name="add">Change Password</button> 
-
-            </div>
+                <?php include('includes/my-account-company.php')?>
+            </div>     
+                
         </div>        
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="register.js"></script>  
+        <script>
+        
+            $("#editProfile").click(function(){
+                $('#profile-section').load("includes/edit-profile-company.php" +  '#profile-section');
+                });
+            $("#myAccount").click(function(){
+                $('#profile-section').load("includes/my-account-company.php" +  '#profile-section');
+                });
+        
+        </script>
+<script src="register.js"></script>
 <script type="text/javascript" src="profile.js"></script>
     </body>
 </html>

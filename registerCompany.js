@@ -17,8 +17,10 @@ function readFile() {
         }
 }
 
-        document.getElementById("avatar").addEventListener("change", readFile, false);
-
+   var el= document.getElementById("avatar");
+if(el){
+       el.addEventListener("change", readFile, false);
+}
 
 $('#password, #confirm_password').on('keyup', function () {
     if($('#password').val() != "" ){

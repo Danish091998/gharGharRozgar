@@ -849,7 +849,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     background-size: cover;
 }
 
-/*User Profile*/
+/*Manage Profile*/
 
 .left-side-bar{
     width: 100%;
@@ -859,7 +859,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 .profile-wrapper{
     max-width: 60% !important;
     padding: 40px 20px 40px 20px;
-    margin: 0 auto;
+    margin-left: 2%;
 }
 
 .note-profile{
@@ -939,6 +939,29 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     background: #040e24;
     border: 2px solid #040e24;
 }
+
+/*My Account*/
+
+.labels-for-profile{
+    color: #000;
+    text-align: left;
+    font-weight: 700;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 0.05em;
+    font-size: 15px;
+    margin: 10px;
+}
+
+.profile-data{
+    color: #212121;
+    text-align: left;
+    font-weight: 500;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: 0.05em;
+    font-size: 15px;
+    margin: 10px;
+}
+
 /*admin page*/
 
 .buttons{
