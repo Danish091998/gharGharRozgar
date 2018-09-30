@@ -1,7 +1,8 @@
 <?php
     include("connections.php");
-
-    $uEmail = "gaganjoshi424266@gmail.com";
+    
+    session_start();
+    $uEmail = $_SESSION['userEmail'];
     
     $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,appliedJobs.jobId,appliedJobs.userEmail
 FROM jobs
