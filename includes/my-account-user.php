@@ -1,15 +1,17 @@
 <?php 
 
-//include('../connections.php');
+include('connections.php');
 session_start();
 $userId = $_SESSION['userEmail'];
-
+ echo $userId;
     if($userId){
 
         $query  = "SELECT * FROM `users2` WHERE `email` = '".$userId."'";
+        echo $query;
         $result = mysqli_query($conn,$query);
+        print_r($result);
         $row    = mysqli_fetch_array($result);
-
+        print_r($row);
         $img_link   = $row['profilepic'];
         $email      = $row['email'];
         $mobile     = $row['phone'];
