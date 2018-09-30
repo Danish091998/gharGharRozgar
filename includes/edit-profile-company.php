@@ -49,7 +49,7 @@ $companyEmail= $_SESSION["CompanyEmail"] ;
         <br>
             
   <div class="form-row">
-      <input type="text" class="form-control edit-profile-inputs" id="validationDefault01" placeholder="Name" name="firstName" required value="<?php echo $name;?>">
+      <input type="text" class="form-control edit-profile-inputs" id="validationDefault01" placeholder="Name" name="Company Name" required value="<?php echo $name;?>">
         <small class="text-danger"><?php echo $firstNameError; ?></small>
       </div>
         <br>

@@ -5,10 +5,10 @@ $register=true;
 
 function select(){
     global $conn;
-    $sql = "SELECT qualification FROM Qualification";
+    $sql = "SELECT `EDUCATION` FROM `education`";
     $result = mysqli_query($conn,$sql);
     while ($row = mysqli_fetch_array($result)) {
-        echo "<option value='" . $row['qualification'] ."'>" . $row['qualification'] ."</option>";
+        echo "<option value='" . $row['EDUCATION'] ."'>" . $row['EDUCATION'] ."</option>";
         }   
     }
 session_start();
@@ -23,7 +23,7 @@ $userId = $_SESSION['userEmail'];
         $img_link   = 'NULL';
         $email      = $row['email'];
         $mobile     = $row['phone'];
-        $first_name = $row['name'];
+        $name       = $row['name'];
         $gender     = $row['gender'];
         $birthdate  = $row['birthDate'];
         $city       = $row['city'];
@@ -37,8 +37,8 @@ $userId = $_SESSION['userEmail'];
         <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
     
     <div class="form-row">
-      <input type="email" class="form-control edit-profile-inputs" placeholder="Email" name="email" required value="<?php echo $email; ?>">
-        <small class="text-danger"> <?php echo $emailError; ?></small> 
+      <input type="email" class="form-control edit-profile-inputs" placeholder="Email" name="email" readonly value="<?php echo $email; ?>">
+      <small class="text-danger"> You cannot change this field.</small> 
   </div>
 <br> 
     
@@ -49,23 +49,20 @@ $userId = $_SESSION['userEmail'];
         <br>
             
   <div class="form-row">
-    <div style="padding-left:0" class="col-md-6">
-      <input type="text" class="form-control edit-profile-inputs" id="validationDefault01" placeholder="First name" name="firstName" required value="<?php echo $first_name;?>">
-        <small class="text-danger"><?php echo $firstNameError; ?></small>
-    </div>
-    <div style="padding-right:0" class="col-md-6">
-      <input type="text" class="form-control edit-profile-inputs" id="validationDefault02" placeholder="Last name" name="lastName" value="<?php echo $last_name;?>">
-    <small class="text-danger"><?php echo $lastNameError; ?></small>
+    <div style="padding-left:0" class="col-md-12">
+      <input type="text" class="form-control edit-profile-inputs" id="validationDefault01" placeholder="Name" name="Name" required value="<?php echo $name;?>">
+        <small class="text-danger"><?php echo $NameError; ?></small>
     </div>
   </div>
          <br>
   <div class="form-row">
-    <input class="form-control edit-profile-inputs" type="text" name="gender" value="<?php echo $gender; ?>"readonly>     
+    <input class="form-control edit-profile-inputs" type="text" name="gender" value="<?php echo $gender; ?>" readonly>
+      <small class="text-danger"> You cannot change this field.</small> 
   </div>
         <br>
     <div class="form-row">
    <input class="form-control edit-profile-inputs" type="text" placeholder="Date Of Birth" name="birthDate" value="<?php echo $birthdate;?>" readonly>
-    <small class="text-danger"><?php echo $birthDateError; ?></small>
+    <small class="text-danger"> You cannot change this field.</small> 
     </div>
         <br>    
   <div class="form-row">
@@ -110,4 +107,4 @@ $userId = $_SESSION['userEmail'];
   </div>
         <br>    
   <button class="save-changes" type="submit" name="add">Change Password</button> 
-
+<script src="register.js"></script>
