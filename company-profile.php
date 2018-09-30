@@ -1,28 +1,6 @@
 <?php
 include('connections.php');
 $register=true;
-$companyEmail= $SESSION_["CompanyEmail"] ;
-
-    if($companyEmail){
-
-        $query  = "SELECT * FROM `companyRegister` WHERE `EMAIL` = '$companyEmail'";
-        $result = mysqli_query($conn,$query);
-        $row    = mysqli_fetch_array($result);
-
-        $img_link   = $row['LOGOIMAGE'];
-        $email      = $row['EMAIL'];
-        $mobile     = $row['PHONE'];
-        $name       = $row['NAME'];
-        $address    = $row['ADDRESS'];
-        $city       = $row['CITY'];
-        $mobile2    = $row['PHONESEC'];
-    }
-
-elseif(!$row && !$companyEmail){
-   
-//    header("Location:index.php");       
-}
-
         
      function jobsFetch(){
         global $companyEmail;
@@ -105,6 +83,7 @@ elseif(!$row && !$companyEmail){
                 });
         
         </script>
+<script src="home.js"></script>
 <script src="register.js"></script>
 <script type="text/javascript" src="profile.js"></script>
     </body>

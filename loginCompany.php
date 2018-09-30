@@ -29,13 +29,13 @@
                 <i class="fa fa-user-circle-o login-user-icon" aria-hidden="true"></i></center>
              <h2 class="login-heading">Welcome</h2>
               <div class="form-group">
-                    <input type="text" id="login-company-username" name="companyEmail" required>
+                    <input type="text" id="login-company-username" name="companyEmail" required autocomplete="on">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Email</label>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="login-company-password" name="companyPassword" required>
+                    <input type="password" id="login-company-password" name="companyPassword" required autocomplete="on">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label">Password</label> 

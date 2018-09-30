@@ -36,7 +36,7 @@ ON jobs.ORG = companyRegister.NAME LIMIT 9";
                     $job_salary = 'Not Specified';
                 }
         
-        $job_emp_type   = $org['SALARY'];
+        $job_emp_type   = $org['EMPTYPE'];
         
         echo "<div class=' row job-display-wrapper'> 
                 <div class='col-xs-3 logo-image-wrapper'>

@@ -1,13 +1,33 @@
+<?php include('connections.php');
+session_start();
+$companyEmail= $_SESSION["CompanyEmail"] ;
+
+    if($companyEmail){
+
+        $query  = "SELECT * FROM `companyRegister` WHERE `EMAIL` = '$companyEmail'";
+        $result = mysqli_query($conn,$query);
+        $row    = mysqli_fetch_array($result);
+
+        $img_link   = $row['LOGOIMAGE'];
+        $email      = $row['EMAIL'];
+        $mobile     = $row['PHONE'];
+        $name       = $row['NAME'];
+        $address    = $row['ADDRESS'];
+        $city       = $row['CITY'];
+        $mobile2    = $row['PHONESEC'];
+    }
+?>
+
 <h1 class="heading-profile">Your Profile</h1>
         <p class="note-profile">Edit and update your profile</p>    
         <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
             
     <label id="labelForAvatar" for="avatar">
-                     <img src="Images/avatar-1577909_640.png" id="imgupload">
+                     <img src="<?php echo $img_link; ?>" id="imgupload">
                  </label>
              <div class="margin-bottom margin-top">
                  
-                 <input type="file" class="form-control edit-profile-inputs" name="fileToUpload" id="avatar">
+                 <input type="file" class="form-control edit-profile-inputs" name="fileToUpload" id="avatar" value="<?php echo $img_link; ?>">
                  <small class="text-danger"> <?php echo $logoError; ?></small>
              </div> 
     <br>
@@ -23,19 +43,15 @@
   </div>
             <br>
             <div class="form-row">
-      <input type="number" class="form-control edit-profile-inputs" placeholder="Mobile Number (Optional)" name="mobileNumber" value="<?php echo $mobile;?>">
+      <input type="number" class="form-control edit-profile-inputs" placeholder="Mobile Number (Optional)" name="mobileNumber" value="<?php echo $mobile2;?>">
         <small class="text-danger"> <?php echo $mobileError; ?></small>
   </div>
         <br>
             
   <div class="form-row">
-      <input type="text" class="form-control edit-profile-inputs" id="validationDefault01" placeholder="Name" name="firstName" required value="<?php echo $first_name;?>">
+      <input type="text" class="form-control edit-profile-inputs" id="validationDefault01" placeholder="Name" name="firstName" required value="<?php echo $name;?>">
         <small class="text-danger"><?php echo $firstNameError; ?></small>
       </div>
-         <br>
-  <div class="form-row">
-    <input class="form-control edit-profile-inputs" type="text" placeholder="Gender" name="gender" value="<?php echo $gender; ?>"readonly>     
-  </div>
         <br>
   <div class="form-row">
       <input type="text" class="form-control edit-profile-inputs" placeholder="City" name="city" required value="<?php echo $city;?>">

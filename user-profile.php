@@ -54,7 +54,8 @@ include('connections.php');
             $("#myAccount").click(function(){
                 $('#profile-section').load("includes/my-account-user.php" +  '#profile-section');
                 });
-        </script>        
+        </script>  
+<script src="home.js"></script>
 <script src="register.js"></script>  
 <script type="text/javascript" src="profile.js"></script>        
     </body>

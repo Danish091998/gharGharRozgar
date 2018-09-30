@@ -56,14 +56,14 @@ if( $_POST['email'] && $_POST['password']) {
     
  if($_POST['companyEmail'] && $_POST['companyPassword']) {
     
-    $formEmail =  $_POST['userName'] ;
+    $formEmail =  $_POST['companyEmail'] ;
     $formPass = $_POST['companyPassword'] ;
     
     // connect to database
     
     
     // create SQL query
-    $query = "SELECT `NAME`, `EMAIL`, `PASSWORD` FROM `companyRegister` WHERE `EMAIL` = '$formEmail'";
+    $query = "SELECT `NAME`, `EMAIL`, `PASSWORD` FROM `companyRegister` WHERE EMAIL = '$formEmail'";
     
     // store the result
     $result = mysqli_query( $conn, $query );
