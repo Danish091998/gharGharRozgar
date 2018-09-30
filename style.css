@@ -31,12 +31,16 @@ html,body{
 }
 
 .navigation-anchor-wrapper{
-    display: inline-block;
-    position: relative;
-    left: 300px;
+    width: 450px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    position: absolute;
+    top: 15px;
 }
 
 .navigation-anchor{
+    display: inline-block;
     font-size: 15px;
     font-weight: 600;
     padding: 0px 20px;
@@ -182,26 +186,29 @@ html,body{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
+    background-color: #fff;
+    min-width: 200px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    right: 0;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.22);
+    right: 50px;
     z-index: 1;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    color: #000;
+    padding: 0px 16px;
     text-decoration: none;
     display: block;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {color: #00aff0;}
 
 .show {display: block;}
 
-i {
+#arrow {
   border: solid;
   border-width: 0 2px 2px 0;
   display: inline-block;
@@ -226,6 +233,28 @@ i {
     bottom: 0px;
     left: 3px;
     border-color: #0177a3;
+}
+
+#userDisplay{
+    padding-top: 20px;
+}
+
+#logout-button{
+    padding-bottom: 20px;
+}
+
+#dropdown-hr{
+    width: 90%;
+}
+
+#profile-icon{
+    transform: rotate(0deg);
+    margin-right: 10px;
+}
+
+#logout-icon{
+    transform: rotate(0deg);
+    margin-right: 10px;
 }
 
 #signin-title{
@@ -417,7 +446,7 @@ i {
     padding: 10px 12px 10px 12px;
     position: relative;
     opacity: 0.95;
-    transition: background 2s ease all;
+    transition: all 0.5 ease;
     border-radius: 10px;
 }
 #login-button:hover,#login-company-button:hover{
@@ -469,6 +498,7 @@ i {
     position: absolute;
     left: 30px;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 .anchor1:hover{
     background: #007caa;
@@ -480,7 +510,8 @@ i {
     text-align: center;
     position: absolute;
     right: 30px;
-}
+    transition: all 0.3s ease;
+}   
 .anchor2:hover{
     background: #bf3300;
     text-decoration: none;
@@ -496,6 +527,7 @@ i {
   border-top-color: transparent;
   border-right-color: transparent;
   border-bottom-color: transparent; 
+  transition: all 0.3s ease;
 }
 
 .tip-top-left{
@@ -508,7 +540,8 @@ i {
   left: -35px;
   border-top-color: transparent;
   border-left-color: transparent;
-  border-bottom-color: transparent; 
+  border-bottom-color: transparent;
+  transition: all 0.3s ease;
 }
 /*Registration Form*/
 
@@ -984,6 +1017,10 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     margin: 10px;
 }
 
+.sidenav{
+    display: none;
+}
+
 /*admin page*/
 
 .buttons{
@@ -1000,6 +1037,14 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 }
 
 @media only screen and (max-width:1024px){
+    .website-name{
+        margin-left: 10px;
+        font-size: 20px;
+        line-height: 55px;
+    }
+    .navigation-anchor{
+        font-size: 14px;
+    }
 /*    Profile*/
     .left-side-bar{
         padding: 20px 0px 0px 30px;
@@ -1010,7 +1055,147 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     }
 }
 
+@media only screen and (max-width:768px){
+    
+    .website-name{
+        font-size: 18px;
+        margin-left: 10px;
+        line-height: 55px;
+    }
+    
+    .signup-button{
+        font-size: 13px;
+        line-height: 40px;
+        margin: 8px;
+    }
+    
+    .login-button{
+        font-size: 13px;
+        line-height: 22px;
+        margin-right: 24px;
+    }
+    
+    /*SideNav*/
+    .navigation-anchor-wrapper{
+        display: none;
+    }    
+    
+.sidenav {
+    display: block;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 20;
+}
+
+.sidenav a {
+    padding: 10px 8px 10px 20px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+}
+
+#sidenav-button{
+    position: relative;
+    top: 20px;
+    float: right;
+    right: 20px;
+    color: #00aff0;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 22px;
+}
+
+ #sidenav-button{
+        display: inline-block;
+    }
+    
+    .bars{
+    position: relative;
+    width: 25px;
+    float: right;
+    top: 18px;
+    height: 20px;
+    right: 15px;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.bar1,.bar2,.bar3{
+    position: absolute;
+    height: 3px;
+    width: 22px;
+    background: #00aff0;
+    z-index: 10;
+}
+
+.bar1{
+    top: 0px;
+    transition: 0.4s;
+}
+
+.rotateRight{
+    transform: rotate(45deg);
+    transform-origin:left;
+    transition: 0.4s;
+}
+
+.bar2{
+    top: 8px;
+}
+
+.bar3{
+    top: 16px;
+    transition: 0.4s;
+}
+
+.rotateLeft{
+    transform: rotate(-45deg);
+    transform-origin:left;
+    transition: 0.4s; 
+}
+    .mobile-navigation-buttons{
+    font-size: 16px;
+    font-family: "Poppins";
+    color: #ddd;
+    text-decoration: none;
+}
+
+.mobile-navigation-buttons:hover{
+    text-decoration: none;
+    color: #ddd;
+}
+
+.mobile-navigation-buttons:active{
+    color: #ddd;
+    text-decoration: none;
+}
+
+.lineBwNavigation{
+    height: 1px;
+    width: 160px;
+    background: #ddd;
+    z-index: 2;
+    margin-left: 20px;
+}
+
+}
+
 @media only screen and (max-width:500px){
+    .website-name{
+        font-size: 16px;
+        margin-left: 8px;
+    }
+    .bars{
+        right: 12px;
+    }
 /*    Profile*/
     .profile-wrapper{
         max-width: 100% !important;

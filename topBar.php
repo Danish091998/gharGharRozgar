@@ -1,5 +1,22 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <!--        TOP BAR-->
+
+        <div id="mySidenav" class="sidenav">
+              <a id="home-navigation-button" class="mobile-navigation-buttons" href="index.php" onclick="nav()">Home</a>
+            <div class="lineBwNavigation"></div>
+            <a id="product-button" class="mobile-navigation-buttons animation" href="jobs.php" onclick="nav()">Jobs</a>
+            <div class="lineBwNavigation"></div>
+            <a class="mobile-navigation-buttons animation about-button" href="jobseeker.php" onclick="nav()">Job Seeker</a>
+            <div class="lineBwNavigation"></div>
+            <a class="mobile-navigation-buttons animation contact-button" href="jobprovider.php" onclick="nav()">Job Provider</a>
+            <div class="lineBwNavigation"></div>
+            </div>
+        
+        <div class="bars" onclick="nav()">
+            <span id="barRotateRight" class="bar1"></span>
+            <span class="bar2"></span>
+            <span id="barRotateLeft" class="bar3"></span>
+        </div>
         
         <div id="top-bar">
         <p class="website-name">Har Roz Rozgar</p>
@@ -97,6 +114,6 @@
         
 <!--        END OF MODAL FOR LOGIN-->
         
-       
+<script src="home.js"></script>       
         
 

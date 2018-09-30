@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <?php
 function checkLogin(){
     session_start();
@@ -12,11 +13,10 @@ function checkLogin(){
     if ($user || $cUser){
         echo"
        <div class='dropdown'>
-<button onClick='myFunction();' class='dropbtn'>Welcome, $user $cUser <i class='down'></i></button>
+<button onClick='myFunction();' class='dropbtn'>Welcome, $user $cUser <i id='arrow' class='down'></i></button>
   <div id='myDropdown' class='dropdown-content'>
-    <a id='logout-button' href='index.php'>Log Out</a>
-    <a href='$userDisplay'>Your Profile</a>
-    <a href='#contact'>Contact</a>
+    <a id='userDisplay' href='$userDisplay'><i id='profile-icon' class='fas fa-user-circle'></i>My Profile</a><hr id ='dropdown-hr'>
+    <a id='logout-button' href='index.php'><i id='logout-icon' class='fas fa-sign-out-alt'></i>Log Out</a>
   </div>
 </div>
         ";        

@@ -10,6 +10,9 @@
 
         <title>Login</title>
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="style.css" type="text/css">
 
@@ -26,7 +29,7 @@
             
             <form class="login-container"> 
                 <center>
-                <i class="fa fa-user-circle-o login-user-icon" aria-hidden="true"></i></center>
+                <i class="fas fa-user-circle login-user-icon"></i></center>
              <h2 class="login-heading">Welcome</h2>
               <div class="form-group">
                     <input type="text" id="login-company-username" name="companyEmail" required autocomplete="on">
