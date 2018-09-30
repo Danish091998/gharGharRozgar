@@ -1,7 +1,8 @@
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <!--        TOP BAR-->
         
         <div id="top-bar">
-        <p class="website-name">Ghar Ghar Rozgar</p>
+        <p class="website-name">Har Roz Rozgar</p>
             <?php include('checkLogin.php');
             checkLogin();?>
         <div class="navigation-anchor-wrapper">

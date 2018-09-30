@@ -1,5 +1,6 @@
 //DATE PICKER
-$( function() {
+
+ $( function() {
     $( "#datepicker,#datepickerProfile" ).datepicker({changeYear:true,
                 yearRange:'-60:',
                 dateFormat:'yy-mm-dd',

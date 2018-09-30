@@ -52,7 +52,7 @@ $register=true;
     <body style="background:#f9f9f9">
         <?php
         include('topbar.php');?>
-        <div class="row">
+        <div style="width:100%; margin:0;" class="row">
         <div class=" col-md-3 left-side-bar">
             <hr class="profile-line">
             <a id="myAccount" class="profile-navigation">My Account</a>

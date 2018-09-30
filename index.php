@@ -19,7 +19,7 @@ $register = true;
         
         <!--        Font Awesome-->
         <link rel="stylesheet" href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css">
-       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
 
     </head>
     
@@ -29,10 +29,10 @@ $register = true;
         include("topBar.php");?>
         <div class="home-background">
         <div class="wrapper-for-home-heading">
-        <h1 class="home-heading">Welcome To  <br>Ghar Ghar Rozgar</h1>
+        <h1 class="home-heading">Welcome To  <br>Har Roz Rozgar</h1>
            
-        <a class="home-anchor anchor1"><span class="tip-top-left"></span>Looking For JOB?</a>
-        <a class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>
+        <a href="jobseeker.php" class="home-anchor anchor1"><span class="tip-top-left"></span>Looking For JOB?</a>
+        <a href="jobprovider.php" class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>
         </div>
         </div>
 <script src="../jquery-3.3.1.js" ></script>

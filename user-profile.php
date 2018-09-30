@@ -15,9 +15,8 @@ include('connections.php');
 
         <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> 
-   
-<!--        <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">   
+
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         <link href="style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
@@ -27,16 +26,16 @@ include('connections.php');
     <body style="background:#f9f9f9">
         <?php
         include('topbar.php');?>
-        <div class="row">
+        <div style="width:100%; margin:0" class="row">
         <div class=" col-md-3 left-side-bar">
             <hr class="profile-line">
             <a id="myAccount" class="profile-navigation">My Account</a>
             <hr class="profile-line">
-            <a id="appHistory" class="profile-navigation">Application History</a>
+            <a id="appHistory" class="profile-navigation">Applied Jobs</a>
             <hr class="profile-line">
             <a id="editProfile" class="profile-navigation">Manage Profile</a>
             <hr class="profile-line">
-            <a id="logout" class="profile-navigation">Logout</a>
+            <a href="logout.php" id="logout" class="profile-navigation">Logout</a>
             <hr class="profile-line">
         </div>
             <div id="profile-section" class=" col-md-9 profile-wrapper">
@@ -54,7 +53,11 @@ include('connections.php');
             $("#myAccount").click(function(){
                 $('#profile-section').load("includes/my-account-user.php" +  '#profile-section');
                 });
+            $("#appHistory").click(function(){
+                $('#profile-section').load("includes/user-applied-jobs.php" +  '#profile-section');
+                });
         </script>  
+
 <script src="home.js"></script>
 <script src="register.js"></script>  
 <script type="text/javascript" src="profile.js"></script>        

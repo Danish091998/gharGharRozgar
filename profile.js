@@ -16,3 +16,4 @@ $("#logout").click(function(){
    $(this).css({"color":"#00aff0","font-weight":"600"});
     $("#myAccount,#appHistory,#editProfile").css({"color":"#000","font-weight":"normal"});
 });
+

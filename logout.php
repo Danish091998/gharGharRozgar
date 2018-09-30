@@ -14,6 +14,5 @@ if( isset( $_COOKIE[ session_name() ] ) ) {
 
     // destroy the session
     session_destroy();
-
-
+    header('Location:index.php');
 ?>
