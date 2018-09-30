@@ -42,7 +42,7 @@ elseif($_POST['check'] == 'select3'){
 elseif($_POST['check'] == 'jobApply'){
     
     $job     = $_POST['jobId'];
-    
+    $cEmail  = $_POST['companyEmail'];
     session_start();
     $userEmail  = $_SESSION['userEmail'];
     if($userEmail)  {  
@@ -53,12 +53,12 @@ elseif($_POST['check'] == 'jobApply'){
             echo "You have already applied for this";
             }
         else{
-            $query = "INSERT INTO `appliedJobs`(`userEmail`, `jobId`) VALUES('$user','$job')";
+            $query = "INSERT INTO `appliedJobs`(`userEmail`,`companyEmail` `jobId`) VALUES('$user','$cEmail','$job')";
             if(mysqli_query( $conn, $query )){
-            echo "Your application has been received.";
+                echo "Your application has been received.";
             }
             else{
-                echo "Some error occured.Please check your internet connection."
+                echo "Some error occured.Please check your internet connection.";
             }
         }   
 }

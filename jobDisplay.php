@@ -90,7 +90,7 @@ $jobId   = $_GET['job'];
                 <span class = 'company-name margin-left' style='font-size:14px; color:#666;'><?php echo $org_name;?></span><br>
                 <span class = 'venue margin-left' style='font-size:14px; position:relative; top:5px;'><i id='location-icon' class='fas fa-map-marker-alt'></i><?php echo $job_venue;?></span><br>
             </div>
-            <input type="button" id="apply" class="apply-button" value="Apply Now" data-company="<?php echo $companyId;?>" data-job="<?php echo $jobId;?>" >
+            <input type="button" id="apply" class="apply-button" value="Apply Now" data-company="<?php echo $org_name;?>" data-job="<?php echo $jobId;?>" >
               
             <div class='footer-job'>
                 <p class='salary'><?php echo $job_salary;?></p>
@@ -162,14 +162,14 @@ $jobId   = $_GET['job'];
                 $.ajax({
                     type : "POST",
                     url  : "functions.php",
-                    data : "check=jobApply&companyId="+ company +"&jobId="+job,
+                    data : "check=jobApply&companyEmail="+ company +"&jobId="+job,
                     
                     success:function(result){
                         alert(result);
                         
                     }
                 })
-            })
+            });
             
             (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];

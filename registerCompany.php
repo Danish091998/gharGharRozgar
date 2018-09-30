@@ -146,8 +146,8 @@ $out_image=addslashes(file_get_contents($resize_image));
             
             session_start();
             // store data in SESSION variables
-            $_SESSION['userName']        = $cName;
-            $_SESSION['loggedInEmail']   = $email;
+            $_SESSION['CompanyName']  = $cName;
+            $_SESSION['CompanyEmail'] = $email;
             
             header('Location:index.php');
 

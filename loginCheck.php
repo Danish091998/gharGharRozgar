@@ -12,7 +12,7 @@ if( $_POST['email'] && $_POST['password']) {
     
     
     // create SQL query
-    $query = "SELECT name, email, password FROM users2 WHERE email = '$formEmail'";
+    $query = "SELECT `name`, `email`, `password` FROM `users2` WHERE `email` = '$formEmail'";
     
     // store the result
     $result = mysqli_query( $conn, $query );
@@ -63,7 +63,7 @@ if( $_POST['email'] && $_POST['password']) {
     
     
     // create SQL query
-    $query = "SELECT companyName, email, password FROM companyRegister WHERE email = '$formEmail'";
+    $query = "SELECT `NAME`, `EMAIL`, `PASSWORD` FROM `companyRegister` WHERE `EMAIL` = '$formEmail'";
     
     // store the result
     $result = mysqli_query( $conn, $query );
@@ -73,9 +73,9 @@ if( $_POST['email'] && $_POST['password']) {
         
         // store basic user data in variables
             $row = mysqli_fetch_assoc($result);
-            $user       = $row['companyName'];
-            $email      = $row['email'];
-            $hashedPass = $row['password'];
+            $user       = $row['NAME'];
+            $email      = $row['EMAIL'];
+            $hashedPass = $row['PASSWORD'];
         
         // verify hashed password with the typed password
         if( password_verify( $formPass, $hashedPass ) ) {
@@ -86,7 +86,7 @@ if( $_POST['email'] && $_POST['password']) {
             
             // store data in SESSION variables
             $_SESSION['CompanyName']  = $user;
-            $_SESSION['CompanyEmail'] = $email ;
+            $_SESSION['CompanyEmail'] = $email;
             echo "loggedIn";
         
         } else { // hashed password didn't verify
