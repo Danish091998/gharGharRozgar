@@ -57,7 +57,7 @@ $register=true;
             <hr class="profile-line">
             <a id="myAccount" class="profile-navigation">My Account</a>
             <hr class="profile-line">
-            <a id="appHistory" class="profile-navigation">Jobs Applied</a>
+            <a id="appHistory" class="profile-navigation">Add New Job</a>
             <hr class="profile-line">
             <a id="editProfile" class="profile-navigation">Manage Profile</a>
             <hr class="profile-line">
@@ -81,7 +81,9 @@ $register=true;
             $("#myAccount").click(function(){
                 $('#profile-section').load("includes/my-account-company.php" +  '#profile-section');
                 });
-        
+        $("#appHistory").click(function(){
+                $('#profile-section').load("includes/new-job.php" +  '#profile-section');
+                });
         </script>
 <script src="home.js"></script>
 <script src="register.js"></script>
