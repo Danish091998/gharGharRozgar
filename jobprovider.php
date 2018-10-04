@@ -18,7 +18,7 @@ $register = true;
         <!--        StyleSheet-->   
         
         <!--        Font Awesome-->
-       <link href="https://fonts.googleapis.com/css?family=Oxygen|Noto+Serif+KR|Scope+One" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css?family=Poppins|Noto+Serif+KR|Scope+One" rel="stylesheet">
 
     </head>
     

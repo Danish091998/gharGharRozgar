@@ -16,7 +16,7 @@ function checkLogin(){
 <button onClick='myFunction();' class='dropbtn'>Welcome, $user $cUser <i id='arrow' class='down'></i></button>
   <div id='myDropdown' class='dropdown-content'>
     <a id='userDisplay' href='$userDisplay'><i id='profile-icon' class='fas fa-user-circle'></i>My Profile</a><hr id ='dropdown-hr'>
-    <a id='logout-button' href='index.php'><i id='logout-icon' class='fas fa-sign-out-alt'></i>Log Out</a>
+    <a id='logout-button' href='logout.php'><i id='logout-icon' class='fas fa-sign-out-alt'></i>Log Out</a>
   </div>
 </div>
         ";        

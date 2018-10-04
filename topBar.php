@@ -19,7 +19,7 @@
         </div>
         
         <div id="top-bar">
-        <p class="website-name">Har Roz Rozgar</p>
+        <img src="Images/logo.png" class="logo">
             <?php include('checkLogin.php');
             checkLogin();?>
         <div class="navigation-anchor-wrapper">

@@ -36,14 +36,6 @@ $("#job-provider-register-button,#registerForProvider").click(function(){
     window.location = 'registerCompany.php';
 });
 
-$("#logout-button").click(function(){
-
-$.ajax({
-            type: "POST",
-            url: "logout.php",
-            });
-    });
-
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function myFunction() {

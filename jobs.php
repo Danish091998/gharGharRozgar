@@ -81,7 +81,7 @@ ON jobs.cID = companyRegister.ID LIMIT 8";
 
 
     </head>
-    <body style="background:#f4f4f4;">
+    <body class="job-background">
         
         <?php
         include("topBar.php");?>
