@@ -4,10 +4,10 @@ $register=true;
 function jobs(){
     global $conn;
 
-$query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME
+$query = "SELECT jobs.ID,jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME
 FROM jobs
 INNER JOIN companyRegister
-ON jobs.ORG = companyRegister.NAME LIMIT 9";
+ON jobs.cID = companyRegister.ID LIMIT 8";
     $result = mysqli_query($conn, $query);
 
     $row = mysqli_num_rows($result);
@@ -22,7 +22,7 @@ ON jobs.ORG = companyRegister.NAME LIMIT 9";
     while($org = mysqli_fetch_array($result) ){
         
         $job_id         = $org['ID'];
-        $org_name       = $org['ORG'];
+        $org_name       = $org['NAME'];
         $org_logo       = $org['LOGOIMAGE'];
         $org_job        = $org['JOB'];
         $job_course     = $org['COURSE'];

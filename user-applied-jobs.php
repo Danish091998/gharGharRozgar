@@ -4,17 +4,20 @@
     session_start();
     $uEmail = $_SESSION['userEmail'];
     
-    $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,appliedJobs.jobId,appliedJobs.userEmail
+    $query = "SELECT jobs.ID,jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,appliedJobs.jobId,appliedJobs.userEmail
     FROM jobs
     INNER JOIN appliedJobs
-    ON jobs.ID = appliedJobs.jobId WHERE  appliedJobs.userEmail = '".$uEmail."'";
+    ON jobs.ID = appliedJobs.jobId WHERE  appliedJobs.userEmail = 'gaganjoshi424266@gmail.com'";
     
+    echo $query;
+
     $result = mysqli_query($conn,$query);
+print_r($result);
 
     if(mysqli_num_rows($result) > 0){
         while($org = mysqli_fetch_array($result)){
             $job_id         = $org['ID'];
-            $org_name       = $org['ORG'];
+            $org_name       = $org['cID'];
             $org_logo       = $org['LOGOIMAGE'];
             $org_job        = $org['JOB'];
             $job_course     = $org['COURSE'];
@@ -23,7 +26,7 @@
             $job_venue      = $org['ADDRESS'];
             
             echo "<div class=' row job-display-wrapper'> 
-                <div class='col-xs-3 logo-image-wrapper'>
+                    <div class='col-xs-3 logo-image-wrapper'>
                     <img src='$org_logo' class='logo-image'>
                 </div>
             <div class='col-xs-3 job-details-wrapper'>

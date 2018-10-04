@@ -4,18 +4,24 @@
     session_start();
     $uEmail = $_SESSION['userEmail'];
     
-    $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,appliedJobs.jobId,appliedJobs.userEmail
+    $query = "SELECT jobs.ID,jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,appliedJobs.jobId,appliedJobs.userEmail
 FROM jobs
 INNER JOIN appliedJobs
 ON jobs.ID = appliedJobs.jobId WHERE  appliedJobs.userEmail = '".$uEmail."'";
     
     $result = mysqli_query($conn,$query);
-
+    
     if(mysqli_num_rows($result) > 0){
         while($org = mysqli_fetch_array($result)){
+            $org_id         = $org['cID'];
+            
+            $compQuery  = "SELECT `NAME`,`LOGOIMAGE` FROM `companyRegister` WHERE `ID`= '$org_id'";
+            $compResult = mysqli_query($conn,$compQuery);
+            $compRow    = mysqli_fetch_array($compResult);
+            
+            $org_name       = $compRow['NAME'];
             $job_id         = $org['ID'];
-            $org_name       = $org['ORG'];
-            $org_logo       = $org['LOGOIMAGE'];
+            $org_logo       = $compRow['LOGOIMAGE'];
             $org_job        = $org['JOB'];
             $job_course     = $org['COURSE'];
             $job_field      = $org['FIELD'];

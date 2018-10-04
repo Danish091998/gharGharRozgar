@@ -63,7 +63,7 @@ if( $_POST['email'] && $_POST['password']) {
     
     
     // create SQL query
-    $query = "SELECT `NAME`, `EMAIL`, `PASSWORD` FROM `companyRegister` WHERE EMAIL = '$formEmail'";
+    $query = "SELECT `ID`,`NAME`, `EMAIL`, `PASSWORD` FROM `companyRegister` WHERE EMAIL = '$formEmail'";
     
     // store the result
     $result = mysqli_query( $conn, $query );
@@ -73,6 +73,7 @@ if( $_POST['email'] && $_POST['password']) {
         
         // store basic user data in variables
             $row = mysqli_fetch_assoc($result);
+            $cID        = $row['ID'];
             $user       = $row['NAME'];
             $email      = $row['EMAIL'];
             $hashedPass = $row['PASSWORD'];
@@ -86,6 +87,7 @@ if( $_POST['email'] && $_POST['password']) {
             
             // store data in SESSION variables
             $_SESSION['CompanyName']  = $user;
+            $_SESSION['CompanyID']    = $cID;
             $_SESSION['CompanyEmail'] = $email;
             echo "loggedIn";
         

@@ -5,17 +5,17 @@ $jobId   = $_GET['job'];
 
         if($jobId){
         
-        $query = "SELECT jobs.ID,jobs.ORG, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.ROLE,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL
+        $query = "SELECT jobs.ID, jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.ROLE,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL
         FROM jobs
         INNER JOIN companyRegister
-        ON jobs.ORG = companyRegister.NAME WHERE jobs.ID='$jobId'";
+        ON jobs.cID = companyRegister.ID WHERE jobs.ID='$jobId'";
             
         $result = mysqli_query($conn,$query);
         
 
         if($org = mysqli_fetch_array($result)){
                 
-                $org_name       = $org['ORG']; 
+                $org_name       = $org['NAME']; 
                 $org_logo       = $org['LOGOIMAGE'];
                 $org_job        = $org['JOB'];
                 
@@ -90,7 +90,7 @@ $jobId   = $_GET['job'];
                 <span class = 'company-name margin-left' style='font-size:14px; color:#666;'><?php echo $org_name;?></span><br>
                 <span class = 'venue margin-left' style='font-size:14px; position:relative; top:5px;'><i id='location-icon' class='fas fa-map-marker-alt'></i><?php echo $job_venue;?></span><br>
             </div>
-            <input type="button" id="apply" class="apply-button" value="Apply Now" data-company="<?php echo $org_name;?>" data-job="<?php echo $jobId;?>" >
+            <input type="button" id="apply" class="apply-button" value="Apply Now" data-company="<?php echo $job_email;?>" data-job="<?php echo $jobId;?>" >
               
             <div class='footer-job'>
                 <p class='salary'><?php echo $job_salary;?></p>

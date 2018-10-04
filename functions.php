@@ -54,7 +54,7 @@ elseif($_POST['check'] == 'jobApply'){
             echo "You have already applied for this";
             }
         else{
-            $query = "INSERT INTO `appliedJobs`(`userEmail`,`companyEmail` `jobId`) VALUES('$user','$cEmail','$job')";
+            $query = "INSERT INTO `appliedJobs`(`userEmail`,`companyEmail`,`jobId`) VALUES('$userEmail','$cEmail','$job')";
             if(mysqli_query( $conn, $query )){
                 echo "Your application has been received.";
             }

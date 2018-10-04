@@ -134,22 +134,27 @@ imagejpeg( $thumb, $resize_image,50);
 
 
 $out_image=addslashes(file_get_contents($resize_image));
-}
+    }
 }
  
     if( $email && $hashedPassword && $mobile && $cName && $address && $city && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
-        $query = "INSERT INTO `companyRegister`(`EMAIL`, `PASSWORD`, `PHONE`, `NAME`, `ADDRESS`, `CITY`, `PHONESEC`, `LOGOIMAGE`) VALUES ('$email','$hashedPassword','$mobile','$cName','$address','$city','$mobileOpt','$resize_image')";
+        $query = "INSERT INTO `companyRegister`(`ID`,`EMAIL`, `PASSWORD`, `PHONE`, `NAME`, `ADDRESS`, `CITY`, `PHONESEC`, `LOGOIMAGE`) VALUES (``,'$email','$hashedPassword','$mobile','$cName','$address','$city','$mobileOpt','$resize_image')";
     
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
             session_destroy();
             
+             $query = "SELECT `ID` FROM `companyRegister` WHERE EMAIL = ' $email'";
+             $result = mysqli_query( $conn, $query );
+             $row    = mysqli_fetch_array($result);
+            
             session_start();
             // store data in SESSION variables
+            $_SESSION['CompanyId']    = $row['ID'];
             $_SESSION['CompanyName']  = $cName;
             $_SESSION['CompanyEmail'] = $email;
             
-            header('Location:index.php');
+            header('Location:company-profile.php');
 
         }
          else {
