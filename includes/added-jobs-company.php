@@ -1,19 +1,19 @@
-<?php 
-include('connections.php');
-$register=true;
-function jobs(){
-    global $conn;
+<?php
 
-$query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,jobs.ID
+include("connections.php");
+session_start();
+$compID = $_SESSION['CompanyID'];
+
+$query = "SELECT jobs.ID,jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME
 FROM jobs
 INNER JOIN companyRegister
-ON jobs.cID = companyRegister.ID LIMIT 8";
+ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
     $result = mysqli_query($conn, $query);
 
     $row = mysqli_num_rows($result);
     if ($row == 0 ){
         
-        echo "<div style='margin: 0 auto;' class='alert alert-danger'>There are no jobs available now. Check again later!</div>";
+        echo "<div style='margin: 0 auto;' class='alert alert-danger'>There are no jobs posted by you.</div>";
         
         }
   
@@ -29,13 +29,12 @@ ON jobs.cID = companyRegister.ID LIMIT 8";
         $job_field      = $org['FIELD'];
         $job_info       = $org['INFO'];
         $job_venue      = $org['ADDRESS'];
-        
-        if($org['SALARY'] != "Not Specified"){
+        if($org['SALARY']){
                     $job_salary = "&#8377 ".$org['SALARY'];
                 }
-        else{
-             $job_salary = $org['SALARY'];
-        }
+                else{
+                    $job_salary = 'Not Specified';
+                }
         
         $job_emp_type   = $org['EMPTYPE'];
         
@@ -59,10 +58,10 @@ ON jobs.cID = companyRegister.ID LIMIT 8";
     
         }   
     }
-}
+
+
+
 ?>
-<!DOCTYPE html>
-<html>
 
     <head>
         
@@ -70,31 +69,15 @@ ON jobs.cID = companyRegister.ID LIMIT 8";
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Jobs</title>
+        <title>HomePage</title>
 
         <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!--        StyleSheet-->   
-        <!--        Font Awesome-->
-       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <link href="style.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
-
+        
+       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
+        
+       <link href="../style.css" rel="stylesheet">
 
     </head>
-    <body class="job-background">
-        
-        <?php
-        include("topBar.php");?>
-        <div style="margin-top:5%;" class="container">
-            <div class="row">
-             <?php jobs();?>
-            </div>
-        </div>
     
-<script src="../jquery-3.3.1.js" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="home.js"></script>  
-        
-    </body>
-</html>

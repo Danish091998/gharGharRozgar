@@ -57,7 +57,7 @@ $register=true;
             <hr class="profile-line">
             <a id="myAccount" class="profile-navigation">My Account</a>
             <hr class="profile-line">
-            <a href="includes/new-job.php" target="_blank" id="newJob" class="profile-navigation">Add New Job</a>
+            <a href="new-job.php" target="_blank" id="newJob" class="profile-navigation">Add New Job</a>
             <hr class="profile-line">
             <a id="editProfile" class="profile-navigation">Manage Profile</a>
             <hr class="profile-line">
@@ -82,6 +82,9 @@ $register=true;
                 });
             $("#myAccount").click(function(){
                 $('#profile-section').load("includes/my-account-company.php" +  '#profile-section');
+                });
+            $("#addedJobs").click(function(){
+                $('#profile-section').load("includes/added-jobs-company.php" +  '#profile-section');
                 });
         </script>
 <script src="home.js"></script>

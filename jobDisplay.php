@@ -5,7 +5,7 @@ $jobId   = $_GET['job'];
 
         if($jobId){
         
-        $query = "SELECT jobs.ID, jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.ROLE,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL
+        $query = "SELECT jobs.ID, jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL
         FROM jobs
         INNER JOIN companyRegister
         ON jobs.cID = companyRegister.ID WHERE jobs.ID='$jobId'";
@@ -18,33 +18,20 @@ $jobId   = $_GET['job'];
                 $org_name       = $org['NAME']; 
                 $org_logo       = $org['LOGOIMAGE'];
                 $org_job        = $org['JOB'];
-                
-                if($org['COURSE']){
-                    $job_course = $org['COURSE'];
-                }
-                else{
-                    $job_course = 'Not Required';
-                }
-            
+                $job_course     = $org['COURSE'];
                 $job_field      = $org['FIELD'];
                 $job_info       = $org['INFO'];
                 $job_venue      = $org['ADDRESS'];
-                if($org['salary']){
+                if($org['SALARY'] != "Not Specified"){
                     $job_salary = "&#8377 ".$org['SALARY'];
                 }
                 else{
-                    $job_salary = 'Not Specified';
-                }
-                
-                if($org['role']){
-                    $job_role   = $org['ROLE'];
-                }
-                else{
-                    $job_role   = 'Not Specified';
+                    $job_salary = $org['SALARY'];
                 }
                 $job_emp_type   = $org['EMPTYPE'];
                 $job_mobile_no  = $org['PHONE'];
                 $job_email      = $org['EMAIL'];
+            
                 
         }   
 }
@@ -111,14 +98,6 @@ $jobId   = $_GET['job'];
             </div>
             <div class='col-md-10' style='text-align:left;'>
                 <p class='salary-amount'><?php echo $job_salary;?></p>
-            </div>
-            </div>
-            <div class='row' style='margin-bottom:5px;'>
-            <div class='col-md-2' style='text-align:left;'>
-                <p class='salary-job-description'>Role:</p>
-            </div>
-            <div class='col-md-10' style='text-align:left;'>
-                <p class='salary-amount'><?php echo $job_role;?></p>
             </div>
             </div>
             <div class='row' style='margin-bottom:30px;'>

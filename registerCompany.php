@@ -150,7 +150,7 @@ $out_image=addslashes(file_get_contents($resize_image));
             
             session_start();
             // store data in SESSION variables
-            $_SESSION['CompanyId']    = $row['ID'];
+            $_SESSION['CompanyID']    = $row['ID'];
             $_SESSION['CompanyName']  = $cName;
             $_SESSION['CompanyEmail'] = $email;
             

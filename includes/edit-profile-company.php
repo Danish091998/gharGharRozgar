@@ -16,6 +16,8 @@ $companyEmail= $_SESSION["CompanyEmail"] ;
         $city       = $row['CITY'];
         $mobile2    = $row['PHONESEC'];
     }
+
+if($_)
 ?>
 
 <h1 class="heading-profile">Your Profile</h1>

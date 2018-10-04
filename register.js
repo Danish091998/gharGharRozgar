@@ -33,7 +33,6 @@ function checkSelect2(){
     $("#selectThree").append("<option></option>");
     $("#selectDiv3").css("visibility", "visible");
     var qual2 = $('.valuePick').val();
-    console.log(qual2);
    
 $.ajax({
             type: "POST",
