@@ -20,12 +20,13 @@ $userId = $_SESSION['userEmail'];
         $qual       = $row['education'];
         $course     = $row['course'];
         $field      = $row['field']; 
+        $percentage = $row['percentage'];
     }
 ?>       
 
 <h1 style="display:inline-block" class="heading-profile">Account Information</h1>
     <label style="margin-bottom:20px;" id="labelForAvatar" for="avatar">
-        <img src="Images/avatar-1577909_640.png" id="imgupload">
+        <img src="<?php echo $img_link; ?>" id="imgupload">
     </label>       
 
 <div class="form-row">
@@ -103,6 +104,14 @@ $userId = $_SESSION['userEmail'];
     </div>
      <div class="col-md-10">
       <p class="profile-data"><?php echo $field; ?></p>
+    </div>
+  </div>
+<div class="form-row">
+      <div class="col-md-2">
+      <p class="labels-for-profile">Percentage</p>
+    </div>
+     <div class="col-md-10">
+      <p class="profile-data"><?php echo $percentage; ?></p>
     </div>
   </div>
             

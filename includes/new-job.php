@@ -23,10 +23,8 @@ function select(){
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <!--        StyleSheet-->   
-        
-        <!--        Font Awesome-->
-<!--    <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">-->
-        <link href="style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
+        <link href="../style.css" rel="stylesheet">
         
 
     </head>
@@ -94,6 +92,7 @@ function select(){
     <input type="text" class="form-control edit-profile-inputs" placeholder="City" name="City" required >
     </div>
 </div>
+    
      <div class="form-row">
      <div class="col-md-2">
       <p class="labels-for-profile">Salary:</p>

@@ -57,11 +57,13 @@ $register=true;
             <hr class="profile-line">
             <a id="myAccount" class="profile-navigation">My Account</a>
             <hr class="profile-line">
-            <a id="appHistory" class="profile-navigation">Add New Job</a>
+            <a href="includes/new-job.php" target="_blank" id="newJob" class="profile-navigation">Add New Job</a>
             <hr class="profile-line">
             <a id="editProfile" class="profile-navigation">Manage Profile</a>
             <hr class="profile-line">
-            <a id="logout" class="profile-navigation">Logout</a>
+            <a id="addedJobs" class="profile-navigation">Added Jobs</a>
+            <hr class="profile-line">
+            <a href="logout.php" id="logout" class="profile-navigation">Logout</a>
             <hr class="profile-line">
         </div>
             <div id="profile-section" class=" col-md-9 profile-wrapper">
@@ -80,9 +82,6 @@ $register=true;
                 });
             $("#myAccount").click(function(){
                 $('#profile-section').load("includes/my-account-company.php" +  '#profile-section');
-                });
-        $("#appHistory").click(function(){
-                $('#profile-section').load("includes/new-job.php" +  '#profile-section');
                 });
         </script>
 <script src="home.js"></script>
