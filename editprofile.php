@@ -32,7 +32,7 @@ $userId = $_SESSION['userEmail'];
         $field      = $row['field']; 
     }
 ?>  
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /> 
+
 <h1 class="heading-profile">Your Profile</h1>
         <p class="note-profile">Edit and update your profile</p>    
         <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
@@ -55,90 +55,117 @@ $userId = $_SESSION['userEmail'];
       <input type="text" class="form-control edit-profile-inputs" placeholder="City" name="city" required value="<?php echo $city;?>" id="city">
          <small id="cityError" class="text-danger"></small>
   </div>
-            <br>
-            
-            <div class="form-row">
-    <div style="padding:0" class="col-md-4"> 
-        <select id="qual" name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control edit-profile-inputs">
-            <option><?php echo $qual; ?></option>
-     <?php select();?>
-        </select>
-        <small id="qualError" class="text-danger"></small>
-    </div>
-    <div onchange="checkSelect2()" id="selectDiv2" class="col-md-4">
-        <select style="height:48px;padding:10px 18px;" name="course" id="selectTwo" class="valuePick js-example-placeholder-single js-states form-control edit-profile-inputs">
-            <option></option>
-        </select>
-        <small id="courseError" class="text-danger"></small>
-    </div>
-    <div style="padding:0" id="selectDiv3" class="col-md-4">
-        <select style="height:48px;padding:10px 18px;" name="field" id="selectThree" class="js-example-placeholder-single js-states form-control edit-profile-inputs">
-            <option></option>
-        </select>
-        <small id="fieldError" class="text-danger"></small>
-    </div>
-  </div>
   <br>
  <button onclick="validation()" class="save-changes" type="button" name="add">Save Changes</button>
+            <br>
+            <br><div id="result"></div>
   </form>          
 <br>
-<h1 class="heading-profile">Change Password</h1>     <div class="form-row">
-      <input type="Password" id="password" class="form-control edit-profile-inputs" placeholder="New Password" name="password" required>
-        <small class="text-danger"> <?php echo $passwordError; ?></small>
-  </div>
-            <br>
-            
-    <div class="form-row">
-      <input type="Password" id="confirm_password" class="form-control edit-profile-inputs" placeholder="Confirm Password" name="confirmPassword" required ><span id='message'></span>
-  </div>
-        <br>    
-  <button class="save-changes" type="button" name="add">Change Password</button>
+
+<form>
+    <h1 class="heading-profile">Change Password</h1>     <div class="form-row">
+        <input type="Password" id="cur_password" class="form-control edit-profile-inputs" placeholder="New Password" name="password" required>
+        <small id="passError" class="text-danger"></small>
+      </div>
+      <br>
+
+        <div class="form-row">
+          <input type="Password" id="con_password" class="form-control edit-profile-inputs" placeholder="Confirm Password" name="confirmPassword" required ><span id='message'></span>
+            <small id="cpassError" class="text-danger"></small>
+      </div>
+            <br>    
+      <button class="save-changes" onclick="passValidation()" type="button" name="Change Password">Change Password</button>
+    <br>
+            <br><div id="resultpass"></div>
+    </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="register.js"></script>
 <script>
-    function validation(){
-var mobile = document.getElementById("mobileNumber").value;
-var name = document.getElementById("name").value;
-var city = document.getElementById("city").value;
-var qual = document.getElementById("qual").value;    
-var course = document.getElementById("selectTwo").value; 
-var field = document.getElementById("selectThree").value;
-    if(!mobile){
-        $("#mobileError").html("Please enter your mobile number.");
-    }
-        else{
-            $("#mobileError").html(""); 
+function validation(){
+    var mobile = document.getElementById("mobileNumber").value;
+    var name   = document.getElementById("name").value;
+    var city   = document.getElementById("city").value;
+
+        if(!mobile || !name || !city){
+        if(!mobile){
+            $("#mobileError").html("Please enter your mobile number.");
         }
-    if(!name){
-        $("#nameError").html("Please enter your name.");
-    }
-        else{
-            $("#nameError").html(""); 
+            else{
+                $("#mobileError").html(""); 
+            }
+        if(!name){
+            $("#nameError").html("Please enter your name.");
         }
-    if(!city){
-        $("#cityError").html("Please enter your city.");
-    }
-        else{
-            $("#cityError").html(""); 
+            else{
+                $("#nameError").html(""); 
+            }
+        if(!city){
+            $("#cityError").html("Please enter your city.");
         }
-     if(!qual){
-        $("#qualError").html("Please enter your qualification.");
-    }
-        else{
-           $("#qualError").html("");  
+            else{
+                $("#cityError").html(""); 
+            }
+
         }
-    if(!course){
-        $("#courseError").html("Please enter your course.");
-    }
-        else{
-             $("#courseError").html("");
+
+    else{
+        $("#mobileError").html(""); 
+        $("#nameError").html(""); 
+        $("#cityError").html(""); 
+    
+
+                    $.ajax({
+                        type : "POST",
+                        url  : "functions.php",
+                        data : "check=altUser" + "&mobile="+ mobile +"&name="+ name +"&city="+ city,
+
+
+                        success:function(result){
+                            $("#result").html(result);
+
+                        }
+                    })    
         }
-     if(!field){
-        $("#fieldError").html("Please enter your field.");
-    }
-        else{
-             $("#fieldError").html("");
+}
+    
+function passValidation(){
+
+    var newpass   = document.getElementById("cur_password").value;
+    var conpass   = document.getElementById("con_password").value;
+  
+        if( !newpass || !conpass){
+         
+        if(!newpass){
+            $("#passError").html("Please enter your new password.");
         }
-    }
+            else{
+                $("#passError").html(""); 
+            }
+        if(!conpass){
+            $("#cpassError").html("Please enter password again to confirm.");
+        }
+            else{
+                $("#cpassError").html(""); 
+            }
+        }
+        
+       else if (newpass == conpass){
+             $("#passError").html("");
+             $("#cpassError").html(""); 
+
+                    $.ajax({
+                        type : "POST",
+                        url  : "functions.php",
+                        data : "check=altPass&pass="+ newpass,
+
+
+                        success:function(result){
+                            $("#resultpass").html(result);
+                         
+                        }
+                    })    
+        }
+    
+    
+}
+
 </script>

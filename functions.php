@@ -1,5 +1,6 @@
 <?php
 include('connections.php');
+ session_start();
 
 if($_POST['check'] == 'select1'){
     $qual = $_POST['qual'];
@@ -43,7 +44,7 @@ elseif($_POST['check'] == 'jobApply'){
     
     $job     = $_POST['jobId'];
     $cEmail  = $_POST['companyEmail'];
-    session_start();
+   
     $userEmail  = $_SESSION['userEmail'];
     if($userEmail)  {  
     $query = "SELECT * FROM `appliedJobs` WHERE `jobId` ='$job' AND `userEmail` ='$userEmail'";
@@ -68,4 +69,34 @@ elseif($_POST['check'] == 'jobApply'){
     }
 }
 
+elseif($_POST['check'] == 'altUser' ){
+    
+    $mobile = $_POST['mobile'];
+    $name   = mysqli_real_escape_string($conn,$_POST['name']);
+    $city   = $_POST['city'];
+    $email  = $_SESSION['userEmail'];
+    
+    $query = "UPDATE `users2` SET `name`= '$name', `phone` = '$mobile', `city` = '$city' WHERE `email`='$email'";
+    if(mysqli_query( $conn, $query )){
+        echo "<div class='alert alert-success'>Successfully Changed</div>";
+    }
+    else{
+        echo "<div class='alert alert-danger'>Please check your internet connection or try again later.</div>";
+    }
+}
+
+elseif($_POST['check'] == 'altPass' ){
+    
+    $pass = $_POST['pass'];
+    $password = password_hash( $pass, PASSWORD_BCRYPT );
+    $email  = $_SESSION['userEmail'];
+    
+    $query = "UPDATE `users2` SET `password`= '$password' WHERE `email`='$email'";
+    if(mysqli_query( $conn, $query )){
+        echo "<div class='alert alert-success'>Your password is changed successfully.</div>";
+    }
+    else{
+        echo "<div class='alert alert-danger'>Please check your internet connection or try again later.</div>";
+    }
+}
 ?>
