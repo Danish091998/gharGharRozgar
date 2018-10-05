@@ -4,7 +4,7 @@ include("connections.php");
 session_start();
 $compID = $_SESSION['CompanyID'];
 
-$query = "SELECT jobs.ID,jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME
+$query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,jobs.ID
 FROM jobs
 INNER JOIN companyRegister
 ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";

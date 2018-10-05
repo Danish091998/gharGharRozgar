@@ -5,7 +5,7 @@ $jobId   = $_GET['job'];
 
         if($jobId){
         
-        $query = "SELECT jobs.ID, jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL
+        $query = "SELECT  jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL,jobs.ID
         FROM jobs
         INNER JOIN companyRegister
         ON jobs.cID = companyRegister.ID WHERE jobs.ID='$jobId'";

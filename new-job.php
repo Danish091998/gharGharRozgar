@@ -64,7 +64,7 @@ function select(){
             $addressError = "Please enter job infromation.<br>";
         }
         else{
-            $address    = validateFormData($_POST['info-name']);
+            $address    = validateFormData($_POST['address']);
             $_SESSION['address'] = $address; 
             $jobAddress = mysqli_real_escape_string($conn,$address);
         }
@@ -116,7 +116,6 @@ function select(){
             $empType =validateFormData($_POST['empType']);
              $_SESSION['emptype'] = $empType;
         }
- 
         
         if($compID && $jobTitle && $education && $course &&  $field && $jobInfo && $jobAddress && $percentage && $city && $salary && $empType){
             
@@ -127,10 +126,10 @@ function select(){
                      echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
                 }
                 else{
-                    session_unset();
-                     session_destroy();
-            
-                    echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
+//                    session_unset();
+//                     session_destroy();
+            header('Location:company-profile.php');
+//                    echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
                 }
                 
             }

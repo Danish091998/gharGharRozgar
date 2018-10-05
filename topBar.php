@@ -19,7 +19,7 @@
         </div>
         
         <div id="top-bar">
-        <img src="Images/logo.png" class="logo">
+        <h1 class="website-name">Ghar Ghar Rozgar</h1>
             <?php include('checkLogin.php');
             checkLogin();?>
         <div class="navigation-anchor-wrapper">

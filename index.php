@@ -27,10 +27,14 @@ $register = true;
         include("topBar.php");?>
         <div class="home-background">
         <div class="wrapper-for-home-heading">
-        <h1 class="home-heading">Welcome To  <br>Har Roz Rozgar</h1>
+        <h1 class="home-heading">Welcome To  <br>Ghar Ghar Rozgar</h1>
            
         <a href="jobseeker.php" class="home-anchor anchor1"><span class="tip-top-left"></span>Looking For JOB?</a>
         <a href="jobprovider.php" class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>
+        </div>
+        <div class="amrinder">
+            <img class="photo" src="Images/amrinder.jpg">
+            <p style="margin:0; display:inline-block">An Initiative by Captain Amrinder Singh <br> Chief Minister, Punjab</p>
         </div>
         </div>
 <script src="../jquery-3.3.1.js" ></script>
