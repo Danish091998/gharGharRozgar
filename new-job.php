@@ -106,7 +106,7 @@ function select(){
         }
         else{
             $date = validateFormData($_POST['date']);
-            $_SESSION['Date'] = $date;$salary = "Not Specified";
+            $_SESSION['Date'] = $date;
         }
         
         if(!$_POST['empType']){
@@ -120,17 +120,16 @@ function select(){
         
         if($compID && $jobTitle && $education && $course &&  $field && $jobInfo && $jobAddress && $percentage && $city && $salary && $empType){
             
-            $query = "INSERT INTO `jobs`(`ID`, `cID`, `JOB`,`QUALIFICATION`, `COURSE`, `FIELD`, `INFO`, `ADDRESS`, `MINMARKS`, `SALARY`, `EMPTYPE`, `CITY`) VALUES ('','$compID','$jobTitle','$education','$course','$field','$jobInfo','$jobAddress','$percentage','$salary','','$empType','$city')";
-            echo $query;
+            $query = "INSERT INTO `jobs`(`ID`, `cID`, `JOB`,`QUALIFICATION`, `COURSE`, `FIELD`, `INFO`, `ADDRESS`, `MINMARKS`, `SALARY`,`DATE`, `EMPTYPE`, `CITY`) VALUES ('','$compID','$jobTitle','$education','$course','$field','$jobInfo','$jobAddress','$percentage','$salary','$date','$empType','$city')";
             
             if(mysqli_query($conn, $query)){
-                if(isset( $_POST['add_job'])){
-                     session_unset();
+                if($_POST['checkbox']=="yes"){
+                     echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
+                }
+                else{
+                    session_unset();
                      session_destroy();
             
-                    echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
-                }
-                if(isset( $_POST['add_new_job'])){
                     echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
                 }
                 
@@ -273,8 +272,13 @@ function select(){
     </div>  
 </div>
     <br>
+    <div class="form-group">
+    <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="checkbox" value="yes">
+    <label class="custom-control-label" for="defaultUnchecked">If you want to add same job for different course tick this.</label>
+</div>
+  </div>
     <button type="submit" class='btn btn-primary' id="submit_job" name="add_job">Add Job</button>
-    <button type="submit" class='btn btn-primary' id="submit_job" name="add_new_job">Add New Job</button>
 </form>
  </div>   
         
@@ -282,6 +286,9 @@ function select(){
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="register.js"></script>       
+<script src="register.js"></script>
+        <script type="text/javascript">
+            
+        </script>
     </body>
 </html>

@@ -29,11 +29,11 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
         $job_field      = $org['FIELD'];
         $job_info       = $org['INFO'];
         $job_venue      = $org['ADDRESS'];
-        if($org['SALARY']){
+        if($org['SALARY'] != "Not Specified" ){
                     $job_salary = "&#8377 ".$org['SALARY'];
                 }
                 else{
-                    $job_salary = 'Not Specified';
+                    $job_salary = $org["SALARY"];
                 }
         
         $job_emp_type   = $org['EMPTYPE'];
@@ -58,26 +58,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
     
         }   
     }
-
-
-
 ?>
 
-    <head>
-        
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>HomePage</title>
-
-        <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <!--        StyleSheet-->   
-        
-       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
-        
-       <link href="../style.css" rel="stylesheet">
-
-    </head>
     

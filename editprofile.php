@@ -164,6 +164,9 @@ function passValidation(){
                         }
                     })    
         }
+    else{
+        $("#resultpass").html("<div class='alert alert-danger'>Password does not match</div>");
+    }
     
     
 }

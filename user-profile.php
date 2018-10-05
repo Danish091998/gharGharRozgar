@@ -31,7 +31,7 @@ include('connections.php');
             <hr class="profile-line">
             <a id="myAccount" class="profile-navigation">My Account</a>
             <hr class="profile-line">
-            <a id="appHistory" class="profile-navigation">Applied Jobs</a>
+            <a id="addedJobs" class="profile-navigation">Applied Jobs</a>
             <hr class="profile-line">
             <a id="editProfile" class="profile-navigation">Manage Profile</a>
             <hr class="profile-line">
@@ -53,7 +53,7 @@ include('connections.php');
             $("#myAccount").click(function(){
                 $('#profile-section').load("includes/my-account-user.php" +  '#profile-section');
                 });
-            $("#appHistory").click(function(){
+            $("#addedJobs").click(function(){
                 $('#profile-section').load("includes/user-applied-jobs.php" +  '#profile-section');
                 });
         </script>  

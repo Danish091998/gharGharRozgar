@@ -5,6 +5,9 @@ html,body{
     padding: 0;
     overflow-x: hidden;
 }
+.sidenav{
+    display: none;
+}
 #top-bar{
     position: relative;
     top: 0;
@@ -163,7 +166,7 @@ html,body{
     text-decoration: none;
     font-family: "Poppins";
     letter-spacing: 0.05em;
-    line-height: 24px;
+    line-height: 44px;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -688,7 +691,9 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     color: #666;
     font-size: 16px;
     padding: 0px;
+    left: 0px;
     margin-right: 5px;
+    transform: rotate(0deg);
 }
 .venue{
     font-size: 14px;
