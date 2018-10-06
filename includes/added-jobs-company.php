@@ -38,7 +38,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
         
         $job_emp_type   = $org['EMPTYPE'];
         
-        echo "<div class=' row job-display-wrapper' id='$job_id'> 
+        echo "<div class='row job-display-wrapper' id='$job_id'> 
                 <div class='col-xs-3 logo-image-wrapper'>
                     <img src='$org_logo' class='logo-image'>
                 </div>
@@ -47,15 +47,17 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
                 <span class = 'company-name'>$org_name</span><br>
                 <span class = 'venue'><i id='location-icon' class='fas fa-map-marker-alt'></i>$job_venue</span><br>
                 </div>
-                <div class='col-xs-3 salary-wrapper'>
+                <div class='col-xs-2 salary-wrapper'>
                 <span class = 'company-name'> $job_salary</span><br>
                 <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
                 </div>
-                <div class='col-xs-3'>
-                <a class='know-more' href='jobDisplay.php?job=$job_id'>View More</a>
+                <div class='col-xs-4'>
+                <button class='applicants' data-id='$job_id' data-toggle='collapse' data-target='#c$job_id' aria-expanded='false' aria-controls='c$job_id'>View Applicants</button>
+                <a style='left:40px' class='know-more' href='jobDisplay.php?job=$job_id'>View More</a>
                 </div>
-                <button class='btn btn-primary applicants' data-id=$job_id>Applicants</button>
-                 <button class='btn btn-primary' id='delete' data-id=$job_id>Delete</button>
+                 <button class='btn btn-danger delete' id='delete' data-id='$job_id'>Delete</button>
+                 <div style='width:100%; margin-top:10px;' class='collapse' id='c$job_id'>
+                </div>
             </div>";
     
         }   
@@ -74,8 +76,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
         data : "check=applicants&jobId="+ id,
                     
                     success:function(result){
-                    $("#" + id).append(result);
-                
+                    $("#c" + id).html("<div class='card card-body'><table class='table table-hover'><thead><tr><th scope='col'>#</th><th scope='col'>Name</th><th scope='col'>Email</th><th scope='col'>Contact</th></tr>" +result +"</thead></table></div>");        
         }
     })
 })

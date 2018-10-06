@@ -14,7 +14,7 @@ $("#editProfile").click(function(){
 });
 $("#addedJobs").click(function(){
    $(this).css({"color":"#00aff0","font-weight":"600"});
-    $("#myAccount,#newJobs,#logout,#editProfile").css({"color":"#000","font-weight":"normal"});
+    $("#myAccount,#newJob,#logout,#editProfile").css({"color":"#000","font-weight":"normal"});
 });
 $("#logout").click(function(){
    $(this).css({"color":"#00aff0","font-weight":"600"});

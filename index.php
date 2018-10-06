@@ -32,7 +32,7 @@ $register = true;
         <a href="jobseeker.php" class="home-anchor anchor1"><span class="tip-top-left"></span>Looking For JOB?</a>
         <a href="jobprovider.php" class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>
         </div>
-        <div class="amrinder">
+        <div class="ini-wrapper">
             <img class="photo" src="Images/amrinder.jpg">
             <p style="margin:0; display:inline-block">An Initiative by Captain Amrinder Singh <br> Chief Minister, Punjab</p>
         </div>
