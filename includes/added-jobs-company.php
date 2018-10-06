@@ -49,7 +49,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
                 </div>
                 <div class='col-xs-2 salary-wrapper'>
                 <span class = 'company-name'> $job_salary</span><br>
-                <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
+                <span style='color:#38b63d' class = 'company-name'>$job_emp_type</span>
                 </div>
                 <div class='col-xs-4'>
                 <button class='applicants' data-id='$job_id' data-toggle='collapse' data-target='#c$job_id' aria-expanded='false' aria-controls='c$job_id'>View Applicants</button><br>
@@ -79,6 +79,26 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
         }
     })
 })
+    
+ $(".delete").click(function(){
+     var id = $(this).attr("data-id");
+ 
+     $.ajax({
+        type : "POST",
+        url  : "functions.php",
+        data : "check=delete&jobId="+ id,
+                    
+        success:function(result){
+            if(result == "deleted"){
+                $("#" + id).fadeOut();
+            }
+            else{
+                alert(result);
+            }
+        }
+    })
+})
+    
 </script>
 
 

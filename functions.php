@@ -131,4 +131,18 @@ elseif($_POST['check'] == 'applicants'){
         echo "No one has applied for this job till now.";
     }
 }
+
+elseif($_POST['check'] == 'delete'){
+    $id = $_POST['jobId'];
+    
+    $query = "DELETE FROM `jobs` WHERE `ID` = '$id'";
+ 
+    if (mysqli_query($conn,$query)){
+        echo "deleted";
+    }
+    else{
+        echo "Please check your internet connection and try again.";
+    }
+    
+}
 ?>

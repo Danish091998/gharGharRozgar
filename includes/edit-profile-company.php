@@ -76,3 +76,6 @@ if($_)
         <br>    
   <button class="save-changes" type="submit" name="add">Change Password</button> 
 <script src="registerCompany.js"></script>
+<script> 
+
+</script>
