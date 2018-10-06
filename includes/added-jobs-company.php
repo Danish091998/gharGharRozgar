@@ -38,7 +38,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
         
         $job_emp_type   = $org['EMPTYPE'];
         
-        echo "<div class=' row job-display-wrapper'> 
+        echo "<div class=' row job-display-wrapper' id='$job_id'> 
                 <div class='col-xs-3 logo-image-wrapper'>
                     <img src='$org_logo' class='logo-image'>
                 </div>
@@ -54,11 +54,32 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
                 <div class='col-xs-3'>
                 <a class='know-more' href='jobDisplay.php?job=$job_id'>View More</a>
                 </div>
+                <button class='btn btn-primary applicants' data-id=$job_id>Applicants</button>
+                 <button class='btn btn-primary' id='delete' data-id=$job_id>Delete</button>
             </div>";
     
         }   
     }
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+ 
+
+ $(".applicants").click(function(){
+     var id = $(this).attr("data-id");
+ 
+     $.ajax({
+        type : "POST",
+        url  : "functions.php",
+        data : "check=applicants&jobId="+ id,
+                    
+                    success:function(result){
+                    $("#" + id).append(result);
+                
+        }
+    })
+})
+</script>
 
 
     

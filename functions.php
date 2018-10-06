@@ -99,4 +99,24 @@ elseif($_POST['check'] == 'altPass' ){
         echo "<div class='alert alert-danger'>Please check your internet connection or try again later.</div>";
     }
 }
+
+elseif($_POST['check'] == 'applicants'){
+    
+    $id = $_POST['jobId'];
+    
+    $query = "SELECT appliedJobs.jobId, appliedJobs.userEmail, users2.ID, users2.name, users2.email, users2.password, users2.phone, users2.city, users2.education, users2.percentage, users2.course, users2.field, users2.profilepic, users2.gender, users2.birthDate
+     FROM appliedJobs
+     INNER JOIN users2
+     ON appliedJobs.userEmail = users2.email WHERE appliedJobs.jobId = $id"; 
+    
+     $result = mysqli_query($conn,$query);
+     if(mysqli_num_rows($result) > 0){
+     while(mysqli_fetch_array($result)){
+         echo "1";
+     }
+    }
+    else{
+        echo "No one has applied for this job till now.";
+    }
+}
 ?>

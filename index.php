@@ -3,7 +3,7 @@ include('connections.php');
 $register = true;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
         
