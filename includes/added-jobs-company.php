@@ -52,18 +52,17 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
                 <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
                 </div>
                 <div class='col-xs-4'>
-                <button class='applicants' data-id='$job_id' data-toggle='collapse' data-target='#c$job_id' aria-expanded='false' aria-controls='c$job_id'>View Applicants</button>
-                <a style='left:40px' class='know-more' href='jobDisplay.php?job=$job_id'>View More</a>
+                <button class='applicants' data-id='$job_id' data-toggle='collapse' data-target='#c$job_id' aria-expanded='false' aria-controls='c$job_id'>View Applicants</button><br>
+                <button class='delete' id='delete' data-id='$job_id'>Delete</button>
+                <a style='left:100px;top:0px;' class='know-more' href='jobDisplay.php?job=$job_id'>View More</a>
                 </div>
-                 <button class='btn btn-danger delete' id='delete' data-id='$job_id'>Delete</button>
-                 <div style='width:100%; margin-top:10px;' class='collapse' id='c$job_id'>
+                 <div style='width:100%;' class='collapse' id='c$job_id'>
                 </div>
             </div>";
     
         }   
     }
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
  
 

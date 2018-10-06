@@ -345,7 +345,7 @@ html,body{
 }
 
 .login-heading{
-    font-family: "Oxygen";
+    font-family: "Poppins";
     font-weight: bolder;
     text-align: center;
     margin-bottom: 50px;
@@ -486,7 +486,7 @@ html,body{
 }
 
 .home-background{
-    background: url(Images/home-background.png);
+    background: url(Images/startup-594090_1920.jpg);
     width: 100%;
     height: 100%;
     background-size:cover; 
@@ -767,7 +767,6 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     border:none;
     background: #fff;
     padding: 0px;
-    border-radius: 5px;
     font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -775,28 +774,41 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     line-height: 30px;
     position: relative;
     left: 10px;
-    top: 30px;
+    top: 20px;
     outline: none !important;
 }
 
 .applicants:hover{
     text-decoration: none;
-    color: #f04100;
+    color: #00719b;
     outline: none;
 }
 .applicants:active{
     text-decoration: none;
-    color: #f04100;
+    color: #00719b;
     outline: none;
 }
-
 .delete{
-    display:block;
-    width: 140px !important;
-    margin-top: 10px;
-    height: 30px;
-    font-size: 12px;
-    padding: 0px !important; 
+     font-size: 12px;
+    text-decoration: none;
+    color: #d9534f;
+    text-transform: capitalize;
+    border:none;
+    background: #fff;
+    padding: 0px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    outline: none;
+    line-height: 30px;
+    position: relative;
+    left: 10px;
+    top: 10px;
+    outline: none !important;
+}
+
+.delete:hover{
+    color: #c9302c;
 }
 
 /*Individaul Job display*/

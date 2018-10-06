@@ -175,12 +175,8 @@ $out_image=addslashes(file_get_contents($resize_image));
         <title>Company Registration</title>
 
         <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-        <!--        StyleSheet-->   
-        
-        <!--        Font Awesome-->
-<!--    <link href="../font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">-->
+<link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link href="select2-4.0.6-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="style.css" rel="stylesheet">
         
 
@@ -293,9 +289,9 @@ $out_image=addslashes(file_get_contents($resize_image));
 </form>
  </div>   
         
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="jquery-3.3.1.js"></script>
+<script src="select2-4.0.6-rc.0/dist/js/select2.min.js"></script>
+<script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="registerCompany.js"></script>        
     </body>
 </html>

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Login</title>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="fontawesome-free-5.3.1-web/css/all.css" crossorigin="anonymous">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="style.css" type="text/css">
@@ -49,7 +49,7 @@
         </div>
         
         <!-- jQuery -->
-        <script src="../jquery-3.3.1.js"></script>
+        <script src="jquery-3.3.1.js"></script>
         <script>
         $("#login-button").click(function(){
         var myModal = $('#modalForLogin');
