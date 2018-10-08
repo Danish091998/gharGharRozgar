@@ -4,7 +4,7 @@
     $( "#datepicker,#datepickerProfile" ).datepicker({changeYear:true,
                 yearRange:'-60:',
                 dateFormat:'yy-mm-dd',
-                maxDate: "-14y" });
+                maxDate: "-16y" });
   } );
 $(".js-example-placeholder-single").select2({
     placeholder: "Select Your Qualification",

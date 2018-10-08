@@ -158,21 +158,22 @@ function select(){
         <!--        StyleSheet-->   
 <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
 <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
-
+<link rel="stylesheet" href="ericjgagnon-wickedpicker-2a8950a/dist/wickedpicker.min.css">
  <link href="style.css" rel="stylesheet">
         
 
     </head>
     
-    <body>
+    <body style="padding:20px;">
         <div class="container">
-        <h1 class="page-heading">Add Your Job</h1>
+        <h1 class="page-heading" style="margin-bottom:20px;">Add Your Job</h1>
+        <p class="edit-profile-inputs" style="margin-bottom:25px;">Fields marked with <span class="asterisk">*</span> are compulsory.</p>
             
 <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
     
     <div class="form-row">
      <div class="col-md-2">
-      <p class="labels-for-profile">Job Title*:</p>
+      <p class="labels-for-profile">Job Title<span class="asterisk">*</span>:</p>
     </div>
     <div class="col-md-9">
     <input type="text" class="form-control edit-profile-inputs" placeholder="Job Title" name="job-title" value="<?php echo $_SESSION['job']; ?>" >
@@ -182,7 +183,7 @@ function select(){
     <br>
 <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-profile">Qualification*:</p>
+      <p class="labels-for-profile">Qualification For This Job<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-3"> 
         <select name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control">
@@ -207,7 +208,7 @@ function select(){
     <br>
 <div class="form-row">
      <div class="col-md-2">
-      <p class="labels-for-profile">Job Information*:</p>
+      <p class="labels-for-profile">Job Information<span class="asterisk">*</span>:</p>
     </div>
     <div class="col-md-9">
     <input type="text" class="form-control edit-profile-inputs" placeholder="Job Information" name="info-name" value="<?php echo $_SESSION['info']?>" >
@@ -217,7 +218,7 @@ function select(){
     <br>
 <div class="form-row">
      <div class="col-md-2">
-      <p class="labels-for-profile">Address*:</p>
+      <p class="labels-for-profile">Address<span class="asterisk">*</span>:</p>
     </div>
     <div class="col-md-9">
     <input type="text" class="form-control edit-profile-inputs" placeholder="Address" name="address"  value="<?php echo $_SESSION['address']?>">
@@ -234,7 +235,7 @@ function select(){
     <small class="text-danger"><?php echo $percentageError; ?></small>    
     </div>
           <div class="col-md-1">
-      <p class="labels-for-profile">City*:</p>
+      <p class="labels-for-profile">City<span class="asterisk">*</span>:</p>
     </div>
         <div class="col-md-4">
     <input type="text" class="form-control edit-profile-inputs" placeholder="City" name="city" value="<?php echo $_SESSION['city']?>" >
@@ -244,32 +245,37 @@ function select(){
     
      <div class="form-row">
        <div class="col-md-2">
-      <p class="labels-for-profile">Interview Date*:</p>
+      <p class="labels-for-profile">Interview Date<span class="asterisk">*</span>:</p>
       </div>
         <div class="col-md-4">
-   <input class="form-control edit-profile-inputs" type="text" id="datepicker" placeholder="-Select Date-" name="date" value="<?php echo $_SESSION['Date'];?>" readonly>
+   <input class="form-control edit-profile-inputs" type="text" id="datepickerJob" placeholder="-Select Date-" name="date" value="<?php echo $_SESSION['Date'];?>" readonly>
     <small class="text-danger"><?php echo $dateError; ?></small>
         </div>
-     <div class="col-md-1">
-      <p class="labels-for-profile">Salary:</p>
-    </div>
-    <div class="col-md-4">
-    <input type="text" class="form-control edit-profile-inputs" placeholder="Salary" name="salary" value="<?php echo $_SESSION['salary']?>">
-    </div>
+      <div class="col-md-1">
+      <p class="labels-for-profile">Interview Time<span class="asterisk">*</span>:</p>
+      </div>
+        <div class="col-md-4">
+        <input style="width:100%" type="text" name="timepicker" class="timepicker edit-profile-inputs"/>
+        </div>
 </div>
-    <br>
     <div class="form-row">
      <div class="col-md-2">
-      <p class="labels-for-profile">Employment Type*:</p>
+      <p class="labels-for-profile">Employment Type<span class="asterisk">*</span>:</p>
     </div>
     <div class="col-md-4">
-        <select name="empType" class="edit-profile-inputs">
+        <select style="width:100%" name="empType" class="edit-profile-inputs">
             <option value="" disabled selected>-Select-</option>
             <option class="edit-profile-inputs" value="Part Time">Part Time</option>
             <option class="edit-profile-inputs" value="Full Time">Full Time</option>
         </select>
         <small class="text-danger"><?php echo $emptypeError; ?></small>
     </div>  
+        <div class="col-md-1">
+      <p class="labels-for-profile">Salary:</p>
+    </div>
+    <div class="col-md-4">
+    <input type="text" class="form-control edit-profile-inputs" placeholder="Salary" name="salary" value="<?php echo $_SESSION['salary']?>">
+    </div>
 </div>
     <br>
     <div class="form-group">
@@ -286,9 +292,16 @@ function select(){
 <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="select2-4.0.6-rc.0/dist/js/select2.min.js"></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="ericjgagnon-wickedpicker-2a8950a/dist/wickedpicker.min.js"></script>
 <script src="register.js"></script>
         <script type="text/javascript">
-            
+            $( function() {
+    $( "#datepickerJob" ).datepicker({changeYear:true,
+                dateFormat:'yy-mm-dd',
+                minDate: 0,
+                maxDate: "+1y" });
+  } );
+            $('.timepicker').wickedpicker();
         </script>
     </body>
 </html>

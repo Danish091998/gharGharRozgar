@@ -1109,6 +1109,10 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     display: none;
 }
 
+.asterisk{
+    color: #c61f1f;
+}
+
 /*admin page*/
 
 .buttons{
@@ -1123,6 +1127,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 .text{
     color: #666;
 }
+
 
 @media only screen and (max-width:1024px){
     .website-name{
