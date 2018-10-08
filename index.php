@@ -3,7 +3,7 @@ include('connections.php');
 $register = true;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
     <head>
         
@@ -21,7 +21,7 @@ $register = true;
 
     </head>
     
-    <body>
+    <body style="background:#f7f7f7;">
         
         <?php
         include("topBar.php");?>
@@ -32,11 +32,9 @@ $register = true;
         <a href="jobseeker.php" class="home-anchor anchor1"><span class="tip-top-left"></span>Looking For JOB?</a>
         <a href="jobprovider.php" class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>
         </div>
-        <div class="ini-wrapper">
-            <img class="photo" src="Images/amrinder.jpg">
-            <p style="margin:0; display:inline-block">An Initiative by Captain Amrinder Singh <br> Chief Minister, Punjab</p>
+
         </div>
-        </div>
+        TEST
 <script src="jquery-3.3.1.js" ></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script> 
 <script src="home.js"></script>        

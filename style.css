@@ -14,7 +14,7 @@ html,body{
     left: 0;
     width: 100%;
     height: 73px;
-    background: white; 
+    background:white; 
     margin: 0;
     padding: 0;
     box-shadow: 0px 1px 5px #333;
@@ -486,22 +486,20 @@ html,body{
 }
 
 .home-background{
-    background: url(Images/startup-594090_1920.jpg);
-    width: 100%;
+    background: url(Images/ghar-ghar-rozgar-home.png) no-repeat;
     height: 100%;
-    background-size:cover; 
-    background-repeat: no-repeat;
+    background-size:cover;
     position: relative;
 }
 
 .wrapper-for-home-heading{
     position: absolute;
-    top: 250px;
+    top: 255px;
     margin: 0 auto;
     left: 0;
     right: 0;
     width: 600px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.3);
 }
 
 .home-heading{
@@ -863,6 +861,8 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     border: none;
     color: #666;
     margin-right: 5px;
+    transform: rotate(0deg);
+    left: 0px;
 }
 
 .job-description-wrapper{
@@ -922,7 +922,7 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 
 /*Job Seeker page*/
 .background-job-seeker-page{
-    background: url(Images/write-593333_1920.jpg) no-repeat;
+    background: url(Images/office-463284_1920.jpg) no-repeat;
     width: 100%;
     height: 90%;
     background-size: cover;

@@ -19,7 +19,7 @@
         </div>
         
         <div id="top-bar">
-        <h1 class="website-name">Ghar Ghar Rozgar</h1>
+        <h1 class="website-name">Ghar Ghar <span style="color:#ff6228;">Rozgar</span></h1>
             <?php include('checkLogin.php');
             checkLogin();?>
         <div class="navigation-anchor-wrapper">
