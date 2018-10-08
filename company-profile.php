@@ -1,7 +1,15 @@
 <?php
 include('connections.php');
 $register=true;
-        
+
+session_start();
+$email = $_SESSION['CompanyEmail'];
+
+ $query = "SELECT `ID` FROM `companyRegister` WHERE EMAIL = '".$email."'";
+             $result = mysqli_query( $conn, $query );
+             $row    = mysqli_fetch_array($result);
+             $_SESSION['CompanyID'] = $row['ID'];
+
      function jobsFetch(){
         global $companyEmail;
         global $name;

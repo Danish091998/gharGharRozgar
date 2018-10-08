@@ -142,7 +142,40 @@ elseif($_POST['check'] == 'delete'){
     }
     else{
         echo "Please check your internet connection and try again.";
+    }    
+}
+
+elseif($_POST['check'] == 'altComp'){
+    
+    $id      = $_SESSION['CompanyID']; 
+    $mobile  = $_POST['mobile'];
+    $cname   = mysqli_real_escape_string($conn,$_POST['cname']);
+    $city    = $_POST['city'];
+    $email   = $_POST['email'];
+    $mobile2 = $_POST['mobile2'];
+    $query = "UPDATE `companyRegister` SET `PHONE`='".$mobile."',`PHONESEC`='".$mobile2."',`EMAIL`='".$email."',`NAME`='".$cname."',`CITY`='".$city."' WHERE `ID` = '".$id."'";
+ 
+    if (mysqli_query($conn,$query)){
+        echo "<div class='alert alert-success'>Your profile is updated.</div>";
     }
+    else{
+        echo "<div class='alert alert-danger'>Please check your internet connection and try again.</div>";
+    }    
+}
+
+elseif($_POST['check'] == 'altcompPass'){
+    $pass     = $_POST['password'];
+    $password = password_hash( $pass, PASSWORD_BCRYPT );
+    $id       = $_SESSION['CompanyID'];
+    
+    $query = "UPDATE `companyRegister` SET `password`= '$password' WHERE `ID`='".$id."'";
+    if(mysqli_query( $conn, $query )){
+        echo "<div class='alert alert-success'>Your password is changed successfully.</div>";
+    }
+    else{
+        echo "<div class='alert alert-danger'>Please check your internet connection or try again later.</div>";
+    }
+    
     
 }
 ?>

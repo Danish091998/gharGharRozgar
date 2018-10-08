@@ -9,7 +9,7 @@ function select(){
     echo "<option value='" . $row['EDUCATION'] ."'>" . $row['EDUCATION'] ."</option>";
     }
 }
-    if( isset( $_POST['add_job'])||isset($_POST['add_new_job']) ) {
+    if( isset( $_POST['add_job'])) {
     session_start();
         $compID = $_SESSION['CompanyID'];
     // build a function to validate data
@@ -30,7 +30,7 @@ function select(){
         $eduError = "Please enter qualification<br>";
         } 
         else {
-        $education = $_SESSION['education'] = validateFormData( $_POST["qualification"] );
+        $education = mysqli_real_escape_string($conn,validateFormData( $_POST["qualification"] ));
         }
         
         
@@ -38,7 +38,7 @@ function select(){
         $courseError = "Please enter course<br>";
         } 
         else {
-        $course = $_SESSION['course'] =validateFormData( $_POST["course"] );
+        $course = mysqli_real_escape_string($conn,validateFormData( $_POST["course"] ));
         }     
         
         
@@ -46,7 +46,7 @@ function select(){
         $fieldError = "Please enter field<br>";
         } 
         else {
-        $field = $_SESSION['field'] = validateFormData( $_POST["field"] );
+        $field = mysqli_real_escape_string($conn,validateFormData( $_POST["field"] ));
         }
         
         
@@ -73,7 +73,8 @@ function select(){
         if($_POST['percentage']){ 
             if($_POST['percentage']>0 && $_POST['percentage']<=100){
             $percentage = validateFormData($_POST['percentage']);
-            $_SESSION['percentage'] = $percentage;    
+            $_SESSION['percentage'] = $percentage; 
+            $percentage = mysqli_real_escape_string($conn, $percentage);
             }
             else{
             $percentageError = "Please enter percentage between 0 to 100.<br>";
@@ -88,13 +89,14 @@ function select(){
             $cityError = "Please enter job infromation.<br>";
         }
         else{
-            $city = validateFormData($_POST['city']);
             $_SESSION['city'] = $city;
+            $city = mysqli_real_escape_string($conn,validateFormData($_POST['city']));
+            
         }
         
         
         if($_POST['salary']){
-            $salary = validateFormData($_POST['salary']);
+            $salary = mysqli_real_escape_string($conn,validateFormData($_POST['salary']));
             $_SESSION['salary'] = $salary;
         }
         else{
@@ -105,7 +107,7 @@ function select(){
             $dateError = "Please select interview date";
         }
         else{
-            $date = validateFormData($_POST['date']);
+            $date = mysqli_real_escape_string($conn,validateFormData($_POST['date']));
             $_SESSION['Date'] = $date;
         }
         
@@ -113,12 +115,12 @@ function select(){
             $emptypeError = "Please select employment type.<br>";
         }
         else{
-            $empType =validateFormData($_POST['empType']);
+            $empType = mysqli_real_escape_string($conn,validateFormData($_POST['empType']));
              $_SESSION['emptype'] = $empType;
         }
-        
+    
         if($compID && $jobTitle && $education && $course &&  $field && $jobInfo && $jobAddress && $percentage && $city && $salary && $empType){
-            
+    
             $query = "INSERT INTO `jobs`(`ID`, `cID`, `JOB`,`QUALIFICATION`, `COURSE`, `FIELD`, `INFO`, `ADDRESS`, `MINMARKS`, `SALARY`,`DATE`, `EMPTYPE`, `CITY`) VALUES ('','$compID','$jobTitle','$education','$course','$field','$jobInfo','$jobAddress','$percentage','$salary','$date','$empType','$city')";
             
             if(mysqli_query($conn, $query)){
@@ -126,10 +128,9 @@ function select(){
                      echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
                 }
                 else{
-//                    session_unset();
-//                     session_destroy();
-            header('Location:company-profile.php');
-//                    echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
+                    unset($_SESSION['info'],$_SESSION['address'],$_SESSION['job'],$_SESSION['percentage'],$_SESSION['city'],$_SESSION['Date'],$_SESSION['salary']);
+
+                    echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
                 }
                 
             }

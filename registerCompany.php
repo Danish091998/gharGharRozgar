@@ -68,34 +68,27 @@ if(isset($_POST["add"])) {
         $city = validateFormData( $_POST["city"] );
     }
     if(!$imgCheck){
-        $logoError = "Please select an image.<br>";
+        $logoError = "<br>Please select an image.<br>";
     }
     else{
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
         $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
+    } 
 // Check if file already exists
 if (file_exists($target_file)) {
-    $target_file = $target_dir . $cName . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . $mobile . basename($_FILES["fileToUpload"]["name"]);
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
-    echo "<div class='alert alert-danger'>Sorry, only JPG, JPEG, PNG files are allowed.</div>";
-    $uploadOk = 0;
+   $logoError = "<br>Sorry, only JPG, JPEG, PNG files are allowed.<br>";
 }
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "<div class='alert alert-danger'>Sorry, your image was not uploaded.</div>";
-// if everything is ok, try to upload file
-} else {
+
+ else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
        
     } else {
-        echo "<div class='alert alert-danger'>Sorry, there was an error uploading your file.Check ur internet connection or try again later.</div>";
+       $logoError = "<br>Sorry, there was an error uploading your file.Check ur internet connection or try again later.<br>";
     }
 }
 
@@ -137,19 +130,16 @@ $out_image=addslashes(file_get_contents($resize_image));
     }
 }
  
-    if( $email && $hashedPassword && $mobile && $cName && $address && $city && $_POST['checkbox'] == 'yes' && $password == $confirmPassword ) {
+    if( $email && $hashedPassword && $mobile && $cName && $address && $city && $_POST['checkbox'] == 'yes' && $password == $confirmPassword && $resize_image ) {
         $query = "INSERT INTO `companyRegister`(`ID`,`EMAIL`, `PASSWORD`, `PHONE`, `NAME`, `ADDRESS`, `CITY`, `PHONESEC`, `LOGOIMAGE`) VALUES ('','$email','$hashedPassword','$mobile','$cName','$address','$city','$mobileOpt','$resize_image')";
-    
+    echo $query;
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
             session_destroy();
             
-             $query = "SELECT `ID` FROM `companyRegister` WHERE EMAIL = '".$email."'";
-             $result = mysqli_query( $conn, $query );
-             $row    = mysqli_fetch_array($result);
             session_start();
             // store data in SESSION variables
-            $_SESSION['CompanyID']    = $row['ID'];
+            
             $_SESSION['CompanyName']  = $cName;
             $_SESSION['CompanyEmail'] = $email;
             
@@ -157,9 +147,9 @@ $out_image=addslashes(file_get_contents($resize_image));
 
         }
          else {
-            echo "Error: ". $query . "<br>" . mysqli_error($conn);
+            $errorSubmit = "<div class= 'alert alert-danger'>Registration Failed. Please check your internet and try again later.</div>";
             }
-}
+    }
 }
 
 ?>
@@ -189,7 +179,7 @@ $out_image=addslashes(file_get_contents($resize_image));
         <h1 class="page-heading">Company Registration</h1>
             
         <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post" enctype="multipart/form-data">
-    
+    <div><?php echo $errorSubmit; ?></div>
     <div class="form-row">
       <div class="col-md-2">
       <p class="labels-for-form">Email:</p>
@@ -257,7 +247,6 @@ $out_image=addslashes(file_get_contents($resize_image));
                      <img src="Images/avatar-1577909_640.png" id="imgupload">
                  </label>
              <div class="margin-bottom margin-top">
-                 <p class="labelForPicture">Logo</p>
                  <input type="file" class="form-control" name="fileToUpload" id="avatar">
                  <small class="text-danger"> <?php echo $logoError; ?></small>
              </div> 
