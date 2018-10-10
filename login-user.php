@@ -60,6 +60,14 @@
         <!-- jQuery -->
         <script src="jquery-3.3.1.js"></script>
         <script>
+            var input = document.getElementById("login-password");
+            input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+        document.getElementById("login-button").click();
+                                    }
+            });
+            
         $("#login-button").click(function(){
         var myModal = $('#modalForLogin');
             

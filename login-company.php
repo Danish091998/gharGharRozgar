@@ -36,13 +36,13 @@
                 <i class="fas fa-user-circle login-user-icon"></i></center>
              <h2 class="login-heading">Welcome</h2>
               <div class="form-group">
-                    <input type="text" id="login-company-username" name="companyEmail" required autocomplete="on">
+                    <input type="text" id="login-company-username" name="companyEmail" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Email</label>
                 </div>
                 <div class="form-group">
-                    <input type="password" id="login-company-password" name="companyPassword" required autocomplete="on">
+                    <input type="password" id="login-company-password" name="companyPassword" required>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label">Password</label> 
@@ -56,6 +56,13 @@
         <!-- jQuery -->
         <script src="jquery-3.3.1.js"></script>
         <script>
+            var input = document.getElementById("login-company-password");
+            input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+        document.getElementById("login-company-button").click();
+                                    }
+            });
         $("#login-company-button").click(function(){
         var myModal  = $('#modalForLoginProvider');
         var email    = $("#login-company-username").val();
