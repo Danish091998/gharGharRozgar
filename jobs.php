@@ -20,7 +20,7 @@ else{
         $result = mysqli_query($conn, $query);
 
 
-        if (mysqli_num_rows($result) <= 0 ){
+        if (mysqli_num_rows($result) <= 0){
 
             echo "<div style='margin: 0 auto;' class='alert alert-danger'>There are no jobs available now. Check again later!</div>";
 
@@ -66,9 +66,9 @@ else{
                     </div>
                 </div>";
 
-        }   
+            }   
+        }
     }
-}
 }
 ?>
 <!DOCTYPE html>
@@ -96,7 +96,7 @@ else{
         <?php
         include("topBar.php");?>
         <div style="margin-top:5%;" class="container">
-            <div class="row">
+            <div class="row" id="jobs">
              <?php jobs();?>
             </div>
         </div>
@@ -105,22 +105,30 @@ else{
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="home.js"></script>  
 <script>
+var count = 0;
+ $(".job-background").scroll(function() {
+   if($(".job-background").scrollTop() + $(window).height() > $(document).height()-1) {
+        count = count+4;
+           
+       $.ajax({
+                        type : "POST",
+                        url  : "functions.php",
+                        data : "check=morejobs&count="+ count,
 
- $(window).scroll(function() {
-   if($(".job-background").scrollTop() + $(window).height() > $(document).height()) {
-    console.log('1');
-//           $.ajax({
-//                        type : "POST",
-//                        url  : "functions.php",
-//                        data : "check=altPass&pass="+ newpass,
-//
-//
-//                        success:function(result){
-//                            $("#resultpass").html(result);
-//                         
-//                        }
-//                    })
-//       
+
+                        success:function(result){ 
+                            if(result){
+                                $("#jobs").append(result);
+                            }
+                            
+                            else{
+                                 $("#info").remove();
+                                 $("#jobs").append("<div class='alert alert-info' id='info' style='margin:50px auto;'>There are no more jobs to display.</div>");
+                            }
+                            
+                        }
+                    })
+       
    }
 });
         </script>      
