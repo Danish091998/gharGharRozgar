@@ -73,7 +73,7 @@ function select(){
         
         
         if($_POST['percentage']){ 
-            if($_POST['percentage']>0 && $_POST['percentage']<=100){
+            if($_POST['percentage']>0 && $_POST['percentage']<=100 && is_numeric($_POST['percentage'])){
             $percentage = validateFormData($_POST['percentage']);
             $_SESSION['percentage'] = $percentage; 
             $percentage = mysqli_real_escape_string($conn, $percentage);
@@ -91,15 +91,16 @@ function select(){
             $cityError = "Please enter job infromation.<br>";
         }
         else{
+            $city = validateFormData($_POST['city']);
             $_SESSION['city'] = $city;
-            $city = mysqli_real_escape_string($conn,validateFormData($_POST['city']));
+            $city = mysqli_real_escape_string($conn, validateFormData($_POST['city']));
             
         }
         
         
         if($_POST['salary']){
-            $salary = mysqli_real_escape_string($conn,validateFormData($_POST['salary']));
-            $_SESSION['salary'] = $salary;
+            $_SESSION['salary'] = $_POST['salary'];
+            $salary = mysqli_real_escape_string($conn, validateFormData($_POST['salary']));
         }
         else{
             $salary = "Not Specified";
@@ -109,8 +110,18 @@ function select(){
             $dateError = "Please select interview date";
         }
         else{
+            $_SESSION['Date'] = $_POST['date'];
             $date = mysqli_real_escape_string($conn,validateFormData($_POST['date']));
-            $_SESSION['Date'] = $date;
+            
+        }
+        
+        if(!$_POST['timepicker']){
+            $dateError = "Please select interview date";
+        }
+        else{
+            $date = validateFormData($_POST['date']);
+            $_SESSION['time'] = $date;
+            $date = mysqli_real_escape_string($conn,validateFormData($_POST['date']));    
         }
         
         if(!$_POST['empType']){
@@ -261,7 +272,7 @@ else{
       <p class="labels-for-profile">Interview Time<span class="asterisk">*</span>:</p>
       </div>
         <div class="col-md-4">
-        <input style="width:100%" type="text" name="timepicker" class="timepicker edit-profile-inputs"/>
+        <input style="width:100%" type="text" name="timepicker" class="timepicker edit-profile-inputs" value="<?php $_SESSION['time']?>"/>
         </div>
 </div>
     <div class="form-row">

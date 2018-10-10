@@ -6,9 +6,10 @@ global $conn;
 session_start();
 $user = $_SESSION['userEmail'];
 if(!$user){
-    $query = "SELECT `ID` FROM 'jobs'";
+    $query  = "SELECT `ID` FROM `jobs`";
     $result = mysqli_query($conn, $query);
-    print_r(mysqli_num_rows($result));
+    $number = mysqli_num_rows($result);
+    echo "<div class='alert alert-info' style='margin:0 auto;'>There are total $number jobs available currently.</div>";
 }
 else{
 
@@ -107,7 +108,7 @@ else{
 
  $(window).scroll(function() {
    if($(".job-background").scrollTop() + $(window).height() > $(document).height()) {
-    
+    console.log('1');
 //           $.ajax({
 //                        type : "POST",
 //                        url  : "functions.php",
