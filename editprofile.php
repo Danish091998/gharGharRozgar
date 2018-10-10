@@ -12,7 +12,7 @@ function select(){
         }   
     }
 session_start();
-$userId = $_SESSION['CompanyID'];
+$userId = $_SESSION['userEmail'];
 
     if($userId){
 

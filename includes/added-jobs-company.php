@@ -54,7 +54,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
                 <div class='col-xs-4'>
                 <button class='applicants' data-id='$job_id' data-toggle='collapse' data-target='#c$job_id' aria-expanded='false' aria-controls='c$job_id'>View Applicants</button><br>
                 <button class='delete' id='delete' data-id='$job_id'>Delete</button>
-                <a style='left:100px;top:0px;' class='know-more' href='jobDisplay.php?job=$job_id'>View More</a>
+                <a style='left:100px;top:0px;' class='know-more' href='job-display.php?job=$job_id'>View More</a>
                 </div>
                  <div style='width:100%;' class='collapse' id='c$job_id'>
                 </div>

@@ -42,7 +42,7 @@
                 <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
                 </div>
                 <div class='col-xs-3'>
-                <a class='know-more' href='jobDisplay.php?job=$job_id'>View More</a>
+                <a class='know-more' href='job-display.php?job=$job_id'>View More</a>
                 </div>
             </div>";
     
@@ -50,6 +50,9 @@
         }
     }
     
+else{
+    echo "<div class='alert alert-info'> You have not applied for any job currently.</div>";
+}
     
 ?>
     

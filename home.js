@@ -29,11 +29,11 @@ myModal.find('.modal-body').html();
 });
 
 $("#job-seeker-register-button,#registerForSeeker").click(function(){
-    window.location = 'register.php';
+    window.location = 'register-user.php';
 });
 
 $("#job-provider-register-button,#registerForProvider").click(function(){
-    window.location = 'registerCompany.php';
+    window.location = 'register-company.php';
 });
 
 /* When the user clicks on the button, 

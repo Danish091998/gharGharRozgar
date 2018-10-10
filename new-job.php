@@ -9,9 +9,11 @@ function select(){
     echo "<option value='" . $row['EDUCATION'] ."'>" . $row['EDUCATION'] ."</option>";
     }
 }
+
+  session_start();
+  $compID = $_SESSION['CompanyID'];
+  if($compID){
     if( isset( $_POST['add_job'])) {
-    session_start();
-        $compID = $_SESSION['CompanyID'];
     // build a function to validate data
     function validateFormData( $formData ) {
         $formData = trim( stripslashes( htmlspecialchars( $formData ) ) );
@@ -139,6 +141,10 @@ function select(){
             }
         }
     }
+}
+else{
+   echo "<div class='alert alert-danger'>Please Login to post a new job.</div>";   
+}
 
 ?>
 <!DOCTYPE html>

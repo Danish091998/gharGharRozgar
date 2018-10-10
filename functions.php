@@ -135,9 +135,9 @@ elseif($_POST['check'] == 'applicants'){
 elseif($_POST['check'] == 'delete'){
     $id = $_POST['jobId'];
     
-    $query = "DELETE FROM `jobs` WHERE `ID` = '$id'";
- 
-    if (mysqli_query($conn,$query)){
+    $query  = "DELETE FROM `jobs` WHERE `ID` = '$id';";
+    $query  .= "DELETE FROM `appliedJobs` WHERE `jobId` = '$id'";
+    if (mysqli_multi_query($conn,$query)){
         echo "deleted";
     }
     else{

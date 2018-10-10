@@ -170,7 +170,7 @@ $out_image=addslashes(file_get_contents($resize_image));
 }
 }
     
-    if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $course && $field && $percentage && $_POST['checkbox'] == 'yes' && $password == $confirmPassword  ) {
+    if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $course && $field && $percentage && $_POST['checkbox'] == 'yes' && $password == $confirmPassword && $resize_image ) {
         $query = "INSERT INTO `users2`(`email`, `password`, `phone`, `name`, `gender`, `birthDate`, `city`, `education`, `course`, `field`,`percentage`,`profilepic`) VALUES ( '$email','$hashedPassword','$mobile','$name','$gender','$birthDate','$city','$education','$course','$field','$percentage','$resize_image')";
 
         if( mysqli_query( $conn, $query ) ) {
@@ -182,9 +182,9 @@ $out_image=addslashes(file_get_contents($resize_image));
             // store data in SESSION variables
             $_SESSION['userName']  = $name;
             $_SESSION['userEmail'] = $email;
-            header('Location:index.php');
+            header('Location:user-profile.php');
         } else {
-            echo "Error: ". $query . "<br>" . mysqli_error($conn);
+            echo "Login failed .Please fill out fields correctly or there might be problem in your internet connection.";
         }
     }
 }

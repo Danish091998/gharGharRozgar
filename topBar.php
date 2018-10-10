@@ -93,7 +93,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-          <?php include('login.php');?>
+          <?php include('login-user.php');?>
       </div>
     </div>
   </div>
@@ -106,7 +106,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-          <?php include('loginCompany.php');?>
+          <?php include('login-company.php');?>
       </div>
     </div>
   </div>
