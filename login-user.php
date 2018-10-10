@@ -12,7 +12,10 @@
 <link rel="stylesheet" href="fontawesome-free-5.3.1-web/css/all.css" crossorigin="anonymous">
 
         <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="style.css" type="text/css">
+         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
+        
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,8 +25,14 @@
         <![endif]-->
     </head>
     
-    <body>
-        <div class="container">
+    <body style="background:#f7f7f7; padding-top:3%;">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+      <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      
             <form class="login-container">
                  <center>
                 <i class="fas fa-user-circle login-user-icon"></i></center>
@@ -45,12 +54,20 @@
                      
             </form>
              
-            
-        </div>
-        
+          </div>
+    </div>  
+         </div>
         <!-- jQuery -->
         <script src="jquery-3.3.1.js"></script>
         <script>
+            var input = document.getElementById("login-password");
+            input.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+        document.getElementById("login-button").click();
+                                    }
+            });
+            
         $("#login-button").click(function(){
         var myModal = $('#modalForLogin');
             

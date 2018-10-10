@@ -213,7 +213,7 @@ $out_image=addslashes(file_get_contents($resize_image));
 
     </head>
     
-    <body>
+    <body style="padding-top:0; background:#f9f9f9;">
         <?php
         include('topbar.php');?>
         <div class="container">

@@ -320,6 +320,7 @@ html,body{
 
 .modal-dialog{
     max-width: 440px;
+    box-shadow:  0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 #size{
@@ -335,7 +336,11 @@ html,body{
 }
 
 .login-container{
-    padding: 70px 35px 70px 35px;
+    padding:70px 35px;
+    max-width: 406px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;    
 }
 
 .login-user-icon{
@@ -432,16 +437,6 @@ html,body{
 #login-username:focus ~ .bar:before, #login-username:focus ~ .bar:after,#login-company-username:focus ~ .bar:before, #login-company-username:focus ~ .bar:after {
   width:50%;
 }
-#register-username:focus ~ .bar:before, #register-username:focus ~ .bar:after {
-  width:50%;
-}
-#register-email:focus ~ .bar:before, #register-email:focus ~ .bar:after {
-  width:50%;
-}
-#register-password:focus ~ .bar:before, #register-password:focus ~ .bar:after {
-  width:50%;
-}
-
 #login-password:focus,#login-company-password:focus 		{ outline:none; }
 
 #login-password:focus ~ label, #login-password:valid ~ label,#login-company-password:focus ~ label, #login-company-password:valid ~ label    		{
@@ -480,6 +475,7 @@ html,body{
     opacity: 0.95;
     transition: all 0.5 ease;
     border-radius: 10px;
+    cursor: pointer;
 }
 #login-button:hover,#login-company-button:hover{
    background: linear-gradient(to left, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
