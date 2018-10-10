@@ -51,10 +51,15 @@ elseif($_POST['check'] == 'jobApply'){
     $result = mysqli_query( $conn, $query );
 
         if(mysqli_num_rows($result)>0){
+            
             echo "You have already applied for this";
+            
             }
         else{
-            $query = "INSERT INTO `appliedJobs`(`userEmail`,`companyEmail`,`jobId`) VALUES('$userEmail','$cEmail','$job')";
+            $date = date("Y-m-d");
+            $time = date("H:i:s");
+            
+            $query = "INSERT INTO `appliedJobs`(`userEmail`, `jobId`, `date`, `time`) VALUES ('$userEmail','$job','$date','$time')";
             if(mysqli_query( $conn, $query )){
                 echo "Your application has been received.";
             }

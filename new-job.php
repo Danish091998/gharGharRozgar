@@ -76,7 +76,6 @@ function select(){
             if($_POST['percentage']>0 && $_POST['percentage']<=100 && is_numeric($_POST['percentage'])){
             $percentage = validateFormData($_POST['percentage']);
             $_SESSION['percentage'] = $percentage; 
-            $percentage = mysqli_real_escape_string($conn, $percentage);
             }
             else{
             $percentageError = "Please enter percentage between 0 to 100.<br>";
@@ -92,15 +91,18 @@ function select(){
         }
         else{
             $city = validateFormData($_POST['city']);
-            $_SESSION['city'] = $city;
-            $city = mysqli_real_escape_string($conn, validateFormData($_POST['city']));
-            
+            $_SESSION['city'] = $city;    
         }
         
         
         if($_POST['salary']){
-            $_SESSION['salary'] = $_POST['salary'];
-            $salary = mysqli_real_escape_string($conn, validateFormData($_POST['salary']));
+            if(is_numeric($_POST['salary'])){
+                $_SESSION['salary'] = $_POST['salary'];
+                $salary = mysqli_real_escape_string($conn, validateFormData($_POST['salary']));
+            }
+            else{
+                $salaryError = "Please enter numeric value";
+            }
         }
         else{
             $salary = "Not Specified";
@@ -291,7 +293,7 @@ else{
       <p class="labels-for-profile">Salary:</p>
     </div>
     <div class="col-md-4">
-    <input type="text" class="form-control edit-profile-inputs" placeholder="Salary" name="salary" value="<?php echo $_SESSION['salary']?>">
+    <input type="numeric" class="form-control edit-profile-inputs" placeholder="Salary" name="salary" value="<?php echo $_SESSION['salary']?>">
     </div>
 </div>
     <br>
