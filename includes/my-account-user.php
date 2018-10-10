@@ -14,6 +14,7 @@ $userId = $_SESSION['userEmail'];
         $email      = $row['email'];
         $mobile     = $row['phone'];
         $name       = $row['name'];
+        $fatherName = $row['fatherName'];
         $gender     = $row['gender'];
         $birthdate  = $row['birthDate'];
         $city       = $row['city'];
@@ -21,6 +22,7 @@ $userId = $_SESSION['userEmail'];
         $course     = $row['course'];
         $field      = $row['field']; 
         $percentage = $row['percentage'];
+        $skills     = $row['skill'];
     }
 ?>       
 
@@ -44,6 +46,15 @@ $userId = $_SESSION['userEmail'];
       </div>
     <div class="col-md-10">
       <p class="profile-data"><?php echo $name; ?></p>
+    </div>
+  </div>
+
+<div class="form-row">
+      <div class="col-md-2">
+      <p class="labels-for-profile">Father's Name</p>
+      </div>
+    <div class="col-md-10">
+      <p class="profile-data"><?php echo $fatherName; ?></p>
     </div>
   </div>
 
@@ -88,6 +99,14 @@ $userId = $_SESSION['userEmail'];
     </div>
      <div class="col-md-10">
       <p class="profile-data"><?php echo $qual; ?></p>
+    </div>
+  </div>
+<div class="form-row">
+      <div class="col-md-2">
+      <p class="labels-for-profile">Skills</p>
+      </div>
+    <div class="col-md-10">
+      <p class="profile-data"><?php echo $skills; ?></p>
     </div>
   </div>
 <div class="form-row">

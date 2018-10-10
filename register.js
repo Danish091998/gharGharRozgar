@@ -11,14 +11,32 @@ $(".js-example-placeholder-single").select2({
     allowClear: false   
 });
 
+$("#city").select2({
+    placeholder: "Select Your City",
+    allowClear: false   
+});
+$("#skill").select2({
+    placeholder: "Select Your Skill",
+    allowClear: false   
+});
+
 //SELECT QUALIFICATION
 
 function checkSelect(){
+    var qual = $('#qual').val();
+    if(qual == "12th"){
+        $("#selectDiv2").css("visibility", "hidden");
+        $("#selectDiv3").css("visibility", "hidden");
+        $(".skills-div").css("display", "flex");
+        var skillValue = $("#skill").val();
+    }
+    else{
     $("#selectTwo").children("option").remove();
     $("#selectTwo").append("<option></option>");
     $("#selectDiv2").css("visibility", "visible");
-    var qual = $('.js-example-placeholder-single').val();
-   
+    $("#selectDiv3").css("visibility", "hidden");
+    $(".skills-div").css("display", "none");
+    
 $.ajax({
             type: "POST",
             url: "functions.php",
@@ -27,13 +45,13 @@ $.ajax({
             $("#selectTwo").append(result);
             }   
         })
-                        }
+    }          }
 function checkSelect2(){
     $("#selectThree").children("option").remove();
     $("#selectThree").append("<option></option>");
     $("#selectDiv3").css("visibility", "visible");
     var qual2 = $('.valuePick').val();
-   
+   console.log(qual2);
 $.ajax({
             type: "POST",
             url: "functions.php",

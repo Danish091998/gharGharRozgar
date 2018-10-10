@@ -1,17 +1,28 @@
 <?php 
 include('connections.php'); 
 $register = false;
-$target_dir = "Uploads/user/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-$imgCheck = $_FILES["fileToUpload"]["name"];
+function selectCity(){
+    global $conn;
+    $sql = "SELECT LOCATION FROM locations";
+    $result = mysqli_query($conn,$sql);
+    while ($row = mysqli_fetch_array($result)) {
+    echo "<option value='" . $row['LOCATION'] ."'>" . $row['LOCATION'] ."</option>";
+}
+}
 function select(){
     global $conn;
     $sql = "SELECT EDUCATION FROM education";
     $result = mysqli_query($conn,$sql);
     while ($row = mysqli_fetch_array($result)) {
     echo "<option value='" . $row['EDUCATION'] ."'>" . $row['EDUCATION'] ."</option>";
+}
+}
+function selectSkill(){
+    global $conn;
+    $sql = "SELECT SKILL FROM skills";
+    $result = mysqli_query($conn,$sql);
+    while ($row = mysqli_fetch_array($result)) {
+    echo "<option value='" . $row['SKILL'] ."'>" . $row['SKILL'] ."</option>";
 }
 }
 if( isset( $_POST['add'] ) ) {
@@ -21,7 +32,7 @@ if( isset( $_POST['add'] ) ) {
         $formData = trim( stripslashes( htmlspecialchars( $formData ) ) );
         return $formData;
     }
-    $email = $password = $mobile = $name = $gender = $birthDate = $city = $education = $course = $field = $percentage = "";
+    $email = $password = $mobile = $name =$fatherName = $gender = $birthDate = $city = $education = $course = $field = $skill = $percentage = "";
     $confirmPassword = $_POST["confirmPassword"];
     
     if( !$_POST["email"] ) {
@@ -58,6 +69,13 @@ if( isset( $_POST['add'] ) ) {
         $name = mysqli_real_escape_string($conn,validateFormData( $_POST["name"] ));  
     }
     
+    if( !$_POST["fatherName"] ) { 
+        $FatherNameError = "Please enter your father's name <br>";
+    } else {
+        $_SESSION['fatherName'] = $_POST["fatherName"];
+        $fatherName = mysqli_real_escape_string($conn,validateFormData( $_POST["fatherName"] ));  
+    }
+    
     if( !$_POST["gender"] ) {
         $genderError = "Please specify gender <br>";
     } else {
@@ -76,19 +94,27 @@ if( isset( $_POST['add'] ) ) {
         $city = validateFormData( $_POST["city"] );
     }
     if( !$_POST["qualification"] ) {
-        $eduError = "Please enter qualification<br>";
+        $eduError = "Please select your qualification<br>";
     } else {
         $education = validateFormData( $_POST["qualification"] );
     }
     if( !$_POST["course"] ) {
-        $courseError = "Please enter course<br>";
+        $courseError = "Please select your course<br>";
     } else {
         $course = validateFormData( $_POST["course"] );
     }  
     if( !$_POST["field"] ) {
-        $fieldError = "Please enter field<br>";
+        $fieldError = "Please select your field<br>";
     } else {
         $field = validateFormData( $_POST["field"] );
+    }
+    if( !$_POST["skill"] ) {
+        $skillError = "Please select your skill<br>";
+    } else {
+        $skill =  (( $_POST["skill"] ));
+         print_r($skill);
+        $skills = implode(", ", $skill);
+        print_r($skills);
     }
     if( !$_POST["percentage"] ) { 
         $NameError = "Please enter your percentage. <br>";
@@ -100,78 +126,8 @@ if( isset( $_POST['add'] ) ) {
         $checkboxError = "Please accept terms and conditions<br>";
     }
     
-    if(!$imgCheck){
-        $logoError = "Please select an image.<br>";
-    }
-    else{
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-// Check if file already exists
-if (file_exists($target_file)) {
-    $target_file = $target_dir . $name . basename($_FILES["fileToUpload"]["name"]);
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
-    echo "<div class='alert alert-danger'>Sorry, only JPG, JPEG, PNG files are allowed.</div>";
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "<div class='alert alert-danger'>Sorry, your image was not uploaded.</div>";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-       
-    } else {
-        echo "<div class='alert alert-danger'>Sorry, there was an error uploading your file.Check ur internet connection or try again later.</div>";
-    }
-}
-
-if($check !== false) {
-$uploadimage = $target_file;
-$newname = $imgCheck;
-// Set the resize_image name 
-$resize_image = $target_file; 
-$actual_image = $target_file;
-// It gets the size of the image
-list( $width,$height ) = getimagesize( $uploadimage );
-$newwidth = $width;
-$newheight = $height;
-// It loads the images we use jpeg function you can use any function like imagecreatefromjpeg
-$thumb = imagecreatetruecolor( $newwidth, $newheight );
-    if ($check['mime'] == 'image/jpeg') 
-			$source = imagecreatefromjpeg( $actual_image );
-
-		elseif ($check['mime'] == 'image/jpg') 
-			$source = imagecreatefromgif( $actual_image );
-
-		elseif ($check['mime'] == 'image/png') 
-			$source = imagecreatefrompng( $actual_image );
-
-
-// Resize the $thumb image.
-imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-
-
-// It then save the new image to the location specified by $resize_image variable
-
-imagejpeg( $thumb, $resize_image,50);
-//unlink($actual_image);  
-
-// 100 Represents the quality of an image you can set and ant number in place of 100.
-
-
-$out_image=addslashes(file_get_contents($resize_image));
-}
-}
-    
-    if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $course && $field && $percentage && $_POST['checkbox'] == 'yes' && $password == $confirmPassword && $resize_image ) {
-        $query = "INSERT INTO `users2`(`email`, `password`, `phone`, `name`, `gender`, `birthDate`, `city`, `education`, `course`, `field`,`percentage`,`profilepic`) VALUES ( '$email','$hashedPassword','$mobile','$name','$gender','$birthDate','$city','$education','$course','$field','$percentage','$resize_image')";
+    if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $percentage && $_POST['checkbox'] == 'yes' && $password == $confirmPassword && $fatherName  ) {
+        $query = "INSERT INTO `users2`(`email`, `password`, `phone`, `name`, `gender`, `birthDate`, `city`, `education`, `course`, `field`,`percentage`,`skill`,`fatherName`) VALUES ( '$email','$hashedPassword','$mobile','$name','$gender','$birthDate','$city','$education','$course','$field','$percentage','$skills','$fatherName')";
 
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
@@ -218,84 +174,72 @@ $out_image=addslashes(file_get_contents($resize_image));
         include('topbar.php');?>
         <div class="container">
         <h1 class="page-heading">User Registration</h1>
+         <p class="edit-profile-inputs" style="margin-bottom:25px;">Fields marked with <span class="asterisk">*</span> are compulsory.</p>
             
         <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post" enctype="multipart/form-data">
-    
+    <div class="alert alert-info">
+                <p class="personal-details-title">Login Details:</p>
+            </div>
+            <hr>
     <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Email:</p>
+      <p class="labels-for-profile">Email<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
       
-      <input type="email" class="form-control" placeholder="Email" name="email" required value="<?php echo $_SESSION['email'];?>">
+      <input type="email" class="form-control edit-profile-inputs" placeholder="Email" name="email" required value="<?php echo $_SESSION['email'];?>">
         <small class="text-danger"> <?php echo $emailError; ?></small>
+    </div>
+         <div class="col-md-2">
+      <p class="labels-for-profile">Mobile Number<span class="asterisk">*</span>:</p>
+      </div>
+    <div class="col-md-4">
+      <input type="number" class="form-control edit-profile-inputs" placeholder="Mobile Number" name="mobileNumber" required value="<?php echo $_SESSION['mobileNumber'];?>">
+        <small class="text-danger"> <?php echo $mobileError; ?></small>
     </div>
   </div> 
             <hr>
     <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Password:</p>
+      <p class="labels-for-profile">Password<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
       
-      <input type="Password" id="password" class="form-control" placeholder="Password" name="password" required>
+      <input type="Password" id="password" class="form-control edit-profile-inputs" placeholder="Password" name="password" required>
         <small class="text-danger"> <?php echo $passwordError; ?></small>
     </div>
-  </div>
-            <hr>
-         
-    <div class="form-row">
-      <div class="col-md-2">
-      <p class="labels-for-form">Confirm Password:</p>
+        <div class="col-md-2">
+      <p class="labels-for-profile">Confirm Password<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
-      <input type="Password" id="confirm_password" class="form-control" placeholder="Confirm Password" name="confirmPassword" required ><span id='message'></span>
-    </div>
-  </div>
-        <hr>    
-        
-            <div class="form-row">
-      <div class="col-md-2">
-      <p class="labels-for-form">Mobile Number:</p>
-      </div>
-    <div class="col-md-4">
-      <input type="number" class="form-control" placeholder="Mobile Number" name="mobileNumber" required value="<?php echo $_SESSION['mobileNumber'];?>">
-        <small class="text-danger"> <?php echo $mobileError; ?></small>
+      <input type="Password" id="confirm_password" class="form-control edit-profile-inputs" placeholder="Confirm Password" name="confirmPassword" required ><span id='message'></span>
     </div>
   </div>
         <hr>
             <div class="alert alert-info">
                 <p class="personal-details-title">Personal Details:</p>
             </div>
-        <hr>
- <div class="col-md-2">
-    <p class="labels-for-form">Profile Picture:</p>
-</div>
-<div class="col-md-4">
-    <label id="labelForAvatar" for="avatar">
-                     <img src="Images/avatar-1577909_640.png" id="imgupload">
-                 </label>
-        <div class="margin-bottom margin-top">
-            <p class="labelForPicture">Logo</p>
-                 <input type="file" class="form-control" name="fileToUpload" id="avatar">
-                 <small class="text-danger"> <?php echo $logoError; ?></small>
-        </div> 
-  </div>
             <hr>             
-            
   <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Name:</p>
+      <p class="labels-for-profile">Name<span class="asterisk">*</span>:</p>
       </div>
-    <div class="col-md-5">
-      <input type="text" class="form-control" id="validationDefault01" placeholder=" Name" name="name" required value="<?php echo $_SESSION['name'];?>">
+    <div class="col-md-4">
+      <input type="text" class="form-control edit-profile-inputs" placeholder=" Name" name="name" required value="<?php echo $_SESSION['name'];?>">
         <small class="text-danger"><?php echo $NameError; ?></small>
+    </div>
+       <div class="col-md-2">
+      <p class="labels-for-profile">Father's Name<span class="asterisk">*</span>:</p>
+      </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control edit-profile-inputs" placeholder="Father's Name" name="fatherName" required value="<?php echo $_SESSION['fatherName'];?>">
+        <small class="text-danger"><?php echo $FatherNameError; ?></small>
     </div>
   </div>
          <hr>
   <div class="form-row">
     <div class="col-md-2">
-      <p class="labels-for-form">Gender:</p>
+      <p class="labels-for-profile">Gender<span class="asterisk">*</span>:</p>
       </div>
       <div class="col-md-10">
       <div class="row">
@@ -318,34 +262,34 @@ $out_image=addslashes(file_get_contents($resize_image));
         <hr>
     <div class="form-row">
      <div class="col-md-2">
-      <p class="labels-for-form">Date Of Birth:</p>
+      <p class="labels-for-profile">Date Of Birth<span class="asterisk">*</span>:</p>
       </div>
         <div class="col-md-4">
-   <input class="form-control" type="text" id="datepicker" placeholder="-Select Date-" name="birthDate" value="<?php echo $_SESSION['birthDate'];?>" readonly>
+   <input class="form-control edit-profile-inputs" type="text" id="datepicker" placeholder="-Select Date-" name="birthDate" value="<?php echo $_SESSION['birthDate'];?>" readonly>
     <small class="text-danger"><?php echo $birthDateError; ?></small>
         </div>
-    </div>
-        <hr>    
-  <div class="form-row">
-      <div class="col-md-2">
-      <p class="labels-for-form">City:</p>
+         <div class="col-md-2">
+      <p class="labels-for-profile">City<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
-      <input type="text" class="form-control" placeholder="City" name="city" required value="<?php echo $_SESSION['city'];?>">
+      <select name="city" id="city" class="js-example-placeholder-single js-states form-control">
          <small class="text-danger"><?php echo $cityError; ?></small>
+          <option></option>
+           <?php selectCity();?>
+        </select>
     </div>
-  </div>
+    </div>
             <hr>
             <div class="alert alert-info">
                 <p class="personal-details-title">Education Details:</p>
             </div>
-            
-            <div class="form-row">
+            <hr>
+            <div class="form-row">    
       <div class="col-md-2">
-      <p class="labels-for-form">Qualificaion:</p>
+      <p class="labels-for-profile">Qualificaion<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-3"> 
-        <select name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control">
+        <select name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control edit-profile-inputs" id="qual">
             <small class="text-danger"><?php echo $eduError; ?></small>
             <option></option>
      <?php select();?>
@@ -363,21 +307,36 @@ $out_image=addslashes(file_get_contents($resize_image));
             <option></option>
         </select>
     </div>
+                
   </div>
+            <div class="form-row skills-div"> 
+                <div class="col-md-2">
+      <p class="labels-for-profile">Skills:</p>
+      </div>
+    <div class="col-md-3">
+        <select name="skill[]" id="skill" class="js-example-placeholder-single js-states" style="width:100%" multiple> 
+            <small class="text-danger"><?php echo $skillError; ?></small>
+            <option></option>
+            <?php selectSkill()?>
+        </select>
         
+    </div>    
+            </div>
+        <hr>
     <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Percentage:</p>
+      <p class="labels-for-profile">Percentage<span class="asterisk">*</span>:</p>
       </div>
-    <div class="col-md-5">
-      <input type="text" class="form-control" placeholder="Percentage" name="percentage" required value="<?php echo $_SESSION['percentage'];?>">
+    <div class="col-md-4">
+      <input type="text" class="form-control edit-profile-inputs" placeholder="Percentage" name="percentage" required value="<?php echo $_SESSION['percentage'];?>">
         <small class="text-danger"><?php echo $percentageError; ?></small>
     </div>
+        
   </div>
-          
+       <hr>   
   <div class="form-group">
     <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="checkbox" value="yes">
+    <input type="checkbox" class="custom-control-input edit-profile-inputs" id="defaultUnchecked" name="checkbox" value="yes">
     <label class="custom-control-label" for="defaultUnchecked">I have read and agree with the Terms and Conditions. </label>
 </div>
     <small class="text-danger"><?php echo $checkboxError; ?></small>

@@ -87,6 +87,10 @@ html,body{
     color: #f04100 !important;
 }
 
+.current{
+    color: #f04100;
+}
+
 .job-seeker-login-button{
     border: none;
     text-decoration: none;
@@ -100,14 +104,23 @@ html,body{
     outline: none;
     padding: 10px 15px 10px 15px;
     font-weight: 600;
-    margin:20px auto;
+    display: inline-block;
+    vertical-align: top;
     position: relative;
-    left: 20px;
+    top: 20px;  
+}
+
+#job-seeker-login{
+    right: 15px;
+}
+
+#job-seeker-register-button{
+    right: 15px;
 }
 
 #job-provider-login-button,#job-provider-register-button{
     background: #f04100;
-    left: -20px;
+    left: 15px;
 }
 
 .col-md-5,.col-md-2,.col-md-10{
@@ -116,6 +129,7 @@ html,body{
 }
 
 .vertical-line{
+    display: inline-block;
     height:80px;
     width: 1px;
     background: #666;
@@ -576,11 +590,13 @@ html,body{
     padding: 0px !important;
 }
 
-
 .personal-details-title{
-margin: 0px;
-padding: 0px;
-font-weight:600; 
+    margin: 0px;
+    padding: 0px;
+    font-weight:600;
+    font-size: 16px;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -595,9 +611,12 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 
 .page-heading{
     font-size: 35px;
-    margin: 40px 20px;
+    margin: 40px auto;
     color:#025f82; 
-    font-weight: 400;
+    font-weight: 600;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
+    text-align: center;
 }
 
 .labels-for-form{font-weight: 600;}
@@ -607,6 +626,8 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 #selectDiv2,#selectDiv3{
     visibility: hidden;
 }
+
+.skills-div{display: none;}
 
 /*Company Registration Form*/
 

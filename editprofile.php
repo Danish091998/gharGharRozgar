@@ -78,7 +78,7 @@ $userId = $_SESSION['userEmail'];
     <br>
             <br><div id="resultpass"></div>
     </form>
-<script src="jquery-3.3.1.js"></script>
+
 <script>
 function validation(){
     var mobile = document.getElementById("mobileNumber").value;

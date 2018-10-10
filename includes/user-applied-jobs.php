@@ -55,7 +55,5 @@ else{
 }
     
 ?>
-    
-<script src="home.js"></script>  
-        
+                
   
