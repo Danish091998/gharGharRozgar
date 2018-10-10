@@ -87,30 +87,16 @@
 <!--            MODAL FOR LOGIN-->
         
         <div id="modalForLogin" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          <?php include('login-user.php');?>
-      </div>
-    </div>
-  </div>
+  
+   <?php include('login-user.php');?>
+ 
 </div>
 
   <div id="modalForLoginProvider" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-          <?php include('login-company.php');?>
-      </div>
-    </div>
+  
+    <?php include('login-company.php');?>
   </div>
-</div>
+
         
 <!--        END OF MODAL FOR LOGIN-->
         
