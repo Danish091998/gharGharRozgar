@@ -9,6 +9,14 @@ function select(){
     echo "<option value='" . $row['EDUCATION'] ."'>" . $row['EDUCATION'] ."</option>";
     }
 }
+function selectSkill(){
+    global $conn;
+    $sql = "SELECT SKILL FROM skills";
+    $result = mysqli_query($conn,$sql);
+    while ($row = mysqli_fetch_array($result)) {
+    echo "<option value='" . $row['SKILL'] ."'>" . $row['SKILL'] ."</option>";
+}
+}
 
   session_start();
   $compID = $_SESSION['CompanyID'];
@@ -101,7 +109,7 @@ function select(){
                 $salary = mysqli_real_escape_string($conn, validateFormData($_POST['salary']));
             }
             else{
-                $salaryError = "Please enter numeric value";
+                $salaryError = "Please enter numeric value without any special characters.";
             }
         }
         else{
@@ -112,18 +120,20 @@ function select(){
             $dateError = "Please select interview date";
         }
         else{
-            $_SESSION['Date'] = $_POST['date'];
-            $date = mysqli_real_escape_string($conn,validateFormData($_POST['date']));
+            $date = validateFormData($_POST['date']);
+            $_SESSION['date'] = $_POST['date'];
+            $date = mysqli_real_escape_string($conn,$date);
             
         }
         
         if(!$_POST['timepicker']){
-            $dateError = "Please select interview date";
+            $timeError = "Please select interview date";
         }
         else{
-            $date = validateFormData($_POST['date']);
-            $_SESSION['time'] = $date;
-            $date = mysqli_real_escape_string($conn,validateFormData($_POST['date']));    
+            $time = validateFormData($_POST['timepicker']);
+            $time = str_replace(" ","",$time);
+            $_SESSION['time'] = $time;
+            $time = mysqli_real_escape_string($conn,$time);    
         }
         
         if(!$_POST['empType']){
@@ -133,17 +143,26 @@ function select(){
             $empType = mysqli_real_escape_string($conn,validateFormData($_POST['empType']));
              $_SESSION['emptype'] = $empType;
         }
-    
-        if($compID && $jobTitle && $education && $course &&  $field && $jobInfo && $jobAddress && $percentage && $city && $salary && $empType){
-    
-            $query = "INSERT INTO `jobs`(`ID`, `cID`, `JOB`,`QUALIFICATION`, `COURSE`, `FIELD`, `INFO`, `ADDRESS`, `MINMARKS`, `SALARY`,`DATE`, `EMPTYPE`, `CITY`) VALUES ('','$compID','$jobTitle','$education','$course','$field','$jobInfo','$jobAddress','$percentage','$salary','$date','$empType','$city')";
+        if($_POST['skills']){
+            $skill = ($_POST['skills']);
+            $skills = implode(", ", $skill);
+        }
+        else{
+           $skills = "Not Specified";
+        }
+
+        if($compID && $jobTitle && $education && $jobInfo && $jobAddress && $percentage && $city && $salary && $empType && $date && $time){
             
+    
+            $query = "INSERT INTO `jobs`(`ID`, `cID`, `JOB`,`QUALIFICATION`, `COURSE`, `FIELD`, `INFO`, `ADDRESS`, `MINMARKS`, `SALARY`,`DATE`, `TIME` ,`EMPTYPE`, `CITY`,`SKILLS`) VALUES ('','$compID','$jobTitle','$education','$course','$field','$jobInfo','$jobAddress','$percentage','$salary','$date','$time','$empType','$city','$skills')";
+            
+            echo $query;
             if(mysqli_query($conn, $query)){
                 if($_POST['checkbox']=="yes"){
                      echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
                 }
                 else{
-                    unset($_SESSION['info'],$_SESSION['address'],$_SESSION['job'],$_SESSION['percentage'],$_SESSION['city'],$_SESSION['Date'],$_SESSION['salary']);
+                    unset($_SESSION['info'],$_SESSION['address'],$_SESSION['job'],$_SESSION['percentage'],$_SESSION['city'],$_SESSION['date'],$_SESSION['salary'],$_SESSION['time']);
 
                     echo "<div class='alert alert-success'>Your job has been posted successfully</div>";
                 }
@@ -205,7 +224,7 @@ else{
       <p class="labels-for-profile">Qualification For This Job<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-3"> 
-        <select name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control">
+        <select name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control" id="qual">>
             <option></option>
      <?php select();?>
         </select>
@@ -224,6 +243,19 @@ else{
         <small class="text-danger"><?php echo $fieldError; ?></small>
     </div>
   </div>
+    <div class="form-row skills-div"> 
+                <div class="col-md-2">
+      <p class="labels-for-profile">Skills For This Job:</p>
+      </div>
+    <div class="col-md-3">
+        <select name="skills[]" id="skill" class="js-example-placeholder-single js-states" style="width:100%" multiple> 
+            <small class="text-danger"><?php echo $skillError; ?></small>
+            <option></option>
+            <?php selectSkill()?>
+        </select>
+        
+    </div>    
+            </div>
     <br>
 <div class="form-row">
      <div class="col-md-2">
@@ -267,14 +299,15 @@ else{
       <p class="labels-for-profile">Interview Date<span class="asterisk">*</span>:</p>
       </div>
         <div class="col-md-4">
-   <input class="form-control edit-profile-inputs" type="text" id="datepickerJob" placeholder="-Select Date-" name="date" value="<?php echo $_SESSION['Date'];?>" readonly>
+   <input class="form-control edit-profile-inputs" type="text" id="datepickerJob" placeholder="-Select Date-" name="date" value="<?php echo $_SESSION['date'];?>" readonly>
     <small class="text-danger"><?php echo $dateError; ?></small>
         </div>
       <div class="col-md-1">
       <p class="labels-for-profile">Interview Time<span class="asterisk">*</span>:</p>
       </div>
         <div class="col-md-4">
-        <input style="width:100%" type="text" name="timepicker" class="timepicker edit-profile-inputs" value="<?php $_SESSION['time']?>"/>
+        <input style="width:100%" type="text" name="timepicker" class="timepicker edit-profile-inputs" value="<?php $_SESSION['time']?>" readonly/>
+            <small class="text-danger"><?php echo $timeError; ?></small>
         </div>
 </div>
     <div class="form-row">
@@ -293,7 +326,8 @@ else{
       <p class="labels-for-profile">Salary:</p>
     </div>
     <div class="col-md-4">
-    <input type="numeric" class="form-control edit-profile-inputs" placeholder="Salary" name="salary" value="<?php echo $_SESSION['salary']?>">
+    <input type="number" class="form-control edit-profile-inputs" placeholder="Salary" name="salary" value="<?php echo $_SESSION['salary']?>">
+        <small class="text-danger"><?php echo $salaryError; ?></small>
     </div>
 </div>
     <br>
@@ -320,7 +354,7 @@ else{
                 minDate: 0,
                 maxDate: "+1y" });
   } );
-           var options = { now: "12:30", 
+           var options = { now: "12:00:00", 
                           //hh:mm 24 hour format only, defaults to current time
                           twentyFour: true, 
                           //Display 24 hour format, defaults to false 
@@ -337,7 +371,7 @@ else{
                           //Whether or not to show seconds, 
                           secondsInterval: 1,
                           //Change interval for seconds, defaults to 1  , 
-                          minutesInterval: 1,
+                          minutesInterval: 15,
                           //Change interval for minutes, defaults to 1 
                           beforeShow: null, 
                           //A function to be called before the Wickedpicker is shown 

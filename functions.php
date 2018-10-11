@@ -43,7 +43,8 @@ elseif($_POST['check'] == 'select3'){
 elseif($_POST['check'] == 'jobApply'){
     
     $job     = $_POST['jobId'];
-    $cEmail  = $_POST['companyEmail'];
+    $date    = $_POST['date'];
+    $time    = $_POST['time'];
    
     $userEmail  = $_SESSION['userEmail'];
     if($userEmail)  {  
@@ -55,10 +56,7 @@ elseif($_POST['check'] == 'jobApply'){
             echo "You have already applied for this";
             
             }
-        else{
-            $date = date("Y-m-d");
-            $time = date("H:i:s");
-            
+        else{            
             $query = "INSERT INTO `appliedJobs`(`userEmail`, `jobId`, `date`, `time`) VALUES ('$userEmail','$job','$date','$time')";
             if(mysqli_query( $conn, $query )){
                 echo "Your application has been received.";
