@@ -27,6 +27,14 @@
             $job_field      = $org['FIELD'];
             $job_info       = $org['INFO'];
             $job_venue      = $org['ADDRESS'];
+            if($org['SALARY'] != "Not Specified"){
+                        $job_salary = "&#8377 ".$org['SALARY'];
+                    }
+            else{
+                 $job_salary = $org['SALARY'];
+            }
+
+            $job_emp_type   = $org['EMPTYPE'];
             
             
             

@@ -350,7 +350,7 @@ html,body{
 }
 
 .login-container{
-    padding:70px 35px;
+    padding:70px 35px 0px 35px;
     max-width: 406px;
     margin: 0 auto;
     background: #fff;

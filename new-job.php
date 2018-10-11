@@ -156,7 +156,6 @@ function selectSkill(){
     
             $query = "INSERT INTO `jobs`(`ID`, `cID`, `JOB`,`QUALIFICATION`, `COURSE`, `FIELD`, `INFO`, `ADDRESS`, `MINMARKS`, `SALARY`,`DATE`, `TIME` ,`EMPTYPE`, `CITY`,`SKILLS`) VALUES ('','$compID','$jobTitle','$education','$course','$field','$jobInfo','$jobAddress','$percentage','$salary','$date','$time','$empType','$city','$skills')";
             
-            echo $query;
             if(mysqli_query($conn, $query)){
                 if($_POST['checkbox']=="yes"){
                      echo "<div class='alert alert-success'>Your job has been posted successfully</div>";

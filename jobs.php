@@ -12,17 +12,27 @@ if(!$user){
     echo "<div class='alert alert-info' style='margin:0 auto;'>There are total $number jobs available currently.</div>";
 }
 else{
+    
+    $query  = "SELECT * FROM users2 WHERE EMAIL ='$user'";
+    $result     = mysqli_query($conn, $query);
+    $row        = mysqli_fetch_array($result);
+    
+    $city       = $row['city'];
+    $qual       = $row['education'];
+    $course     = $row['course'];
+    $field      = $row['field'];
+    $skills     = str_replace(",","','",$row['skill']);
+    $percentage = $row['percentage'];
 
-    $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,jobs.ID
+    $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME,jobs.ID
     FROM jobs
     INNER JOIN companyRegister
-    ON jobs.cID = companyRegister.ID LIMIT 4";
+    ON jobs.cID = companyRegister.ID WHERE jobs.CITY = '$city' AND jobs.MINMARKS <= '$percentage' AND jobs.QUALIFICATION = '$qual' AND jobs.COURSE IN ('$course','Not Specified') AND jobs.FIELD  IN ('$field','Not Specified') AND jobs.SKILLS IN ('$skills','Not Specified')  ORDER BY `ID` DESC LIMIT 4";
         $result = mysqli_query($conn, $query);
-
 
         if (mysqli_num_rows($result) <= 0){
 
-            echo "<div style='margin: 0 auto;' class='alert alert-danger'>There are no jobs available now. Check again later!</div>";
+            echo "<div style='margin: 0 auto;' class='alert alert-info'>There are no jobs available for you right now. Check again later!</div>";
 
             }
 

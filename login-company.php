@@ -75,7 +75,7 @@
     
             success: function(result){
                 if(result == 'loggedIn'){
-                window.location='index.php';
+                window.location='company-profile.php';
                 }
                 
                 else{

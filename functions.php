@@ -120,14 +120,14 @@ elseif($_POST['check'] == 'applicants'){
          $phone = $row['phone'];
          $count++;
          echo "
-  <tbody>
+ <tbody>
     <tr>
       <th scope='row'>$count</th>
       <td>$name</td>
       <td>$email</td>
       <td>$phone</td>
     </tr>
-  </tbody>";
+  </tbody></a>";
      }
     }
     else{
@@ -188,7 +188,7 @@ elseif($_POST['check'] == 'morejobs'){
     $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,jobs.ID
     FROM jobs
     INNER JOIN companyRegister
-    ON jobs.cID = companyRegister.ID LIMIT $count1";
+    ON jobs.cID = companyRegister.ID WHERE jobs.CITY = '$city' AND jobs.MINMARKS <= '$percentage' AND jobs.QUALIFICATION = '$qual' AND jobs.COURSE IN ('$course','Not Specified') AND jobs.FIELD  IN ('$field','Not Specified') AND jobs.SKILLS IN ('$skills','Not Specified') LIMIT $count1";
         $result = mysqli_query($conn, $query);
 
 

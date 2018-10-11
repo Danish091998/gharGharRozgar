@@ -4,10 +4,10 @@ include("connections.php");
 session_start();
 $compID = $_SESSION['CompanyID'];
 
-$query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,jobs.ID
+$query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME,jobs.ID
 FROM jobs
 INNER JOIN companyRegister
-ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' LIMIT 8";
+ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
     $result = mysqli_query($conn, $query);
 
     $row = mysqli_num_rows($result);
