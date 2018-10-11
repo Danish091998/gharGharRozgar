@@ -111,10 +111,9 @@ if( isset( $_POST['add'] ) ) {
     if( !$_POST["skill"] ) {
         $skillError = "Please select your skill<br>";
     } else {
-        $skill =  (( $_POST["skill"] ));
-         print_r($skill);
+        $skill =  ( $_POST["skill"] );
         $skills = implode(", ", $skill);
-        print_r($skills);
+       
     }
     if( !$_POST["percentage"] ) { 
         $NameError = "Please enter your percentage. <br>";
