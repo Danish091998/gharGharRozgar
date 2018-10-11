@@ -91,7 +91,7 @@ else{
 
 
     </head>
-    <body class="job-background">
+    <body class="job-background" style="padding-top:0; background:#f9f9f9;">
         
         <?php
         include("topBar.php");?>

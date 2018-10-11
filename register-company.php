@@ -36,18 +36,32 @@ if(isset($_POST["add"])) {
     if( !$_POST["password"] ) {
         $passwordError = "Please enter password <br>";
     } else {
+        if(strlen($_POST["password"]) > 6){
         $password = validateFormData( $_POST["password"] );
         $hashedPassword = password_hash( $password, PASSWORD_BCRYPT );
+        }else{
+             $passwordError = "Your password must be greater than six characters.<br>";
+        }
     }
     if( !$_POST["mobileNumber"] ) {
         $mobileError = "Please enter mobile number <br>";
     } else {
+        if(is_numeric($_POST["mobileNumber"]) && strlen($_POST["mobileNumber"])==10){
         $_SESSION['mobileNumber'] = $_POST["mobileNumber"];
         $mobile = validateFormData( $_POST["mobileNumber"] );
+        }else{
+             $mobileError = "Please enter a valid mobile number <br>";
+        }
     }
     
-    $mobileOpt = $_SESSION['mobop'] = validateFormData( $_POST["mobileNumberOptional"] );
-    
+    if( $_POST["mobileNumberOptional"] ) {   
+     if(is_numeric($_POST["mobileNumberOptional"]) && strlen($_POST["mobileNumberOptional"])==10){
+        $mobileOpt = $_SESSION['mobop'] = validateFormData( $_POST["mobileNumberOptional"] );
+     }
+        else{
+            $mobileoptError = "Please enter a valid mobile number <br>";
+        }
+    }
     
     if( !$_POST["cName"] ) { 
         $cNameError = "Please enter first name <br>";
@@ -67,6 +81,11 @@ if(isset($_POST["add"])) {
         $_SESSION['city'] = $_POST["city"];
         $city = validateFormData( $_POST["city"] );
     }
+    
+     if(!$_POST['checkbox'] == 'yes'){
+        $checkboxError = "Please accept terms and conditions<br>";
+    }
+    
     if(!$imgCheck){
         $logoError = "<br>Please select an image.<br>";
     }
@@ -150,6 +169,9 @@ $out_image=addslashes(file_get_contents($resize_image));
             $errorSubmit = "<div class= 'alert alert-danger'>Registration Failed. Please check your internet and try again later.</div>";
             }
     }
+    else{
+         $errorSubmit = "<div class= 'alert alert-danger'>Registration Failed. Please fill all the required fields.</div>";
+    }
 }
 
 ?>
@@ -185,7 +207,7 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Email:</p>
       </div>
     <div class="col-md-4">
-      <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $_SESSION['email']; ?>">
+      <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
         <small class="text-danger"> <?php echo $emailError; ?></small>
     </div>
   </div> 
@@ -196,7 +218,7 @@ $out_image=addslashes(file_get_contents($resize_image));
       </div>
     <div class="col-md-4">
       
-      <input type="Password" id="password" class="form-control" placeholder="Password" name="password">
+      <input type="Password" id="password" class="form-control" placeholder="Password" name="password" required>
         <small class="text-danger"> <?php echo $passwordError; ?></small>
     </div>
   </div>
@@ -207,7 +229,7 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Confirm Password:</p>
       </div>
     <div class="col-md-4">
-      <input type="Password" id="confirm_password" class="form-control" placeholder="Confirm Password" name="confirmPassword" ><span id='message'></span>
+      <input type="Password" id="confirm_password" class="form-control" placeholder="Confirm Password" name="confirmPassword" required><span id='message'></span>
     </div>
   </div>
         <hr>    
@@ -217,12 +239,12 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Contact:</p>
       </div>
     <div class="col-md-4">
-      <input type="number" class="form-control" placeholder="Mobile Number" name="mobileNumber" value="<?php echo  $_SESSION['mobileNumber']; ?>">
+      <input type="number" class="form-control" placeholder="Mobile Number" name="mobileNumber" value="<?php echo  $_SESSION['mobileNumber']; ?>" required>
         <small class="text-danger"> <?php echo $mobileError; ?></small>
     </div>
     <div class="col-md-4">
       <input type="number" class="form-control" placeholder="Mobile Number(Optional)" name="mobileNumberOptional" value="<?php echo $_SESSION['phonesec']; ?>" >
-        <small class="text-danger"> <?php echo $mobileError; ?></small>
+        <small class="text-danger"> <?php echo $mobileoptError; ?></small>
     </div>
   </div>
         <hr>
@@ -234,7 +256,7 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Comapny Name:</p>
       </div>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="validationDefault01" placeholder="Name" name="cName" value="<?php echo $_SESSION['cName']; ?>">
+      <input type="text" class="form-control" id="validationDefault01" placeholder="Name" name="cName" value="<?php echo $_SESSION['cName']; ?>" required>
         <small class="text-danger"><?php echo $cNameError; ?></small>
     </div>
   </div>
@@ -257,11 +279,11 @@ $out_image=addslashes(file_get_contents($resize_image));
       <p class="labels-for-form">Location:</p>
       </div>
     <div class="col-md-3">
-      <input type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>">
-         <small class="text-danger"><?php echo $areaError; ?></small>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>" required>
+         <small class="text-danger"><?php echo $addressError; ?></small>
     </div>
       <div class="col-md-3">
-      <input type="text" class="form-control" id="validationDefault03" placeholder="City" name="city" value="<?php echo $_SESSION['city']; ?>">
+      <input type="text" class="form-control" id="validationDefault03" placeholder="City" name="city" value="<?php echo $_SESSION['city']; ?>" required>
          <small class="text-danger"><?php echo $cityError; ?></small>
     </div>
       

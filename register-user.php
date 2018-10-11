@@ -25,6 +25,7 @@ function selectSkill(){
     echo "<option value='" . $row['SKILL'] ."'>" . $row['SKILL'] ."</option>";
 }
 }
+
 if( isset( $_POST['add'] ) ) {
     session_start();
     // build a function to validate data
@@ -53,27 +54,36 @@ if( isset( $_POST['add'] ) ) {
     if( !$_POST["password"] ) {
         $passwordError = "Please enter password <br>";
     } else {
+        
+        if(strlen($_POST["password"]) > 6){
         $password = validateFormData( $_POST["password"] );
         $hashedPassword = password_hash( $password, PASSWORD_BCRYPT );
+        }else{
+             $passwordError = "Your password must be greater than six characters.<br>";
+        }
     }
     if( !$_POST["mobileNumber"] ) {
         $mobileError = "Please enter mobile number <br>";
     } else {
+         if(is_numeric($_POST["mobileNumber"]) && strlen($_POST["mobileNumber"])==10){
         $_SESSION['mobileNumber'] = $_POST["mobileNumber"];
         $mobile = validateFormData( $_POST["mobileNumber"] );
+        }else{
+             $mobileError = "Please enter a valid mobile number <br>";
+        }
     }
     if( !$_POST["name"] ) { 
         $NameError = "Please enter your full name <br>";
     } else {
         $_SESSION['name'] = $_POST["name"];
-        $name = mysqli_real_escape_string($conn,validateFormData( $_POST["name"] ));  
+        $name = ucwords(strtolower(mysqli_real_escape_string($conn,validateFormData( $_POST["name"] ))));  
     }
     
     if( !$_POST["fatherName"] ) { 
         $FatherNameError = "Please enter your father's name <br>";
     } else {
         $_SESSION['fatherName'] = $_POST["fatherName"];
-        $fatherName = mysqli_real_escape_string($conn,validateFormData( $_POST["fatherName"] ));  
+        $fatherName = ucwords(strtolower(mysqli_real_escape_string($conn,validateFormData( $_POST["fatherName"] ))));  
     }
     
     if( !$_POST["gender"] ) {
@@ -90,7 +100,6 @@ if( isset( $_POST['add'] ) ) {
     if( !$_POST["city"] ) {
         $cityError = "Please enter city<br>";
     } else {
-        $_SESSION['city'] = $_POST["city"];
         $city = validateFormData( $_POST["city"] );
     }
     if( !$_POST["qualification"] ) {
@@ -98,34 +107,40 @@ if( isset( $_POST['add'] ) ) {
     } else {
         $education = validateFormData( $_POST["qualification"] );
     }
-    if( !$_POST["course"] ) {
-        $courseError = "Please select your course<br>";
-    } else {
+    if( $_POST["course"] ) {
         $course = validateFormData( $_POST["course"] );
+    } else {
+        $course = "Not Specified";
     }  
-    if( !$_POST["field"] ) {
-        $fieldError = "Please select your field<br>";
-    } else {
+    if( $_POST["field"] ) {
         $field = validateFormData( $_POST["field"] );
-    }
-    if( !$_POST["skill"] ) {
-        $skillError = "Please select your skill<br>";
     } else {
-        $skill =  ( $_POST["skill"] );
-        $skills = implode(", ", $skill);
-       
+        $field = "Not Specified";
     }
+    if( $_POST["skill"] ) {
+       $skill =  ( $_POST["skill"] );
+       $skills = implode(", ", $skill);
+    } else {
+       $skills= "Not Specified";
+    }
+    
     if( !$_POST["percentage"] ) { 
-        $NameError = "Please enter your percentage. <br>";
+        $percentageError = "Please enter your percentage. <br>";
     } else {
-        $_SESSION['percentage'] = $_POST["percentage"];
-        $percentage = mysqli_real_escape_string($conn,validateFormData( $_POST["percentage"] ));  
+        if($_POST['percentage']>0 && $_POST['percentage']<=100 && is_numeric($_POST['percentage'])){
+            $percentage = validateFormData($_POST['percentage']);
+            $_SESSION['percentage'] = $percentage; 
+          }
+        else{
+            $percentageError = "Please enter valid percentage. <br>";
+        } 
     }
+    
     if(!$_POST['checkbox'] == 'yes'){
         $checkboxError = "Please accept terms and conditions<br>";
     }
     
-    if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $percentage && $_POST['checkbox'] == 'yes' && $password == $confirmPassword && $fatherName  ) {
+    if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $percentage && $_POST['checkbox'] == 'yes' && $password == $confirmPassword && $fatherName && $skills && $course && $field ) {
         $query = "INSERT INTO `users2`(`email`, `password`, `phone`, `name`, `gender`, `birthDate`, `city`, `education`, `course`, `field`,`percentage`,`skill`,`fatherName`) VALUES ( '$email','$hashedPassword','$mobile','$name','$gender','$birthDate','$city','$education','$course','$field','$percentage','$skills','$fatherName')";
 
         if( mysqli_query( $conn, $query ) ) {
@@ -139,8 +154,11 @@ if( isset( $_POST['add'] ) ) {
             $_SESSION['userEmail'] = $email;
             header('Location:user-profile.php');
         } else {
-            echo "Login failed .Please fill out fields correctly or there might be problem in your internet connection.";
+            $error = "<div class='alert alert-danger'>Login failed .Please fill out fields correctly or there might be problem in your internet connection.</div>";
         }
+    }
+    else{
+         $error = "<div class='alert alert-danger'>Registration failed. Please fill all the required fields.</div>";
     }
 }
 ?>
@@ -172,6 +190,7 @@ if( isset( $_POST['add'] ) ) {
         <?php
         include('topbar.php');?>
         <div class="container">
+        <?php echo $error;?>
         <h1 class="page-heading">User Registration</h1>
          <p class="edit-profile-inputs" style="margin-bottom:25px;">Fields marked with <span class="asterisk">*</span> are compulsory.</p>
             
@@ -272,10 +291,10 @@ if( isset( $_POST['add'] ) ) {
       </div>
     <div class="col-md-4">
       <select name="city" id="city" class="js-example-placeholder-single js-states form-control">
-         <small class="text-danger"><?php echo $cityError; ?></small>
           <option></option>
            <?php selectCity();?>
         </select>
+        <small class="text-danger"><?php echo $cityError; ?></small>
     </div>
     </div>
             <hr>
@@ -289,20 +308,18 @@ if( isset( $_POST['add'] ) ) {
       </div>
     <div class="col-md-3"> 
         <select name="qualification" onchange="checkSelect()" class="js-example-placeholder-single js-states form-control edit-profile-inputs" id="qual">
-            <small class="text-danger"><?php echo $eduError; ?></small>
             <option></option>
      <?php select();?>
         </select>
+        <small class="text-danger"><?php echo $eduError; ?></small>
     </div>
     <div onchange="checkSelect2()" id="selectDiv2" class="col-md-3">
         <select name="course" id="selectTwo" class="valuePick js-example-placeholder-single js-states form-control">
-        <small class="text-danger"><?php echo $courseError; ?></small>
             <option></option>
         </select>
     </div>
     <div id="selectDiv3" class="col-md-3">
         <select name="field" id="selectThree" class="js-example-placeholder-single js-states form-control">
-            <small class="text-danger"><?php echo $fieldError; ?></small>
             <option></option>
         </select>
     </div>
@@ -327,7 +344,7 @@ if( isset( $_POST['add'] ) ) {
       <p class="labels-for-profile">Percentage<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
-      <input type="text" class="form-control edit-profile-inputs" placeholder="Percentage" name="percentage" required value="<?php echo $_SESSION['percentage'];?>">
+      <input type="number" class="form-control edit-profile-inputs" placeholder="Percentage" name="percentage" required value="<?php echo $_SESSION['percentage'];?>">
         <small class="text-danger"><?php echo $percentageError; ?></small>
     </div>
         
