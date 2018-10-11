@@ -5,7 +5,7 @@ $jobId   = $_GET['job'];
 
         if($jobId){
         
-        $query = "SELECT  jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL,jobs.ID
+        $query = "SELECT  jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO,jobs.DATE,jobs.TIME,jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL,jobs.ID
         FROM jobs
         INNER JOIN companyRegister
         ON jobs.cID = companyRegister.ID WHERE jobs.ID='$jobId'";
@@ -31,7 +31,8 @@ $jobId   = $_GET['job'];
                 $job_emp_type   = $org['EMPTYPE'];
                 $job_mobile_no  = $org['PHONE'];
                 $job_email      = $org['EMAIL'];
-            
+                $job_time       = $org['TIME'];
+                $job_date       = $org['DATE'];
                 
         }   
 }
@@ -77,7 +78,7 @@ $jobId   = $_GET['job'];
                 <span class = 'company-name margin-left' style='font-size:14px; color:#666;'><?php echo $org_name;?></span><br>
                 <span class = 'venue margin-left' style='font-size:14px; position:relative; top:5px;'><i id='location-icon' class='fas fa-map-marker-alt'></i><?php echo $job_venue;?></span><br>
             </div>
-            <input type="button" id="apply" class="apply-button" value="Apply Now" data-company="<?php echo $job_email;?>" data-job="<?php echo $jobId;?>" >
+            <input type="button" id="apply" class="apply-button" value="Apply Now" data-job="<?php echo $jobId;?>" data-time="<?php echo $job_time ;?>" data-date="<?php echo $job_date;?>">
               
             <div class='footer-job'>
                 <p class='salary'><?php echo $job_salary;?></p>
@@ -135,13 +136,14 @@ $jobId   = $_GET['job'];
         
         <script>
             $("#apply").click(function(){
-                var company = $(this).attr("data-company");
-                var job = $(this).attr("data-job");
-                
+                var job  = $(this).attr("data-job");
+                var date = $(this).attr("data-date");
+                var time = $(this).attr("data-time");
+
                 $.ajax({
                     type : "POST",
                     url  : "functions.php",
-                    data : "check=jobApply&companyEmail="+ company +"&jobId="+job,
+                    data : "check=jobApply&date="+ date +"&time="+time+"&jobId="+job,
                     
                     success:function(result){
                         alert(result);
