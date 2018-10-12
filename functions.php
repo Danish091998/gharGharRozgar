@@ -119,15 +119,7 @@ elseif($_POST['check'] == 'applicants'){
          $email = $row['email'];
          $phone = $row['phone'];
          $count++;
-         echo "
- <tbody>
-    <tr>
-      <th scope='row'>$count</th>
-      <td>$name</td>
-      <td>$email</td>
-      <td>$phone</td>
-    </tr>
-  </tbody></a>";
+         echo "<li><a href=''>$count &nbsp; $name</a></li><hr>";
      }
     }
     else{

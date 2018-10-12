@@ -75,7 +75,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
         data : "check=applicants&jobId="+ id,
                     
                     success:function(result){
-                    $("#c" + id).html("<div class='card card-body'><table class='table table-hover'><thead><tr><th scope='col'>#</th><th scope='col'>Name</th><th scope='col'>Email</th><th scope='col'>Contact</th></tr>" +result +"</thead></table></div>");        
+                    $("#c" + id).html("<ul class='applicant-list'><hr>" +result +"</ul>");        
         }
     })
 })

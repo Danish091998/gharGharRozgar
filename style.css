@@ -1130,6 +1130,19 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     color: #c61f1f;
 }
 
+.applicant-list{
+    list-style-type: none;
+    margin: 0;
+}
+
+li{
+    font-size: 14px;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}
 /*admin page*/
 
 .buttons{
