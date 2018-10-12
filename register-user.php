@@ -117,6 +117,12 @@ if( isset( $_POST['add'] ) ) {
     } else {
         $field = "Not Specified";
     }
+    if( !$_POST["instName"] ) { 
+        $FatherNameError = "Please enter your Institute name <br>";
+    } else {
+        $_SESSION['instName'] = $_POST["instName"];
+        $instName = ucwords(strtolower(mysqli_real_escape_string($conn,validateFormData( $_POST["instName"] ))));  
+    }
     if( $_POST["skill"] ) {
        $skill =  ( $_POST["skill"] );
        $skills = implode(", ", $skill);
@@ -141,7 +147,7 @@ if( isset( $_POST['add'] ) ) {
     }
     
     if( $email && $hashedPassword && $mobile && $name  && $gender && $birthDate && $city && $education && $percentage && $_POST['checkbox'] == 'yes' && $password == $confirmPassword && $fatherName && $skills && $course && $field ) {
-        $query = "INSERT INTO `users2`(`email`, `password`, `phone`, `name`, `gender`, `birthDate`, `city`, `education`, `course`, `field`,`percentage`,`skill`,`fatherName`) VALUES ( '$email','$hashedPassword','$mobile','$name','$gender','$birthDate','$city','$education','$course','$field','$percentage','$skills','$fatherName')";
+        $query = "INSERT INTO `users2`(`email`, `password`, `phone`, `name`, `gender`, `birthDate`, `city`, `education`, `course`, `field`,`percentage`,`skill`,`fatherName`,`institutename`) VALUES ( '$email','$hashedPassword','$mobile','$name','$gender','$birthDate','$city','$education','$course','$field','$percentage','$skills','$fatherName','$instName')";
 
         if( mysqli_query( $conn, $query ) ) {
             session_unset();
@@ -339,16 +345,23 @@ if( isset( $_POST['add'] ) ) {
     </div>    
             </div>
         <hr>
-    <div class="form-row">
-      <div class="col-md-2">
+            <div class="form-row">
+            <div class="col-md-2">
+      <p class="labels-for-profile">Institute Name<span class="asterisk">*</span>:</p>
+      </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control edit-profile-inputs" placeholder="Institute Name" name="instName" required value="<?php echo $_SESSION['instName'];?>">
+        <small class="text-danger"><?php echo $instNameError; ?></small>
+    </div>
+                <div class="col-md-2">
       <p class="labels-for-profile">Percentage<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
       <input type="number" class="form-control edit-profile-inputs" placeholder="Percentage" name="percentage" required value="<?php echo $_SESSION['percentage'];?>">
         <small class="text-danger"><?php echo $percentageError; ?></small>
     </div>
-        
-  </div>
+        </div>
+           
        <hr>   
   <div class="form-group">
     <div class="custom-control custom-checkbox">

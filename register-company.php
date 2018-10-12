@@ -1,5 +1,13 @@
 <?php 
-include('connections.php'); 
+include('connections.php');
+function selectCity(){
+    global $conn;
+    $sql = "SELECT LOCATION FROM locations";
+    $result = mysqli_query($conn,$sql);
+    while ($row = mysqli_fetch_array($result)) {
+    echo "<option value='" . $row['LOCATION'] ."'>" . $row['LOCATION'] ."</option>";
+}
+}
 $target_dir = "Uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -199,70 +207,55 @@ $out_image=addslashes(file_get_contents($resize_image));
         include('topbar.php');?>
         <div class="container">
         <h1 class="page-heading">Company Registration</h1>
-            
+        <p class="edit-profile-inputs" style="margin-bottom:25px;">Fields marked with <span class="asterisk">*</span> are compulsory.</p>    
         <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post" enctype="multipart/form-data">
     <div><?php echo $errorSubmit; ?></div>
+             <div class="alert alert-info">
+                <p class="personal-details-title">Login Details:</p>
+            </div>
     <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Email:</p>
+      <p class="labels-for-profile">Email<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
-      <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
+      <input type="email" class="form-control edit-profile-inputs" placeholder="Email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
         <small class="text-danger"> <?php echo $emailError; ?></small>
     </div>
   </div> 
             <hr>
     <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Password:</p>
+      <p class="labels-for-profile">Password<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
       
-      <input type="Password" id="password" class="form-control" placeholder="Password" name="password" required>
+      <input type="Password" id="password" class="form-control edit-profile-inputs" placeholder="Password" name="password" required>
         <small class="text-danger"> <?php echo $passwordError; ?></small>
     </div>
-  </div>
-            <hr>
-         
-    <div class="form-row">
-      <div class="col-md-2">
-      <p class="labels-for-form">Confirm Password:</p>
+        <div class="col-md-2">
+      <p class="labels-for-profile">Confirm Password<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-4">
-      <input type="Password" id="confirm_password" class="form-control" placeholder="Confirm Password" name="confirmPassword" required><span id='message'></span>
+      <input type="Password" id="confirm_password" class="form-control edit-profile-inputs" placeholder="Confirm Password" name="confirmPassword" required><span id='message'></span>
     </div>
-  </div>
-        <hr>    
-        
-            <div class="form-row">
-      <div class="col-md-2">
-      <p class="labels-for-form">Contact:</p>
-      </div>
-    <div class="col-md-4">
-      <input type="number" class="form-control" placeholder="Mobile Number" name="mobileNumber" value="<?php echo  $_SESSION['mobileNumber']; ?>" required>
-        <small class="text-danger"> <?php echo $mobileError; ?></small>
-    </div>
-    <div class="col-md-4">
-      <input type="number" class="form-control" placeholder="Mobile Number(Optional)" name="mobileNumberOptional" value="<?php echo $_SESSION['phonesec']; ?>" >
-        <small class="text-danger"> <?php echo $mobileoptError; ?></small>
-    </div>
-  </div>
+  </div>   
+            
         <hr>
             <div class="alert alert-info">
                 <p class="personal-details-title">Personal Details:</p>
             </div>
   <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Comapny Name:</p>
+      <p class="labels-for-profile">Comapny Name<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="validationDefault01" placeholder="Name" name="cName" value="<?php echo $_SESSION['cName']; ?>" required>
+      <input type="text" class="form-control edit-profile-inputs" id="validationDefault01" placeholder="Name" name="cName" value="<?php echo $_SESSION['cName']; ?>" required>
         <small class="text-danger"><?php echo $cNameError; ?></small>
     </div>
   </div>
             <hr>
       <div class="col-md-2">
-      <p class="labels-for-form">Comapny Logo:</p>
+      <p class="labels-for-profile">Comapny Logo<span class="asterisk">*</span>:</p>
       </div>
          <div class="col-md-4">
     <label id="labelForAvatar" for="avatar">
@@ -273,18 +266,35 @@ $out_image=addslashes(file_get_contents($resize_image));
                  <small class="text-danger"> <?php echo $logoError; ?></small>
              </div> 
   </div>
-            <hr>    
-  <div class="form-row">
+            <hr> 
+            <div class="form-row">
       <div class="col-md-2">
-      <p class="labels-for-form">Location:</p>
+      <p class="labels-for-profile">Contact<span class="asterisk">*</span>:</p>
       </div>
     <div class="col-md-3">
-      <input type="text" class="form-control" id="validationDefault03" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>" required>
+      <input type="number" class="form-control edit-profile-inputs" placeholder="Mobile Number" name="mobileNumber" value="<?php echo  $_SESSION['mobileNumber']; ?>" required>
+        <small class="text-danger"> <?php echo $mobileError; ?></small>
+    </div>
+    <div class="col-md-3">
+      <input type="number" class="form-control edit-profile-inputs" placeholder="Mobile Number(Optional)" name="mobileNumberOptional" value="<?php echo $_SESSION['phonesec']; ?>" >
+        <small class="text-danger"> <?php echo $mobileoptError; ?></small>
+    </div>
+  </div>
+            <hr>
+  <div class="form-row">
+      <div class="col-md-2">
+      <p class="labels-for-profile">Location<span class="asterisk">*</span>:</p>
+      </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control edit-profile-inputs" id="validationDefault03" placeholder="Address" name="address" value="<?php echo $_SESSION['address']; ?>" required>
          <small class="text-danger"><?php echo $addressError; ?></small>
     </div>
-      <div class="col-md-3">
-      <input type="text" class="form-control" id="validationDefault03" placeholder="City" name="city" value="<?php echo $_SESSION['city']; ?>" required>
-         <small class="text-danger"><?php echo $cityError; ?></small>
+    <div class="col-md-3">
+      <select name="city" id="city" class="js-example-placeholder-single js-states form-control">
+          <option></option>
+           <?php selectCity();?>
+        </select>
+        <small class="text-danger"><?php echo $cityError; ?></small>
     </div>
       
   </div>

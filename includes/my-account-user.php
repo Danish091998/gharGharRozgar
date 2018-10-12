@@ -23,6 +23,7 @@ $userId = $_SESSION['userEmail'];
         $field      = $row['field']; 
         $percentage = $row['percentage'];
         $skills     = $row['skill'];
+        $instName   = $row['institutename'];
     }
 ?>       
 
@@ -95,12 +96,22 @@ $userId = $_SESSION['userEmail'];
   </div>
 <div class="form-row">
       <div class="col-md-2">
+      <p class="labels-for-profile">Institute Name</p>
+    </div>
+     <div class="col-md-10">
+      <p class="profile-data"><?php echo $instName; ?></p>
+    </div>
+  </div>
+
+<div class="form-row">
+      <div class="col-md-2">
       <p class="labels-for-profile">Qualification</p>
     </div>
      <div class="col-md-10">
       <p class="profile-data"><?php echo $qual; ?></p>
     </div>
   </div>
+
 <div class="form-row">
       <div class="col-md-2">
       <p class="labels-for-profile">Skills</p>

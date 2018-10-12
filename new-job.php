@@ -45,7 +45,7 @@ function selectSkill(){
         
         
         if( !$_POST["course"] ) {
-        $courseError = "Please enter course<br>";
+        $course = "Not Specified";
         } 
         else {
         $course = mysqli_real_escape_string($conn,validateFormData( $_POST["course"] ));
@@ -53,13 +53,12 @@ function selectSkill(){
         
         
         if( !$_POST["field"] ) {
-        $fieldError = "Please enter field<br>";
+        $field = "Not Specified";
         } 
         else {
         $field = mysqli_real_escape_string($conn,validateFormData( $_POST["field"] ));
         }
-        
-        
+      
         if(!$_POST['info-name']){
             $jobInfoError = "Please enter job infromation.<br>";
         }

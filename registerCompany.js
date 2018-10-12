@@ -1,4 +1,7 @@
-
+$("#city").select2({
+    placeholder: "Select Your City",
+    allowClear: false   
+});
 function readFile() {
     if(this.files[0].size > 1000000){
         alert("File must be less than 1MB");
@@ -31,3 +34,6 @@ $('#password, #confirm_password').on('keyup', function () {
     }
     }
 });
+
+
+    
