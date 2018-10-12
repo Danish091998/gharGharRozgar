@@ -1,87 +1,27 @@
 <?php 
 include('connections.php');
 $register=true;
-function jobs(){
-global $conn;
 session_start();
 $user = $_SESSION['userEmail'];
+function jobNumber(){
+global $conn;
+global $user;
 if(!$user){
     $query  = "SELECT `ID` FROM `jobs`";
     $result = mysqli_query($conn, $query);
     $number = mysqli_num_rows($result);
-    echo "<div class='alert alert-info' style='margin:0 auto;'>There are total $number jobs available currently.</div>";
+    echo "<div class='alert alert-info' style='margin:0 auto; max-width:340px;'>There are total $number jobs available currently.</div><br>";
+    echo"<center> 
+    <button id='loginForSeeker' class='login-button-page'>Login</button>
+            <button id='registerForSeeker' class='register-button-page'>Register</button></center>";
 }
-else{
-    
-    $query  = "SELECT * FROM users2 WHERE EMAIL ='$user'";
-    $result     = mysqli_query($conn, $query);
-    $row        = mysqli_fetch_array($result);
-    
-    $city       = $row['city'];
-    $qual       = $row['education'];
-    $course     = $row['course'];
-    $field      = $row['field'];
-    $skills     = str_replace(",","','",$row['skill']);
-    $percentage = $row['percentage'];
-
-    $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME,jobs.ID
-    FROM jobs
-    INNER JOIN companyRegister
-    ON jobs.cID = companyRegister.ID WHERE jobs.CITY = '$city' AND jobs.MINMARKS <= '$percentage' AND jobs.QUALIFICATION = '$qual' AND jobs.COURSE IN ('$course','Not Specified') AND jobs.FIELD  IN ('$field','Not Specified') AND jobs.SKILLS IN ('$skills','Not Specified')  ORDER BY `ID` DESC LIMIT 4";
-        $result = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($result) <= 0){
-
-            echo "<div style='margin: 0 auto;' class='alert alert-info'>There are no jobs available for you right now. Check again later!</div>";
-
-            }
-
-        else{ 
-
-        while($org = mysqli_fetch_array($result) ){
-
-            $job_id         = $org['ID'];
-            $org_name       = $org['NAME'];
-            $org_logo       = $org['LOGOIMAGE'];
-            $org_job        = $org['JOB'];
-            $job_course     = $org['COURSE'];
-            $job_field      = $org['FIELD'];
-            $job_info       = $org['INFO'];
-            $job_venue      = $org['ADDRESS'];
-
-            if($org['SALARY'] != "Not Specified"){
-                        $job_salary = "&#8377 ".$org['SALARY'];
-                    }
-            else{
-                 $job_salary = $org['SALARY'];
-            }
-
-            $job_emp_type   = $org['EMPTYPE'];
-
-            echo "<div class=' row job-display-wrapper'> 
-                    <div class='col-xs-3 logo-image-wrapper'>
-                        <img src='$org_logo' class='logo-image'>
-                    </div>
-                <div class='col-xs-3 job-details-wrapper'>
-                    <span class = 'job-name'>$org_job</span><br>
-                    <span class = 'company-name'>$org_name</span><br>
-                    <span class = 'venue'><i id='location-icon' class='fas fa-map-marker-alt'></i>$job_venue</span><br>
-                    </div>
-                    <div class='col-xs-3 salary-wrapper'>
-                    <span class = 'company-name'> $job_salary</span><br>
-                    <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
-                    </div>
-                    <div class='col-xs-3'>
-                    <a class='know-more' href='job-display.php?job=$job_id'>View More</a>
-                    </div>
-                </div>";
-
-            }   
-        }
+else{ echo "<center>
+                <button id='prefJobsButton' class='filter-buttons'>Jobs according to your prefernce</button>
+                <button id='allJobsButton' class='filter-buttons'>Jobs all over punjab</button>
+                </center>";
     }
-}
+    }
 ?>
-<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -99,23 +39,36 @@ else{
         <link href="style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
 
-
     </head>
     <body class="job-background" style="padding-top:0; background:#f9f9f9;">
         
         <?php
         include("topBar.php");?>
         <div style="margin-top:5%;" class="container">
-            <div class="row" id="jobs">
-             <?php jobs();?>
+            <div id="jobs">
+            <?php jobNumber();?> 
+            <div id="job-section">
+             <?php include('preferred-jobs.php'); ?>
+            </div>
             </div>
         </div>
-    
 <script src="jquery-3.3.1.js" ></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="home.js"></script>  
-<script>
-var count = 0;
+<script type="text/javascript">   
+    
+    $("#prefJobsButton").click(function(){
+   $(this).css({"color":"white","background":"#00aff0"});
+    $("#allJobsButton").css({"color":"#f04100","background":"#f9f9f9"});
+    $('#job-section').load("preferred-jobs.php" +  '#job-section');
+});
+    $("#allJobsButton").click(function(){
+   $(this).css({"color":"white","background":"#f04100"});
+    $("#prefJobsButton").css({"color":"#00aff0","background":"#f9f9f9"});
+    $('#job-section').load("all-jobs.php" +  '#job-section');
+});
+   
+    var count = 0;
  $(".job-background").scroll(function() {
    if($(".job-background").scrollTop() + $(window).height() > $(document).height()-1) {
         count = count+4;
@@ -141,6 +94,6 @@ var count = 0;
        
    }
 });
-        </script>      
+        </script>
     </body>
 </html>

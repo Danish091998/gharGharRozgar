@@ -212,6 +212,7 @@ html,body{
     font-family: "Poppins";
     letter-spacing: 0.05em;
     line-height: 44px;
+    transition: all 0.3s ease;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -350,7 +351,7 @@ html,body{
 }
 
 .login-container{
-    padding:70px 35px 0px 35px;
+    padding:70px 35px 40px 35px;
     max-width: 406px;
     margin: 0 auto;
     background: #fff;
@@ -826,6 +827,33 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     color: #c9302c;
 }
 
+.filter-buttons{
+    font-size: 11px;
+    color: #f9f9f9;
+    text-transform: uppercase;
+    font-family: "Poppins";
+    border: 3px solid #00aff0;
+    padding: 13px 20px 11px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: #00aff0;
+    cursor: pointer;
+    margin: 10px;
+    outline: none !important;
+    text-decoration: none;
+}
+
+#allJobsButton{
+    color: #f04100;
+    border: 3px solid #f04100;
+    background: #f9f9f9;
+}
+
+#allJobsButton:hover{
+    background: #f04100;
+    color: white;
+}
 /*Individaul Job display*/
 
 #individual-job-wrapper{
