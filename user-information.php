@@ -1,10 +1,9 @@
-<?php 
+<?php
 
 include('connections.php');
-session_start();
-$userId = $_SESSION['userEmail'];
+$user = $GET['user'];
 
-    if($userId){
+if($user){
 
         $query  = "SELECT * FROM `users2` WHERE `email` = '".$userId."'";
         $result = mysqli_query($conn,$query);
@@ -25,10 +24,32 @@ $userId = $_SESSION['userEmail'];
         $skills     = $row['skill'];
         $instName   = $row['institutename'];
     }
-?>       
+?>   
 
+<html>
+
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>User Information</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+        <!--        StyleSheet-->  
+        <link rel="stylesheet" href="style.css">
+        
+       <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
+
+    </head>
+    
+    <body style="background:#f7f7f7;">
+        
+<div class="contanier container-fluid">
 <h1 style="display:inline-block" class="heading-profile">Account Information</h1>
-  
+       
 
 <div class="form-row">
       <div class="col-md-2">
@@ -142,4 +163,6 @@ $userId = $_SESSION['userEmail'];
       <p class="profile-data"><?php echo $percentage; ?></p>
     </div>
   </div>
-            
+        </div>
+    </body>
+</html>

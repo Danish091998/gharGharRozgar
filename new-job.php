@@ -32,7 +32,8 @@ function selectSkill(){
         }else {
         $job = validateFormData( $_POST["job-title"]);
         $_SESSION['job'] = $job;                        
-        $jobTitle = mysqli_real_escape_string($conn, $job);
+        $jobTitle = ucwords(strtolower(mysqli_real_escape_string($conn, $job)));
+        
         }
         
         
@@ -44,7 +45,7 @@ function selectSkill(){
         }
         
         
-        if( !$_POST["course"] ) {
+        if( $_POST["course"] ) {
         $course = "Not Specified";
         } 
         else {

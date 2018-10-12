@@ -3,6 +3,7 @@ include('connections.php');
 
 $jobId   = $_GET['job'];
 
+
         if($jobId){
         
         $query = "SELECT  jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO,jobs.DATE,jobs.TIME,jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL,jobs.ID
