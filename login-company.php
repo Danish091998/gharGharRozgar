@@ -36,7 +36,7 @@
                 <i class="fas fa-user-circle login-user-icon"></i></center>
              <h2 class="login-heading">Welcome</h2>
               <div class="form-group">
-                    <input type="text" id="login-company-username" name="companyEmail" required>
+                    <input type="text" id="login-company-username" name="companyEmail" required autofocus>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Email</label>

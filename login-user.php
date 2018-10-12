@@ -39,7 +39,7 @@
              <h2 class="login-heading">Welcome</h2>
               <div class="form-group">
                     
-                    <input type="text" id="login-username" name="email" required>
+                    <input type="text" id="login-username" name="email" required autofocus>
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Email</label>

@@ -201,7 +201,7 @@ html,body{
 .dropbtn {
     background-color: white;
     color: #00aff0;
-    margin: 10px 40px 10px 0px;
+    margin: 10px 0px;
     padding: 5px 12px 5px 12px;
     font-size: 14px;
     border: none;
@@ -213,6 +213,11 @@ html,body{
     letter-spacing: 0.05em;
     line-height: 44px;
     transition: all 0.3s ease;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -228,6 +233,7 @@ html,body{
     float: right;
     position: relative;
     display: inline-block;
+    margin-right: 40px;
 }
 
 .dropdown-content {
@@ -237,7 +243,7 @@ html,body{
     min-width: 200px;
     overflow: auto;
     box-shadow: 0px 1px 3px rgba(0,0,0,0.22);
-    right: 50px;
+    right: 0px;
     z-index: 1;
 }
 
@@ -251,7 +257,7 @@ html,body{
     transition: all 0.3s ease;
 }
 
-.dropdown a:hover {color: #00aff0;}
+.dropdown a:hover {color: #0177a3;}
 
 .show {display: block;}
 
@@ -259,7 +265,8 @@ html,body{
   border: solid;
   border-width: 0 2px 2px 0;
   display: inline-block;
-  padding: 2px; 
+  padding: 2px;
+  color: #00aff0;
 }
 
 .down {
@@ -280,6 +287,7 @@ html,body{
     bottom: 0px;
     left: 3px;
     border-color: #0177a3;
+    color: #0177a3 !important; 
 }
 
 #userDisplay{
