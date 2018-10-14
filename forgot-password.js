@@ -1,0 +1,10 @@
+$(".send-button").click(function(){
+    $(".forgot-password-wrapper").fadeOut(function(){
+        $(".thankyou-wrapper").fadeIn();
+        });
+});
+$("#resend").click(function(){
+    $(".thankyou-wrapper").fadeOut(function(){
+        $(".forgot-password-wrapper").fadeIn();
+        });
+});

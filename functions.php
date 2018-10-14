@@ -119,7 +119,7 @@ elseif($_POST['check'] == 'applicants'){
          $email = $row['email'];
          $phone = $row['phone'];
          $count++;
-         echo "<li data-user='$email' class='userInfo' onClick='userInfo()'>$count &nbsp; $name </li><hr>";
+         echo "<a href='user-information.php' target='_blank' data-user='$email' class='userInfo' onClick='userInfo()'>$count &nbsp; $name </a><hr>";
      }
         
     }

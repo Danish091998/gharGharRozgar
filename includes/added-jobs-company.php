@@ -75,7 +75,7 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
         data : "check=applicants&jobId="+ id,
                     
                     success:function(result){
-                    $("#c" + id).html("<ul class='applicant-list'><hr>" +result +"</ul>");        
+                    $("#c" + id).html("<div class='applicant-list'><hr>" +result +"</div>");        
         }
     })
 })
@@ -100,18 +100,16 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
 })
     
  function userInfo(){
-    
-     var user = $('.userInfo').attr("data-user");  
+    $(".userInfo").click(function(){
+     var user = $(this).attr("data-user");  
  
      $.ajax({
         type : "POST",
         url  : "functions.php",
         data : "check=userInfo&user="+ user,
-                    
-        success:function(){
-            window.open('user-information.php','_newtab');
-        }
+
     })
+        });
 }
     
 </script>
