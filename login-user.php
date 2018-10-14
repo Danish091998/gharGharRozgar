@@ -49,10 +49,12 @@
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Password</label> 
+                    <a href="forgot-password.php" class="forgot-password">Forgot Password?</a>
                 </div>
-                <input type="button" id="login-button" class="btn btn-default" name="login" value="Login">
-                     
+               
+                <input type="button" id="login-button" class="btn btn-default" name="login" value="Login">     
             </form>
+          <p class="login-bottom-line">Dont't have an account yet? <a class="regitser-now" href="register-user.php">Register Now</a></p>
              
           </div>
     </div>  
@@ -86,7 +88,7 @@
                 
                 else{
              $(".alert-danger").remove();
-             var modal = myModal.find('.modal-body').append(result);
+             var modal = $('form').append(result);
                     }
                 }
     	
