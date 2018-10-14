@@ -72,5 +72,36 @@ if($user){
     }
 
 ?>
+<script> 
+var count = 0;
+ $(".job-background").scroll(function() {
      
+   if($(".job-background").scrollTop() + $(window).height() > $(document).height()-1) {
+    
+        count = count+4;
+      
+           console.log(count);
+       $.ajax({
+                        type : "POST",
+                        url  : "functions.php",
+                        data : "check=morejobs&count="+ count,
+
+
+                        success:function(result){ 
+                            if(result){
+                                $("#jobs").append(result);
+                            }
+                            
+                            else{
+                                 $("#info").remove();
+                                 $("#jobs").append("<div class='alert alert-info' id='info' style='margin:50px auto;'>There are no more jobs to display.</div>");
+                            }
+                            
+                        }
+                    })
+       
+   }
+});
+</script>   
+    
     

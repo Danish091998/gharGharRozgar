@@ -119,8 +119,9 @@ elseif($_POST['check'] == 'applicants'){
          $email = $row['email'];
          $phone = $row['phone'];
          $count++;
-         echo "<li><a href='user-information.php?user=$phone'>$count &nbsp; $name $email</a></li><hr>";
+         echo "<li data-user='$email' class='userInfo' onClick='userInfo()'>$count &nbsp; $name </li><hr>";
      }
+        
     }
     else{
         echo "No one has applied for this job till now.";
@@ -173,14 +174,16 @@ elseif($_POST['check'] == 'altcompPass'){
 }
 
 elseif($_POST['check'] == 'morejobs'){
+    
     $count  = $_POST['count'];
     $count1 = $count + 4;
     $check  = 0;
-    
-    $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,jobs.ID
-    FROM jobs
-    INNER JOIN companyRegister
-    ON jobs.cID = companyRegister.ID WHERE jobs.CITY = '$city' AND jobs.MINMARKS <= '$percentage' AND jobs.QUALIFICATION = '$qual' AND jobs.COURSE IN ('$course','Not Specified') AND jobs.FIELD  IN ('$field','Not Specified') AND jobs.SKILLS IN ('$skills','Not Specified') LIMIT $count1";
+
+      $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME,jobs.ID
+      FROM jobs
+      INNER JOIN companyRegister
+      ON jobs.cID = companyRegister.ID ORDER BY `ID` DESC LIMIT $count1";
+
         $result = mysqli_query($conn, $query);
 
 
@@ -230,4 +233,6 @@ elseif($_POST['check'] == 'morejobs'){
             } 
         }
     }
+
+
 ?>

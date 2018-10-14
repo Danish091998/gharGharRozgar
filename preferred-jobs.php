@@ -18,7 +18,7 @@ if($user){
     $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME,jobs.ID
     FROM jobs
     INNER JOIN companyRegister
-    ON jobs.cID = companyRegister.ID WHERE jobs.CITY = '$city' AND jobs.MINMARKS <= '$percentage' AND jobs.QUALIFICATION = '$qual' AND jobs.COURSE IN ('$course','Not Specified') AND jobs.FIELD  IN ('$field','Not Specified') AND jobs.SKILLS IN ('$skills','Not Specified')  ORDER BY `ID` DESC LIMIT 4";
+    ON jobs.cID = companyRegister.ID WHERE jobs.CITY = '$city' AND jobs.MINMARKS <= '$percentage' AND jobs.QUALIFICATION = '$qual' AND jobs.COURSE IN ('$course','Not Specified') AND jobs.FIELD  IN ('$field','Not Specified') AND jobs.SKILLS IN ('$skills','Not Specified')  ORDER BY `ID` DESC";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) <= 0){
@@ -70,7 +70,4 @@ if($user){
             }   
         }
     }
-
 ?>
-     
-    

@@ -1,11 +1,16 @@
 <?php
 
 include('connections.php');
-$user = $GET['user'];
 
+session_start();
+$_SESSION['userInfoEmail'] = $_POST['user'];
+$user = $_SESSION['userInfoEmail'];
+
+echo $_POST['user'];
+echo $user;
 if($user){
 
-        $query  = "SELECT * FROM `users2` WHERE `email` = '".$userId."'";
+        $query  = "SELECT * FROM `users2` WHERE `email` = '".$user."'";
         $result = mysqli_query($conn,$query);
         $row    = mysqli_fetch_array($result);
         

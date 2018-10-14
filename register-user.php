@@ -118,7 +118,7 @@ if( isset( $_POST['add'] ) ) {
         $field = "Not Specified";
     }
     if( !$_POST["instName"] ) { 
-        $FatherNameError = "Please enter your Institute name <br>";
+        $instNameError = "Please enter your Institute name <br>";
     } else {
         $_SESSION['instName'] = $_POST["instName"];
         $instName = ucwords(strtolower(mysqli_real_escape_string($conn,validateFormData( $_POST["instName"] ))));  

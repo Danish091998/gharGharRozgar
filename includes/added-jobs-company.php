@@ -99,6 +99,22 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
     })
 })
     
+ function userInfo(){
+    
+     var user = $('.userInfo').attr("data-user");
+    alert(user);   
+ 
+     $.ajax({
+        type : "POST",
+        url  : "user-information.php",
+        data : "user="+ user,
+                    
+        success:function(){
+            window.location.href='user-information.php';
+        }
+    })
+}
+    
 </script>
 
 
