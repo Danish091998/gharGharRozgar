@@ -101,16 +101,15 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
     
  function userInfo(){
     
-     var user = $('.userInfo').attr("data-user");
-    alert(user);   
+     var user = $('.userInfo').attr("data-user");  
  
      $.ajax({
         type : "POST",
-        url  : "user-information.php",
-        data : "user="+ user,
+        url  : "functions.php",
+        data : "check=userInfo&user="+ user,
                     
         success:function(){
-            window.location.href='user-information.php';
+            window.open('user-information.php','_newtab');
         }
     })
 }

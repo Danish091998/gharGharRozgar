@@ -234,5 +234,9 @@ elseif($_POST['check'] == 'morejobs'){
         }
     }
 
+elseif($_POST['check']== "userInfo"){
+    session_start();
+    $_SESSION['userInfoEmail'] = $_POST['user'];
+}
 
 ?>

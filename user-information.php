@@ -3,11 +3,8 @@
 include('connections.php');
 
 session_start();
-$_SESSION['userInfoEmail'] = $_POST['user'];
-$user = $_SESSION['userInfoEmail'];
+$user =  $_SESSION['userInfoEmail'];
 
-echo $_POST['user'];
-echo $user;
 if($user){
 
         $query  = "SELECT * FROM `users2` WHERE `email` = '".$user."'";
