@@ -74,7 +74,7 @@
         
 <!--            MODAL FOR LOGIN-->
         
-        <div id="modalForLogin" class="modal" tabindex="-1" role="dialog">
+        <div id="modalForLogin" style="overflow:hidden;" class="modal" tabindex="-1" role="dialog">
    <?php include('login-user.php');?>
 </div>
 
