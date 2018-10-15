@@ -9,7 +9,6 @@ $companyEmail= $_SESSION["CompanyEmail"] ;
         $row    = mysqli_fetch_array($result);
 
         $img_link   = $row['LOGOIMAGE'];
-        $email      = $row['EMAIL'];
         $mobile     = $row['PHONE'];
         $name       = $row['NAME'];
         $address    = $row['ADDRESS'];
@@ -33,8 +32,8 @@ $companyEmail= $_SESSION["CompanyEmail"] ;
              </div> 
     <br>
     <div class="form-row">
-      <input type="email" class="form-control edit-profile-inputs" placeholder="Email" name="email" id="email" required value="<?php echo $email; ?>">
-        <small class="text-danger" id="emailError"> </small> 
+      <input type="text" class="form-control edit-profile-inputs" placeholder="Address" name="address" id="address" required value="<?php echo $address; ?>">
+        <small class="text-danger" id="addressError"> </small> 
   </div>
 <br> 
     
@@ -86,13 +85,13 @@ $companyEmail= $_SESSION["CompanyEmail"] ;
 <script>
 function compValidation(){
    
-    var email     = document.getElementById("email").value;
+    var address   = document.getElementById("address").value;
     var mobile    = document.getElementById("mobileNumber").value;
     var mobileOpt = document.getElementById("mobileNumberOpt").value;
     var cname     = document.getElementById("companyName").value;
     var city      = document.getElementById("city").value;
     
-        if(!mobile || !email || !cname || !city){
+        if(!mobile || !address || !cname || !city){
         if(!mobile){
             $("#mobileError").html("Please enter your mobile number.");
         }
@@ -100,10 +99,10 @@ function compValidation(){
                 $("#mobileError").html(""); 
             }
         if(!email){
-            $("#emailError").html("Please enter your email.");
+            $("#addressError").html("Please enter your email.");
         }
         else{
-                $("#emailError").html(""); 
+                $("#addressError").html(""); 
             }
         if(!cname){
             $("#nameError").html("Please enter your company name.");
@@ -124,7 +123,7 @@ function compValidation(){
             $.ajax({
                         type : "POST",
                         url  : "functions.php",
-                        data : "check=altComp" + "&mobile="+ mobile +"&cname="+ cname +"&city="+ city+"&email="+ email +"&mobile2="+mobileOpt,
+                        data : "check=altComp" + "&mobile="+ mobile +"&cname="+ cname +"&city="+ city+"&address="+ address +"&mobile2="+mobileOpt,
 
 
                         success:function(result){

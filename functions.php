@@ -103,6 +103,11 @@ elseif($_POST['check'] == 'altPass' ){
     }
 }
 
+elseif($_POST['check']== "userInfo"){
+    session_start();
+    $_SESSION['userInfoEmail'] = $_POST['user'];
+}
+
 elseif($_POST['check'] == 'applicants'){
     
     $id = $_POST['jobId'];
@@ -119,7 +124,7 @@ elseif($_POST['check'] == 'applicants'){
          $email = $row['email'];
          $phone = $row['phone'];
          $count++;
-         echo "<a href='user-information.php' target='_blank' data-user='$email' class='userInfo' onClick='userInfo()'>$count &nbsp; $name </a><hr>";
+         echo "<a onclick='userInfo()' href='user-information.php' target='_blank' data-user='$email' class='userInfo'>$count &nbsp; $name </a><hr><script>userInfo();</script>";
      }
         
     }
@@ -147,9 +152,9 @@ elseif($_POST['check'] == 'altComp'){
     $mobile  = $_POST['mobile'];
     $cname   = mysqli_real_escape_string($conn,$_POST['cname']);
     $city    = $_POST['city'];
-    $email   = $_POST['email'];
+    $address = mysqli_real_escape_string($conn,$_POST['address']);
     $mobile2 = $_POST['mobile2'];
-    $query = "UPDATE `companyRegister` SET `PHONE`='".$mobile."',`PHONESEC`='".$mobile2."',`EMAIL`='".$email."',`NAME`='".$cname."',`CITY`='".$city."' WHERE `ID` = '".$id."'";
+    $query = "UPDATE `companyRegister` SET `PHONE`='".$mobile."',`PHONESEC`='".$mobile2."',`ADDRESS`='".$address."',`NAME`='".$cname."',`CITY`='".$city."' WHERE `ID` = '".$id."'";
  
     if (mysqli_query($conn,$query)){
         echo "<div class='alert alert-success'>Your profile is updated.</div>";
@@ -233,10 +238,5 @@ elseif($_POST['check'] == 'morejobs'){
             } 
         }
     }
-
-elseif($_POST['check']== "userInfo"){
-    session_start();
-    $_SESSION['userInfoEmail'] = $_POST['user'];
-}
 
 ?>
