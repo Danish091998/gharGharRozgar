@@ -18,7 +18,7 @@ if($user){
     $query = "SELECT jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO, jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.NAME,jobs.ID
     FROM jobs
     INNER JOIN companyRegister
-    ON jobs.cID = companyRegister.ID ORDER BY `ID` DESC LIMIT 4";
+    ON jobs.cID = companyRegister.ID ORDER BY `ID`";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) <= 0){
@@ -72,36 +72,5 @@ if($user){
     }
 
 ?>
-<script> 
-var count = 0;
- $(".job-background").scroll(function() {
-     
-   if($(".job-background").scrollTop() + $(window).height() > $(document).height()-1) {
-    
-        count = count+4;
-      
-           console.log(count);
-       $.ajax({
-                        type : "POST",
-                        url  : "functions.php",
-                        data : "check=morejobs&count="+ count,
 
-
-                        success:function(result){ 
-                            if(result){
-                                $("#jobs").append(result);
-                            }
-                            
-                            else{
-                                 $("#info").remove();
-                                 $("#jobs").append("<div class='alert alert-info' id='info' style='margin:50px auto;'>There are no more jobs to display.</div>");
-                            }
-                            
-                        }
-                    })
-       
-   }
-});
-</script>   
-    
     

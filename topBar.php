@@ -78,7 +78,7 @@
    <?php include('login-user.php');?>
 </div>
 
-  <div id="modalForLoginProvider" class="modal" tabindex="-1" role="dialog">
+  <div id="modalForLoginProvider" style="overflow:hidden;" class="modal" tabindex="-1" role="dialog">
     <?php include('login-company.php');?>
   </div>
 

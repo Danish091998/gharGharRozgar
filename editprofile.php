@@ -24,6 +24,7 @@ $userId = $_SESSION['userEmail'];
         $email      = $row['email'];
         $mobile     = $row['phone'];
         $name       = $row['name'];
+        $fatherName = $row['fatherName'];
         $gender     = $row['gender'];
         $birthdate  = $row['birthDate'];
         $city       = $row['city'];
@@ -38,11 +39,7 @@ $userId = $_SESSION['userEmail'];
         <form action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
     
     
-            <div class="form-row">
-      <input type="number" class="form-control edit-profile-inputs" placeholder="Mobile Number" name="mobileNumber" required value="<?php echo $mobile;?>" id="mobileNumber">
-        <small id="mobileError" class="text-danger"></small>
-  </div>
-        <br>
+           
             
   <div class="form-row">
     <div style="padding-left:0" class="col-md-12">
@@ -50,7 +47,19 @@ $userId = $_SESSION['userEmail'];
         <small id="nameError" class="text-danger"></small>
     </div>
   </div>
+        <br>
+            <div class="form-row">
+    <div style="padding-left:0" class="col-md-12">
+      <input type="text" class="form-control edit-profile-inputs" id="fatherName" placeholder="Father's Name" name="fatherName" required value="<?php echo $fatherName;?>">
+        <small id="fatherNameError" class="text-danger"></small>
+    </div>
+  </div>
         <br>    
+         <div class="form-row">
+      <input type="number" class="form-control edit-profile-inputs" placeholder="Mobile Number" name="mobileNumber" required value="<?php echo $mobile;?>" id="mobileNumber">
+        <small id="mobileError" class="text-danger"></small>
+  </div>
+        <br>
   <div class="form-row">
       <input type="text" class="form-control edit-profile-inputs" placeholder="City" name="city" required value="<?php echo $city;?>" id="city">
          <small id="cityError" class="text-danger"></small>
@@ -84,8 +93,9 @@ function validation(){
     var mobile = document.getElementById("mobileNumber").value;
     var name   = document.getElementById("name").value;
     var city   = document.getElementById("city").value;
+    var fatherName = document.getElementById("fatherName").value; 
 
-        if(!mobile || !name || !city){
+        if(!mobile || !name || !city || !fatherName){
         if(!mobile){
             $("#mobileError").html("Please enter your mobile number.");
         }
@@ -104,6 +114,12 @@ function validation(){
             else{
                 $("#cityError").html(""); 
             }
+        if(!fatherName){
+            $("#fatherNameError").html("Please enter your city.");
+        }
+            else{
+                $("#fatherNameError").html(""); 
+            }
 
         }
 
@@ -111,12 +127,13 @@ function validation(){
         $("#mobileError").html(""); 
         $("#nameError").html(""); 
         $("#cityError").html(""); 
+        $("#fatherNameError").html(""); 
     
 
                     $.ajax({
                         type : "POST",
                         url  : "functions.php",
-                        data : "check=altUser" + "&mobile="+ mobile +"&name="+ name +"&city="+ city,
+                        data : "check=altUser" + "&mobile="+ mobile +"&name="+ name +"&city="+ city +"&fatherName="+ fatherName,
 
 
                         success:function(result){

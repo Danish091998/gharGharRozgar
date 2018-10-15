@@ -63,6 +63,19 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
         }   
     }
 ?>
+<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Are you sure you want to delete this job.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary yesButton">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
  
 
@@ -81,8 +94,11 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
 })
     
  $(".delete").click(function(){
-     var id = $(this).attr("data-id");
- 
+     $("#deleteModal").modal();
+     var id = $(this).attr("data-id");   
+
+    $(".yesButton").click(function(){
+        
      $.ajax({
         type : "POST",
         url  : "functions.php",
@@ -97,8 +113,9 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
             }
         }
     })
-})
-    
+        $("#deleteModal").modal('hide');
+    });
+    });
  function userInfo(){
     $(".userInfo").click(function(){
      var user = $(this).attr("data-user");  

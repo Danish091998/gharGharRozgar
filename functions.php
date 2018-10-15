@@ -76,10 +76,11 @@ elseif($_POST['check'] == 'altUser' ){
     
     $mobile = $_POST['mobile'];
     $name   = mysqli_real_escape_string($conn,$_POST['name']);
+    $fatherName   = mysqli_real_escape_string($conn,$_POST['fatherName']);
     $city   = $_POST['city'];
     $email  = $_SESSION['userEmail'];
     
-    $query = "UPDATE `users2` SET `name`= '$name', `phone` = '$mobile', `city` = '$city' WHERE `email`='$email'";
+    $query = "UPDATE `users2` SET `name`= '$name', `phone` = '$mobile', `city` = '$city', `fatherName` = '$fatherName' WHERE `email`='$email'";
     if(mysqli_query( $conn, $query )){
         echo "<div class='alert alert-success'>Successfully Changed</div>";
     }

@@ -25,7 +25,7 @@
         <![endif]-->
     </head>
     
-    <body style="background:#f7f7f7; padding-top:3%;">
+    <body style="background:#f7f7f7; padding-top:2%;">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
       <div class="modal-body">
