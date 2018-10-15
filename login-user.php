@@ -49,7 +49,7 @@
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label id="label" >Password</label> 
-                    <a href="forgot-password.php" class="forgot-password">Forgot Password?</a>
+                    <a href="forgot-password-user.php" class="forgot-password">Forgot Password?</a>
                 </div>
                
                 <input type="button" id="login-button" class="btn btn-default" name="login" value="Login">     

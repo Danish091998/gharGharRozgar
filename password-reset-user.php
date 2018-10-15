@@ -10,10 +10,10 @@ include("connections.php");
          $row    = mysqli_fetch_array($result);
          
          $email  = $row['EMAIL'];
-        if(mysqli_num_rows($result) == 1 && $_POST['pass']){
-            $pass = $_POST['pass'];
+        if(mysqli_num_rows($result) == 1){
+            if($_POST['send']){
+            $pass = $_POST['password'];
             $password = password_hash( $pass, PASSWORD_BCRYPT );
-            $email  = $_SESSION['userEmail'];
     
             $query = "UPDATE `users2` SET `password`= '$password' WHERE `email`='$email'";
             if(mysqli_query( $conn, $query )){
@@ -23,8 +23,9 @@ include("connections.php");
                 echo "<div class='alert alert-danger'>Please check your internet connection or try again later.</div>";
             }
         }
+    }
         else{
-            die("Your Email not found.");
+            die("Your Email is not found. Your forgot password request might be expired. Please request again.");
         }
            
     }
@@ -68,7 +69,7 @@ include("connections.php");
             <small id="cpassError" class="text-danger"></small>
       </div>
             <br>    
-      <button class="save-changes" onclick="passValidation()" type="button" name="Change Password">Change Password</button>
+      <button class="save-changes" onclick="passValidation()" type="submit" name="Change Password">Change Password</button>
     <br>
             <br><div id="resultpass"></div>
     </form>
