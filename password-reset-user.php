@@ -1,22 +1,38 @@
 <?php
 include("connections.php");
-$id = $GET['id'];
 
-function userInfo(){
+    $id = $_GET['id'];
     
-    global $id;
-    global $conn;
 
     if($id){
          $query  = "SELECT `EMAIL` FROM `forgotPassword` WHERE `USERKEY`= '$id'";
          $result = mysqli_query($conn,$query);
+         $row    = mysqli_fetch_array($result);
          
-        if(mysqli_num_rows($result) == 1){
-       
+         $email  = $row['EMAIL'];
+        if(mysqli_num_rows($result) == 1 && $_POST['pass']){
+            $pass = $_POST['pass'];
+            $password = password_hash( $pass, PASSWORD_BCRYPT );
+            $email  = $_SESSION['userEmail'];
+    
+            $query = "UPDATE `users2` SET `password`= '$password' WHERE `email`='$email'";
+            if(mysqli_query( $conn, $query )){
+                echo "<div class='alert alert-success'>Your password is changed successfully.</div>";
+            }
+            else{
+                echo "<div class='alert alert-danger'>Please check your internet connection or try again later.</div>";
+            }
+        }
+        else{
+            die("Your Email not found.");
         }
            
-}
-}
+    }
+    
+    else{
+         die("You are not allowed to open this page.");
+    }
+
 ?>
 <html>
 
@@ -37,7 +53,7 @@ function userInfo(){
 
     </head>
  <body>
-     <form style="width:600px; margin: 10% auto;">
+     <form style="width:600px; margin: 10% auto;" method="post">
    
     <h1 class="page-heading" style="text-align:left; color:#333;">Reset Your Password</h1>   
           <p class="tagline">You have requested to reset your password for .</p>

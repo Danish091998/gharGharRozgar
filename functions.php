@@ -240,4 +240,13 @@ elseif($_POST['check'] == 'morejobs'){
         }
     }
 
+elseif($_POST['check'] == 'forgotPass'){
+    $email = mysqli_real_escape_string($conn,$_POST['email']);
+    $key   = md5(uniqid());
+    $date  = date("Y-m-d");
+    
+    $query = "INSERT INTO `forgotPassword`(`EMAIL`, `USERKEY`, `DATE`) VALUES ('$email','$key','$date')";
+    $result = mysqli_query($conn,$query);
+}
+
 ?>

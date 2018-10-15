@@ -1,4 +1,6 @@
-          
+<?php 
+include('connections.php');
+?>          
 <html>
     <head>
         <meta charset="utf-8">
@@ -29,13 +31,13 @@
             <input type="text" id="login-username" name="email" required autofocus>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label id="label" >Email</label>
+            <label id="label">Email</label>
         </div>
-        <button class="btn btn-default send-button">Send</button>
+        <button class="btn btn-default send-button" id="send">Send</button>
     </div>
      <div class="thankyou-wrapper">
     <h1 style="text-align:left; margin-bottom:20px; color:#444" class="page-heading">Reset Your Password</h1>
-    <p class="tagline">We have sent a reset password email to. Please click the reset password link to set your new password.</p>
+    <p class="tagline">We have sent a reset password email to <span id='email'></span> . Please click the reset password link to set your new password.</p>
          <br>
          <p class="tagline" style="margin-bottom:5px">Didn't receive the email yet?</p>
     <p class="tagline">Please check the spam folder, or <a id="resend" style="color:#0177a3; cursor:pointer;">resend</a> the email,</p>
@@ -43,5 +45,21 @@
     </div>
     <script src="jquery-3.3.1.js"></script>
     <script src="forgot-password.js"></script>
+    <script>
+    $("#send").click(function(){
+        var email  = document.getElementById("login-username").value;
+        
+        $.ajax({
+          type : "POST",
+          url  : "functions.php",
+          data : "check=forgotPass&email="+ email,
+
+
+          success:function(){
+             $("#email").html(email);
+                        }
+        }) 
+    })
+    </script>
 </body>
 </html>
