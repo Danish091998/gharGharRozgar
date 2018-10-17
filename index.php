@@ -22,7 +22,14 @@ $register = true;
     </head>
     
     <body style="background:#f7f7f7;">
-        
+        <div id="loader-wrapper">
+    <div id="loader"></div>
+ 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+ 
+  </div>
+         <div id="content">
         <?php
         include("topBar.php");?>
         <div class="home-background">
@@ -32,11 +39,43 @@ $register = true;
         <a href="jobseeker.php" class="home-anchor anchor1"><span class="tip-top-left"></span>Looking For JOB?</a>
         <a href="jobprovider.php" class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>
         </div>
-
         </div>
-        TEST
+        </div>
+<!--        <footer class="footer">Test</footer>-->
+    
 <script src="jquery-3.3.1.js" ></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script> 
+        <script>
+        
+            document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'interactive') {
+       document.getElementById('content').style.visibility="hidden";
+ 
+      $('html, body').css({
+  'overflow': 'hidden',
+  'height': '100%'
+})
+  } else if (state == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+          $('body').addClass('loaded');
+         document.getElementById('loader-wrapper').style.visibility="hidden";
+         document.getElementById('content').style.visibility="visible";
+         
+          $('html, body').css({
+  'overflow': 'auto',
+  'height': '100%'
+})
+       
+      },1000);
+   
+   
+   
+  }
+}
+            
+        </script>
 <script src="home.js"></script>        
     </body>
 </html>

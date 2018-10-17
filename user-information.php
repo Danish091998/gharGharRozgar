@@ -47,12 +47,11 @@ if($user){
 
     </head>
     
-    <body style="background:#f7f7f7;">
+    <body class="container" style="background:#f7f7f7;">
         
-<div class="contanier container-fluid">
-<h1 style="display:inline-block" class="heading-profile">Account Information</h1>
-       
 
+<h1 style="display:inline-block;" class="page-heading"> User Account Information</h1>
+       
 <div class="form-row">
       <div class="col-md-2">
       <p class="labels-for-profile">Email</p>
@@ -165,6 +164,5 @@ if($user){
       <p class="profile-data"><?php echo $percentage; ?></p>
     </div>
   </div>
-        </div>
     </body>
 </html>

@@ -1,4 +1,5 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <!--        TOP BAR-->
 
         <div id="mySidenav" class="sidenav">

@@ -83,7 +83,7 @@
     
             success: function(result){
                 if(result == 'loggedIn'){
-                window.location='index.php';
+                window.location='user-profile.php';
                 }
                 
                 else{

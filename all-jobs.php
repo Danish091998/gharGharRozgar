@@ -67,7 +67,8 @@ if($user){
                     </div>
                 </div>";
 
-            }   
+            } 
+            echo "<div style='width:300px; margin:20px auto; ' class='alert alert-info'>There are no more jobs to display.</div>";
         }
     }
 

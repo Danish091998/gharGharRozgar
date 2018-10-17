@@ -36,8 +36,7 @@ $jobId   = $_GET['job'];
                 $job_date       = $org['DATE'];
                 
         }   
-}
- 
+} 
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +48,7 @@ $jobId   = $_GET['job'];
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-         <meta property="og:url"           content="kinitoapps.com/moneymanager" />
+         <meta property="og:url" content="kinitoapps.com/moneymanager" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Money Manager" />
   <meta property="og:description"   content="$job_info" />
@@ -102,15 +101,42 @@ $jobId   = $_GET['job'];
                 <p class='salary-amount'><?php echo $job_salary;?></p>
             </div>
             </div>
+            <div class='row' style='margin-bottom:5px;'>
+            <div class='col-md-2' style='text-align:left;'>
+                <p class='salary-job-description'>Address:</p>
+            </div>
+            <div class='col-md-10' style='text-align:left;'>
+                <p class='salary-amount'><?php echo $job_venue;?></p>
+            </div>
+            </div>
+            <div class='row' style='margin-bottom:5px;'>
+            <div class='col-md-2' style='text-align:left;'>
+                <p class='salary-job-description'>Interview Date:</p>
+            </div>
+            <div class='col-md-10' style='text-align:left;'>
+                <p class='salary-amount'><?php echo $job_date;?></p>
+            </div>
+            </div>
+            <div class='row' style='margin-bottom:5px;'>
+            <div class='col-md-2' style='text-align:left;'>
+                <p class='salary-job-description'>Interview Time:</p>
+            </div>
+            <div class='col-md-10' style='text-align:left;'>
+                <p class='salary-amount'><?php echo $job_time;?></p>
+            </div>
+            </div>
             <div class='row' style='margin-bottom:30px;'>
             <div class='col-md-2' style='text-align:left;'>
-                <p class='salary-job-description'>Emoloyment Type:</p>
+                <p class='salary-job-description'>Employment Type:</p>
             </div>
             <div class='col-md-10' style='text-align:left;'>
                 <p class='salary-amount'><?php echo $job_emp_type;?></p>
             </div>
             </div>
-                <p id='job-description'>Course Required:</p><p class='job-description-text'><?php echo $job_course;?></p>
+           
+            
+            
+                <p id='job-description'>Course Required:</p><p class='job-description-text'><?php echo $job_course . " " . $job_field?></p>
                 <p id='job-description'>Contact:</p>
             <div class='row' style='margin-bottom:5px;'>
             <div class='col-md-2' style='text-align:left;'>
