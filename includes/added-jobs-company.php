@@ -76,9 +76,9 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
     </div>
   </div>
 </div>
+
 <script>
  
-
  $(".applicants").click(function(){
      var id = $(this).attr("data-id");
  

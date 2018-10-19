@@ -1,4 +1,12 @@
 <?php include('connections.php');
+function selectCity(){
+    global $conn;
+    $sql = "SELECT LOCATION FROM locations";
+    $result = mysqli_query($conn,$sql);
+    while ($row = mysqli_fetch_array($result)) {
+    echo "<option value='" . $row['LOCATION'] ."'>" . $row['LOCATION'] ."</option>";
+}
+}
 session_start();
 $companyEmail= $_SESSION["CompanyEmail"] ;
 
@@ -52,9 +60,12 @@ $companyEmail= $_SESSION["CompanyEmail"] ;
         <small class="text-danger" id="nameError"></small>
       </div>
         <br>
-  <div class="form-row">
-      <input type="text" class="form-control edit-profile-inputs" placeholder="City" name="city" id="city" required value="<?php echo $city;?>">
-         <small class="text-danger" id="cityError"></small>
+  <div class="form-row col-md-12" style="margin:0; padding:0;">
+      <select name="city" id="city" class="js-example-placeholder-single js-states form-control" placeholder="city">
+          <option><?php echo $city;?></option>
+           <?php selectCity();?>
+        </select>
+        <small id="cityError" class="text-danger"></small>
   </div>
             <br><div id="result"></div>
             
@@ -80,8 +91,6 @@ $companyEmail= $_SESSION["CompanyEmail"] ;
   <button class="save-changes" type="button" onclick="compPassValidation()" name="add">Change Password</button> 
     </form>
 <script src="registerCompany.js"></script>
-
-
 <script>
 function compValidation(){
    

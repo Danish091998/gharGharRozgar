@@ -331,18 +331,21 @@ if( isset( $_POST['add'] ) ) {
     </div>
                 
   </div>
+            <br>
             <div class="form-row skills-div"> 
                 <div class="col-md-2">
       <p class="labels-for-profile">Skills:</p>
       </div>
     <div class="col-md-3">
-        <select name="skill[]" id="skill" class="js-example-placeholder-single js-states" style="width:100%" multiple> 
+         
+        <select name="skill[]" id="skill" class="js-example-placeholder-multiple js-states" style="width:100%" multiple="multiple"> 
             <small class="text-danger"><?php echo $skillError; ?></small>
             <option></option>
             <?php selectSkill()?>
-        </select>
-        
-    </div>    
+        </select>    
+    </div>  
+        <a class="tool-tip" href="#" data-toggle="tooltip" title="Select your skills by clicking on this field. If you don't have any skill leave this field empty.">?
+        </a>
             </div>
         <hr>
             <div class="form-row">
@@ -370,13 +373,14 @@ if( isset( $_POST['add'] ) ) {
 </div>
     <small class="text-danger"><?php echo $checkboxError; ?></small>
   </div>
-  <button class="btn btn-primary" type="submit" name="add">Submit form</button> 
+  <button style="margin-bottom:20px;" class="btn btn-primary" type="submit" name="add">Submit form</button> 
 </form>
  </div>   
         
 <script src="jquery-3.3.1.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="select2-4.0.6-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.js"></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="register.js"></script>
     </body>

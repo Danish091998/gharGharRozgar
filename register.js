@@ -11,14 +11,26 @@ $(".js-example-placeholder-single").select2({
     allowClear: false   
 });
 
+$("#selectTwo").select2({
+    placeholder: "Select Your Course",
+    allowClear: false   
+});
+
+$("#selectThree").select2({
+    placeholder: "Select Your Field",
+    allowClear: false   
+});
+
 $("#city").select2({
     placeholder: "Select Your City",
     allowClear: false   
 });
-$("#skill").select2({
-    placeholder: "Select Your Skill",
-    allowClear: false   
+
+$(".js-example-placeholder-multiple").select2({
+    placeholder: "Select your skills"
 });
+
+    $('[data-toggle="tooltip"]').tooltip();   
 
 //SELECT QUALIFICATION
 

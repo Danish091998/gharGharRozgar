@@ -81,6 +81,7 @@ $email = $_SESSION['CompanyEmail'];
 <script src="jquery-3.3.1.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="select2-4.0.6-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.js"></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <script>
         

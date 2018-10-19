@@ -20,6 +20,7 @@ include('connections.php');
         <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
         <link href="style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oxygen|Poppins" rel="stylesheet">
+        <link href="select2-4.0.6-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     </head>
     
@@ -48,7 +49,7 @@ include('connections.php');
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript">
             $("#editProfile").click(function(){
-                $('#profile-section').load("editprofile.php" +  '#profile-section');
+                $('#profile-section').load("includes/edit-profile-user.php" +  '#profile-section');
                 });
             $("#myAccount").click(function(){
                 $('#profile-section').load("includes/my-account-user.php" +  '#profile-section');
@@ -56,8 +57,9 @@ include('connections.php');
             $("#addedJobs").click(function(){
                 $('#profile-section').load("includes/user-applied-jobs.php" +  '#profile-section');
                 });
+            
         </script>  
-
+<script src="select2-4.0.6-rc.0/dist/js/select2.min.js"></script>
 <script src="home.js"></script>
 <script src="register.js"></script>  
 <script type="text/javascript" src="profile.js"></script>        

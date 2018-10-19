@@ -55,8 +55,8 @@ $userId = $_SESSION['userEmail'];
         <small id="mobileError" class="text-danger"></small>
   </div>
         <br>
-  <div class="form-row col-md-6">
-      <select name="city" id="city" class="js-example-placeholder-single js-states form-control" placeholder="city">
+  <div class="form-row col-md-12" style="margin:0; padding:0;">
+      <select name="city" id="city" class="js-example-placeholder-single js-states form-control" placeholder="city" >
           <option><?php echo $city;?></option>
            <?php selectCity();?>
         </select>
@@ -87,6 +87,10 @@ $userId = $_SESSION['userEmail'];
     </form>
 
 <script>
+    $("#city").select2({
+    placeholder: "Select Your City",
+    allowClear: false   
+});
 function validation(){
     var mobile = document.getElementById("mobileNumber").value;
     var name   = document.getElementById("name").value;

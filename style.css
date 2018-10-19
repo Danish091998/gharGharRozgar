@@ -822,6 +822,26 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 
 .skills-div{display: none;}
 
+.tool-tip{
+    font-size: 15px;
+    font-weight: 600;
+    color: #777;
+    border: 1px solid #777;
+    height: 23px;
+    width: 23px;
+    position: relative;
+    top: 13px;
+    text-align: center;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.tool-tip:hover{
+    background: #eee;
+    color: #333;
+    text-decoration: none;
+}
+
 /*Company Registration Form*/
 
 .labelForPicture{
@@ -1356,18 +1376,19 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
 }
 
 .userInfo{
-    font-size: 14px;
+    font-size: 13px;
     font-family: "Poppins";
     letter-spacing: 0.05em;
+    font-weight: 600;
     cursor: pointer;
     margin-left: 20px;
     padding: 0px;
     text-decoration: none;
-    color: #444;
+    color: #555;
     transition: all 0.3s ease;
 }
 .userInfo:hover{
-    color: #111;
+    color: #f04100;
     text-decoration: none;
 }
 
@@ -1406,7 +1427,73 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     width: 600px;
 }
 
+.select2-container--default .select2-selection--single,.select2-container--default .select2-selection--multiple{
+    height: 50px;
+    background: #ebeef0;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 15px;
+    font-family: "Poppins";
+    font-weight: 600;
+    width: 100%;
+}
+.select2-container--default .select2-selection--single .select2-selection__placeholder{
+    color:#777;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 10px;
+    right: 10px;
+}
 
+.contact-wrapper{
+    width: 50%;
+    margin: 40px auto;
+}
+
+.contact-tagline{
+    text-align: center;
+    font-size: 15px;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: #333;
+}
+
+#message-box{
+    height: 180px;
+}
+
+#send-button{
+    width: 150px;
+    padding: 15px 0px;
+    background: #00aff0;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#send-button:hover{
+    background: #040e24;
+}
+
+/*FOOTER*/
+
+footer{
+    background: #ddd;
+    padding: 20px;
+    text-align: center;
+    font-family: "Poppins";
+    letter-spacing: 0.05em;
+    font-size: 14px;
+}
 
 /*admin page*/
 

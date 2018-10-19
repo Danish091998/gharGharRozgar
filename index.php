@@ -40,6 +40,23 @@ $register = true;
         <a href="jobprovider.php" class="home-anchor anchor2"><span class="tip-top-right"></span>Looking To HIRE?</a>
         </div>
         </div>
+         <form id="contact-page" action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
+            <h1 class="page-heading" style="font-size:45px; margin-bottom:20px; color:#00aff0;">Contact Us</h1>
+            <p class="contact-tagline">Have any issues, feedback, queries or thoughts regarding Ghar Ghar Rozgar? Feel free to reach out to us.</p>
+        <div class="contact-wrapper">
+            <div class="form-row">
+            <input id="name" class="form-control edit-profile-inputs" type="text" placeholder="Name" name="name"> 
+            </div><br>
+              <div class="form-row">
+            <input id="email" class="form-control edit-profile-inputs" type="email" placeholder="Email" name="email">
+             </div><br>
+              <div class="form-row">
+            <textarea class="form-control edit-profile-inputs" id="message-box" placeholder="Message" name="message"></textarea>
+             </div><br>
+            <center><input id="send-button" type="button" name="send-message" value="Send"></center>   
+        </div>
+            </form>
+               <footer> &copy; 2018, All Right Reserved Ghar Ghar Rozgar &#9679; <a href="privacy.html" class="privacy"> Privacy and Terms </a></footer>
         </div>
 <!--        <footer class="footer">Test</footer>-->
     
