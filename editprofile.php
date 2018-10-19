@@ -3,34 +3,29 @@
 include('connections.php');
 $register=true;
 
-function select(){
+function selectCity(){
     global $conn;
-    $sql = "SELECT `EDUCATION` FROM `education`";
+    $sql = "SELECT LOCATION FROM locations";
     $result = mysqli_query($conn,$sql);
     while ($row = mysqli_fetch_array($result)) {
-        echo "<option value='" . $row['EDUCATION'] ."'>" . $row['EDUCATION'] ."</option>";
-        }   
-    }
+    echo "<option value='" . $row['LOCATION'] ."'>" . $row['LOCATION'] ."</option>";
+}
+}
+
 session_start();
 $userId = $_SESSION['userEmail'];
 
     if($userId){
 
-        $query  = "SELECT * FROM `users2` WHERE `email` = '".$userId."'";
+        $query  = "SELECT  `name`, `fatherName`, `email`, `phone`, `city` FROM `users2` WHERE `email` = '".$userId."'";
         $result = mysqli_query($conn,$query);
         $row    = mysqli_fetch_array($result);
 
-        $img_link   = 'NULL';
         $email      = $row['email'];
         $mobile     = $row['phone'];
         $name       = $row['name'];
         $fatherName = $row['fatherName'];
-        $gender     = $row['gender'];
-        $birthdate  = $row['birthDate'];
         $city       = $row['city'];
-        $qual       = $row['education'];
-        $course     = $row['course'];
-        $field      = $row['field']; 
     }
 ?>  
 
@@ -60,9 +55,12 @@ $userId = $_SESSION['userEmail'];
         <small id="mobileError" class="text-danger"></small>
   </div>
         <br>
-  <div class="form-row">
-      <input type="text" class="form-control edit-profile-inputs" placeholder="City" name="city" required value="<?php echo $city;?>" id="city">
-         <small id="cityError" class="text-danger"></small>
+  <div class="form-row col-md-6">
+      <select name="city" id="city" class="js-example-placeholder-single js-states form-control" placeholder="city">
+          <option><?php echo $city;?></option>
+           <?php selectCity();?>
+        </select>
+        <small id="cityError" class="text-danger"></small>
   </div>
   <br>
  <button onclick="validation()" class="save-changes" type="button" name="add">Save Changes</button>
@@ -115,7 +113,7 @@ function validation(){
                 $("#cityError").html(""); 
             }
         if(!fatherName){
-            $("#fatherNameError").html("Please enter your city.");
+            $("#fatherNameError").html("Please enter your father's name.");
         }
             else{
                 $("#fatherNameError").html(""); 
@@ -128,7 +126,6 @@ function validation(){
         $("#nameError").html(""); 
         $("#cityError").html(""); 
         $("#fatherNameError").html(""); 
-    
 
                     $.ajax({
                         type : "POST",
@@ -168,7 +165,7 @@ function passValidation(){
        else if (newpass == conpass){
              $("#passError").html("");
              $("#cpassError").html(""); 
-
+                
                     $.ajax({
                         type : "POST",
                         url  : "functions.php",

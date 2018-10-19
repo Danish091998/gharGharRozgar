@@ -75,8 +75,8 @@ elseif($_POST['check'] == 'jobApply'){
 elseif($_POST['check'] == 'altUser' ){
     
     $mobile = $_POST['mobile'];
-    $name   = mysqli_real_escape_string($conn,$_POST['name']);
-    $fatherName   = mysqli_real_escape_string($conn,$_POST['fatherName']);
+    $name   = ucwords(strtolower(mysqli_real_escape_string($conn,$_POST["name"] ))); 
+    $fatherName   = ucwords(strtolower(mysqli_real_escape_string($conn,$_POST["fatherName"] ))); 
     $city   = $_POST['city'];
     $email  = $_SESSION['userEmail'];
     
