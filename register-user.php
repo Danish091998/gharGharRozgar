@@ -69,7 +69,7 @@ if( isset( $_POST['add'] ) ) {
         $_SESSION['mobileNumber'] = $_POST["mobileNumber"];
         $mobile = validateFormData( $_POST["mobileNumber"] );
         }else{
-             $mobileError = "Please enter a valid mobile number <br>";
+             $mobileError = "Please enter a valid mobile number of 10 numbers.<br>";
         }
     }
     if( !$_POST["name"] ) { 

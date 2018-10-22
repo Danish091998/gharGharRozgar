@@ -136,15 +136,34 @@ elseif($_POST['check'] == 'applicants'){
 
 elseif($_POST['check'] == 'delete'){
     $id = $_POST['jobId'];
+
+    $query = "SELECT  `DATE`, `TIME` FROM `jobs` WHERE `ID` = $id";
+    $result = mysqli_query($conn,$query);
+    $row = mysqli_fetch_array($result);
+    $date = $row['DATE'];
+    $time = $row['TIME'];
+   
+    $start = date_create($date.$time);
     
-    $query  = "DELETE FROM `jobs` WHERE `ID` = '$id';";
-    $query  .= "DELETE FROM `appliedJobs` WHERE `jobId` = '$id'";
-    if (mysqli_multi_query($conn,$query)){
-        echo "deleted";
+    $end  = date_create(date("Y-m-d h:i:sa"));
+    $diff = date_diff($start,$end);
+    $days =  $diff->format("%R%a days");
+    if($days >= 1){
+        $query  = "DELETE FROM `jobs` WHERE `ID` = '$id';";
+        $query  .= "DELETE FROM `appliedJobs` WHERE `jobId` = '$id'";
+        if (mysqli_multi_query($conn,$query)){
+            echo "deleted";
+        }
+        else{
+            echo "Please check your internet connection and try again.";
+        } 
     }
+
     else{
-        echo "Please check your internet connection and try again.";
-    }    
+        echo 'You cannot delete this job because there is less than one day left for interview.';
+    }
+    
+   
 }
 
 elseif($_POST['check'] == 'altComp'){

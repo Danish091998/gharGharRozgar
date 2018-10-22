@@ -92,30 +92,31 @@ ON jobs.cID = companyRegister.ID WHERE jobs.cID ='$compID' ORDER BY `ID` DESC";
         }
     })
 })
-    
+var id;
  $(".delete").click(function(){
-     $("#deleteModal").modal();
-     var id = $(this).attr("data-id");   
+     $("#deleteModal").modal();  
+     id = $(this).attr("data-id");    
+    });
 
-    $(".yesButton").click(function(){
-        
-     $.ajax({
-        type : "POST",
-        url  : "functions.php",
-        data : "check=delete&jobId="+ id,
-                    
-        success:function(result){
-            if(result == "deleted"){
-                $("#" + id).fadeOut();
-            }
-            else{
-                alert(result);
-            }
+$(".yesButton").click(function(){
+$.ajax({
+    type : "POST",
+    url  : "functions.php",
+    data : "check=delete&jobId="+ id,
+                
+    success:function(result){
+        if(result == "deleted"){
+            $("#" + id).fadeOut();
+
         }
-    })
-        $("#deleteModal").modal('hide');
-    });
-    });
+        else{
+            alert(result);
+        }
+    }
+})
+    $("#deleteModal").modal('hide');
+})
+
  function userInfo(){
     $(".userInfo").click(function(){
      var user = $(this).attr("data-user");  
