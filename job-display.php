@@ -3,9 +3,17 @@ include('connections.php');
 
 $jobId   = $_GET['job'];
 
+function applyCheck(){
+    session_start();
+    if($_SESSION['access']=="yes"){
+        echo "<input type='button' id='apply' class='apply-button' value='Apply Now' data-job='<?php echo $jobId;?>' data-time='<?php echo $job_time ;?>' data-date='<?php echo $job_date;?>'>";
+        unset($_SESSION['access']);
+    }
+}
 
+      
         if($jobId){
-        
+            
         $query = "SELECT  jobs.cID, jobs.JOB, jobs.COURSE, jobs.FIELD, jobs.INFO,jobs.DATE,jobs.TIME,jobs.ADDRESS,jobs.SALARY,jobs.EMPTYPE,companyRegister.LOGOIMAGE,companyRegister.ID,companyRegister.NAME,companyRegister.PHONE,companyRegister.EMAIL,jobs.ID
         FROM jobs
         INNER JOIN companyRegister
@@ -78,7 +86,7 @@ $jobId   = $_GET['job'];
                 <span class = 'company-name margin-left' style='font-size:14px; color:#666;'><?php echo $org_name;?></span><br>
                 <span class = 'venue margin-left' style='font-size:14px; position:relative; top:5px;'><i id='location-icon' class='fas fa-map-marker-alt'></i><?php echo $job_venue;?></span><br>
             </div>
-            <input type="button" id="apply" class="apply-button" value="Apply Now" data-job="<?php echo $jobId;?>" data-time="<?php echo $job_time ;?>" data-date="<?php echo $job_date;?>">
+            <?php applyCheck();?>
               
             <div class='footer-job'>
                 <p class='salary'><?php echo $job_salary;?></p>

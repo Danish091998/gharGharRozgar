@@ -80,7 +80,7 @@ if($user){
                                 <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
                                 </div>
                                 <div class='col-xs-3'>
-                                <a class='know-more' href='job-display.php?job=$job_id'>View More</a>
+                                <a class='know-more view' href='job-display.php?job=$job_id'>View More</a>
                                 </div>
                             </div>";
 
@@ -122,7 +122,7 @@ if($user){
                     <span style='color:#38b63d' class = 'company-name'> $job_emp_type</span>
                     </div>
                     <div class='col-xs-3'>
-                    <a class='know-more' href='job-display.php?job=$job_id'>View More</a>
+                    <a class='know-more view' href='job-display.php?job=$job_id'>View More</a>
                     </div>
                 </div>";
             }
@@ -135,3 +135,12 @@ if($user){
 
 
 ?>
+<script>
+$(".view").click(function(){
+    $.ajax({
+                        type : "POST",
+                        url  : "functions.php",
+                        data : "check=session",
+                    })  
+})
+</script>

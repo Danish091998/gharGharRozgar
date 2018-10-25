@@ -217,5 +217,8 @@ elseif($_POST['check'] == 'forgotPassComp'){
     $result = mysqli_query($conn,$query);
 }
 
+elseif($_POST['check'] == 'session'){
+  $_SESSION['access'] = "yes";
+}
 
 ?>
