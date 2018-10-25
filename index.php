@@ -21,7 +21,7 @@ $register = true;
 
     </head>
     
-    <body style="background:#f7f7f7;">
+    <body style="background:#fff;">
         <div id="loader-wrapper">
     <div id="loader"></div>
  
@@ -56,9 +56,8 @@ $register = true;
             <center><input id="send-button" type="button" name="send-message" value="Send"></center>   
         </div>
             </form>
-               <footer> &copy; 2018, All Right Reserved Ghar Ghar Rozgar &#9679; <a href="privacy.html" class="privacy"> Privacy and Terms </a></footer>
+               <?php include('footer.php');?>
         </div>
-<!--        <footer class="footer">Test</footer>-->
     
 <script src="jquery-3.3.1.js" ></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script> 

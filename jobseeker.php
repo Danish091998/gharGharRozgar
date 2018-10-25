@@ -21,16 +21,16 @@ $register = true;
 
     </head>
     
-    <body style="background:#e5e5e5">
+    <body style="background:#f5f5f5">
         <?php
         include("topBar.php");?>
         <div class="background-job-seeker-page">
         <div class="wrapper-for-home-heading">
-        <h1 style="font-size:35px" class="home-heading">Looking for employment? WE’RE ON THE JOB!</h1>
+        <h1 style="font-size:35px" class="home-heading">Looking for JOB?<br> We’re Here To Help You! </h1>
         </div>
         </div>
+        <h1 class="heading-for-text">Job Seekers<hr class="heading-line"></h1>
         <div class="container text-wrapper">
-            <h1 class="heading-for-text">Job Seekers</h1>
             <p>
             Job Seekers
             I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. Feel free to drag and drop me anywhere you like on your page. I’m a great place for you to tell a story and let your users know a little more about you.
@@ -42,6 +42,7 @@ $register = true;
             <button id="loginForSeeker" class="login-button-page">Login</button>
             <button id="registerForSeeker" class="register-button-page">Register</button>
         </div>
+        <?php include('footer.php');?>
 <script src="jquery-3.3.1.js" ></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script> 
 <script src="home.js"></script>        

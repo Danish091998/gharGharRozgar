@@ -1,3 +1,18 @@
+@font-face{
+  font-family: 'Poppins';
+  src: url('Poppins-Regular.ttf');
+}
+
+@font-face{
+  font-family: 'Noto Serif KR';
+  src: url('NotoSerifKR-Regular.otf');
+}
+
+@font-face{
+  font-family: 'Oxygen';
+  src: url('Oxygen-Regular.ttf');
+}
+
 html,body{
     height: 100%;
     width: 100%;
@@ -1186,19 +1201,26 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     position: relative;
 }
 .text-wrapper{
-    position: relative;
     background: rgba(255,255,255,0.7);
     margin: 0 auto;
     padding: 30px 20px 30px 20px;
-    top: -90px;
+    margin-bottom: 60px;
 }
+
 .heading-for-text{
     color: #003448;
-    font-family: "Scope One";
+    font-family: "Poppins";
     font-weight: 600;
-    margin-bottom: 40px;
-    margin-top: 18px;
+    margin: 40px 0px;
+    text-align: center;
 }
+
+.heading-line{
+    margin: 0 auto;
+    width: 120px;
+    border-top: 3px solid #003448;
+}
+
 .sub-heading-text{
     color: #003448;
     font-family: "Poppins";

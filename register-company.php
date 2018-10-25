@@ -196,7 +196,7 @@ $out_image=addslashes(file_get_contents($resize_image));
 
         <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
-<link href="select2-4.0.6-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <link href="style.css" rel="stylesheet">
         
 
@@ -204,7 +204,7 @@ $out_image=addslashes(file_get_contents($resize_image));
     
     <body style="background:#f9f9f9; padding-top:0">
         <?php
-        include('topbar.php');?>
+        include('topBar.php');?>
         <div class="container">
         <h1 class="page-heading">Company Registration</h1>
         <p class="edit-profile-inputs" style="margin-bottom:25px;">Fields marked with <span class="asterisk">*</span> are compulsory.</p>    
@@ -311,8 +311,8 @@ $out_image=addslashes(file_get_contents($resize_image));
  </div>   
         
 <script src="jquery-3.3.1.js"></script>
-<script src="select2-4.0.6-rc.0/dist/js/select2.min.js"></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="select2-4.0.6-rc.0/dist/js/select2.full.js"></script>
 <script src="registerCompany.js"></script>        
     </body>
 </html>

@@ -194,7 +194,7 @@ if( isset( $_POST['add'] ) ) {
     
     <body style="padding-top:0; background:#f9f9f9;">
         <?php
-        include('topbar.php');?>
+        include('topBar.php');?>
         <div class="container">
         <?php echo $error;?>
         <h1 class="page-heading">User Registration</h1>
@@ -379,7 +379,7 @@ if( isset( $_POST['add'] ) ) {
         
 <script src="jquery-3.3.1.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script src="select2-4.0.6-rc.0/dist/js/select2.min.js"></script>
+<script src="select2-4.0.6-rc.0/dist/js/select2.full.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.js"></script>
 <script src="bootstrap-4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="register.js"></script>
