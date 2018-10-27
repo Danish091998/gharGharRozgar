@@ -791,6 +791,13 @@ html,body{
   border-bottom-color: transparent;
   transition: all 0.3s ease;
 }
+
+#contact-us{
+    font-size:45px;
+    margin-bottom:20px;
+    color:#00aff0;
+    margin-top: 0px;
+}
 /*Registration Form*/
 
 .form-check{
@@ -1200,6 +1207,11 @@ hr{border-top: 2px solid rgba(0,0,0,.1);}
     background-size: cover;
     position: relative;
 }
+
+#page-title{
+    font-size: 35px;
+}
+
 .text-wrapper{
     background: rgba(255,255,255,0.7);
     margin: 0 auto;
@@ -1555,21 +1567,24 @@ footer{
 @media only screen and (max-width:768px){
     
     .website-name{
-        font-size: 18px;
+        font-size: 20px;
         margin-left: 10px;
         line-height: 55px;
+        top:9px;
     }
     
     .signup-button{
-        font-size: 13px;
+        font-size: 12px;
         line-height: 40px;
         margin: 8px;
+        top: 10px;
+        right: 110px;
     }
     
     .login-button{
-        font-size: 13px;
+        font-size: 12px;
         line-height: 22px;
-        margin-right: 24px;
+        right: 50px;
     }
     
     /*SideNav*/
@@ -1585,7 +1600,7 @@ footer{
     z-index: 2;
     top: 0;
     right: 0;
-    background-color: #111;
+    background-color: #f3f3f3;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -1618,7 +1633,7 @@ footer{
     position: relative;
     width: 25px;
     float: right;
-    top: 18px;
+    top: 28px;
     height: 20px;
     right: 15px;
     z-index: 20;
@@ -1661,7 +1676,7 @@ footer{
     .mobile-navigation-buttons{
     font-size: 16px;
     font-family: "Poppins";
-    color: #ddd;
+    color: #666;
     text-decoration: none;
 }
 
@@ -1678,21 +1693,137 @@ footer{
 .lineBwNavigation{
     height: 1px;
     width: 160px;
-    background: #ddd;
+    background: #666;
     z-index: 2;
     margin-left: 20px;
 }
+    
+    #contact-us{
+        margin-top: -30px;
+        font-size: 35px;
+    }
+    
+    .contact-wrapper{
+        width: 70%;
+    }
 
 }
 
 @media only screen and (max-width:500px){
+    
+    #top-bar{
+        height: 55px;
+    }
+    
     .website-name{
-        font-size: 16px;
-        margin-left: 8px;
+        font-size: 17px;
+        margin-left: 4px;
+        top: 0px;
     }
+    
+    .signup-button{
+        top: 1px;
+        right: 100px;
+    }
+    
+    .login-button{
+        top: 11px;
+        right: 45px;
+    }
+    
     .bars{
-        right: 12px;
+        right: 10px;
+        top: 19px;
     }
+    
+    .job-seeker-login-button{
+        top: 0px;
+    }
+    
+    #job-seeker-login,#job-seeker-register-button{
+        right: 0px;
+        margin-bottom: 10px;
+    }
+    
+    #job-provider-login-button,#job-provider-register-button{
+        left: 0;
+    }
+    
+    .vertical-line{
+        display: none;
+    }
+    
+    .wrapper-for-home-heading{
+        width: 90%;
+        top: 220px;
+    }
+    
+    .home-heading{
+        font-size: 25px;
+    }
+    
+    #page-title{
+        font-size: 25px;
+    }
+    
+    .home-anchor{
+        font-size: 15px;
+        width: 80%;
+    }
+    
+    .anchor1{
+        right: 0px;
+        left: 0px;
+        margin: 15px auto 0;
+    }
+    
+    .anchor2{
+        right: 0px;
+        left: 0px;
+        margin: 50px auto 0;
+    }
+    
+    .tip-top-left{
+        background: transparent;
+    border: 14px solid #00aff0;
+    top: -0.2px;
+    left: -28px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    }
+    
+    .tip-top-right{
+     border: 14px solid #f04100;
+    top: -0.2px;
+    right: -28px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    }
+    
+    #contact-us{
+        margin: -50px auto 10px;
+        font-size: 25px;
+    }
+    
+    .contact-tagline{
+        font-size: 12px;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    .contact-wrapper{
+        width: 90%;
+        margin-top: 25px;
+    }
+    
+/*    Job Seeker*/
+    
+    .heading-for-text{
+        font-size: 30px;
+    }
+    
 /*    Profile*/
     .profile-wrapper{
         max-width: 100% !important;

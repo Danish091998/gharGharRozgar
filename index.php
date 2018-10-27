@@ -11,7 +11,7 @@ $register = true;
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>HomePage</title>
+        <title>Ghar Ghar Rozgar</title>
 
         <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="bootstrap-4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
@@ -41,7 +41,7 @@ $register = true;
         </div>
         </div>
          <form id="contact-page" action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ); ?>" method="post">
-            <h1 class="page-heading" style="font-size:45px; margin-bottom:20px; color:#00aff0;">Contact Us</h1>
+            <h1 id="contact-us" class="page-heading">Contact Us</h1>
             <p class="contact-tagline">Have any issues, feedback, queries or thoughts regarding Ghar Ghar Rozgar? Feel free to reach out to us.</p>
         <div class="contact-wrapper">
             <div class="form-row">
@@ -84,7 +84,7 @@ $register = true;
   'height': '100%'
 })
        
-      },1000);
+      });
    
    
    

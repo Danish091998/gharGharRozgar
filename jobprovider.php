@@ -26,7 +26,7 @@ $register = true;
         include("topBar.php");?>
         <div class="background-job-provider-page">
         <div class="wrapper-for-home-heading">
-        <h1 style="font-size:35px" class="home-heading">Looking To Hire?<br> We're Here To Help You!</h1>
+        <h1 id="page-title" class="home-heading">Looking To Hire?<br> We're Here To Help You!</h1>
         </div>
         </div>
         <h1 class="heading-for-text">Job Providers<hr class="heading-line"></h1>
